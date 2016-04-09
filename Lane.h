@@ -32,6 +32,7 @@
 
 #ifndef LANE_H
 #define LANE_H
+
 #include <deque>
 #include "Vehicle.h"
 
@@ -39,7 +40,9 @@ class Lane {
 
 public:
     Lane();
-    Lane(const Lane& orig);
+
+    Lane(const Lane &orig);
+
     virtual ~Lane();
 
 protected:

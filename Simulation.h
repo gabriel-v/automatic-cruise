@@ -36,8 +36,11 @@
 class Simulation {
 public:
     Simulation();
-    Simulation(const Simulation& orig);
+
+    Simulation(const Simulation &orig);
+
     virtual ~Simulation();
+
 private:
 
 };

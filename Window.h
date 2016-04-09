@@ -57,7 +57,6 @@ public:
     void reset(int width, int height);
 
 
-
 protected:
     const Highway &highway;
     GLFWwindow *window;

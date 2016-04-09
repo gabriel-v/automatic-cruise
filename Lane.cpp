@@ -36,7 +36,7 @@
 Lane::Lane() {
 }
 
-Lane::Lane(const Lane& orig) {
+Lane::Lane(const Lane &orig) {
 }
 
 Lane::~Lane() {

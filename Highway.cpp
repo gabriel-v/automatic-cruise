@@ -35,7 +35,7 @@
 Highway::Highway() {
 }
 
-Highway::Highway(const Highway& orig) {
+Highway::Highway(const Highway &orig) {
 }
 
 Highway::~Highway() {

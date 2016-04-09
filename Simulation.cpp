@@ -35,7 +35,7 @@
 Simulation::Simulation() {
 }
 
-Simulation::Simulation(const Simulation& orig) {
+Simulation::Simulation(const Simulation &orig) {
 }
 
 Simulation::~Simulation() {

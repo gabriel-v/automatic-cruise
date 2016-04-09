@@ -39,7 +39,9 @@
 class Highway {
 public:
     Highway();
-    Highway(const Highway& orig);
+
+    Highway(const Highway &orig);
+
     virtual ~Highway();
 
     virtual void step(double dt);

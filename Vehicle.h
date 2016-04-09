@@ -36,20 +36,23 @@
 class Vehicle {
 public:
     Vehicle();
-    Vehicle(const Vehicle& orig);
+
+    Vehicle(const Vehicle &orig);
+
     virtual ~Vehicle();
+
 protected:
     const double MAX_LENGTH = 5.8;
     const double MIN_LENGTH = 3.9;
     const double MAX_WIDTH = 2.4;
     const double MIN_WIDTH = 1.9;
-    
+
     const double MAX_TERMINAL_SPEED = 220.0;
     const double MIN_TERMINAL_SPEED = 120.0;
-    
+
     double width, length;
     double x, v, a;
-    
+
     bool crashed;
 };
 

@@ -1,8 +1,6 @@
-#include <iostream>
 #include "Window.h"
 
-int main()
-{
+int main() {
     Window::init();
 
     Highway high;

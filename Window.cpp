@@ -75,7 +75,8 @@ Window::Window(const Highway &high) : highway(high), zoom(1.0) {
     int width = vidmode->width;
     int height = vidmode->height;
 
-    window = glfwCreateWindow(width, height, "Automagic Cruise Control - Kernel Panic Blues", glfwGetPrimaryMonitor(), NULL);
+    window = glfwCreateWindow(width, height, "Automagic Cruise Control - Kernel Panic Blues", glfwGetPrimaryMonitor(),
+                              NULL);
     if (!window) {
         glfwTerminate();
         throw Error("Glfw window creation failed");
@@ -95,6 +96,7 @@ Window::~Window() {
 }
 
 void Window::init() {
+    glfwSetErrorCallback(global_error_callback);
     if (!glfwInit()) {
         throw Error("Glfw initGL failed");
     }

@@ -35,7 +35,7 @@
 Vehicle::Vehicle() {
 }
 
-Vehicle::Vehicle(const Vehicle& orig) {
+Vehicle::Vehicle(const Vehicle &orig) {
 }
 
 Vehicle::~Vehicle() {
