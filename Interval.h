@@ -13,7 +13,7 @@
 class Interval {
 private:
     std::random_device r;
-    std::default_random_engine e1;
+    std::mt19937 e1;
     std::uniform_real_distribution<double> uniform_dist;
     std::normal_distribution<double> normal_dist;
     double min, max;
@@ -25,7 +25,7 @@ private:
 
 public:
     Interval(double min, double max) : min(min), max(max) {
-        e1 = std::default_random_engine(r());
+        e1 = std::mt19937(r());
         uniform_dist = std::uniform_real_distribution<double>(min, max);
         normal_dist = std::normal_distribution<double>((min + max) / 2, (max - min) / 4);
     }

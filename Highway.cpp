@@ -39,6 +39,7 @@ Interval deltaX(15, 40); // m
 Interval intV(20, 60); // m / s
 
 Highway::Highway() {
+    RandomVehicle X(0,0);
     for (int i = 0; i < N_LANES; i++) {
         lanes.push_back(Lane());
         double x = 0;

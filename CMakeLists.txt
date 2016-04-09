@@ -5,6 +5,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
 set(SOURCE_FILES
         Main.cpp
+        Target.h
+        Neighbours.cpp
+        Neighbours.h
         Highway.cpp
         Highway.h
         Vehicle.cpp
@@ -15,9 +18,8 @@ set(SOURCE_FILES
         Window.h
         Error.h
         Interval.h
-        Neighbours.cpp
-        Neighbours.h
-        Target.h RandomVehicle.cpp RandomVehicle.h)
+        RandomVehicle.cpp
+        RandomVehicle.h)
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 

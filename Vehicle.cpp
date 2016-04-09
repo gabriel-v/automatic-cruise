@@ -31,6 +31,7 @@
  */
 
 #include "Vehicle.h"
+#include "Error.h"
 
 Vehicle::Vehicle() {
     x = v = a = targetSpeed = 0;
@@ -42,6 +43,12 @@ Vehicle::Vehicle(const Vehicle &orig) {
 
 Vehicle::~Vehicle() {
 }
+
+void Vehicle::think(const Neighbours &neighbours, double dt) {
+    throw Error("Vehicle is abstract!");
+}
+
+
 
 
 

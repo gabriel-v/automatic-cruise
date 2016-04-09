@@ -18,7 +18,7 @@ public:
     RandomVehicle(double x, double v);
 
 
-
+    virtual ~RandomVehicle();
 };
 
 

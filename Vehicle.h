@@ -44,7 +44,7 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours &neighbours, double dt) = 0;
+    virtual void think(const Neighbours &neighbours, double dt);
 
 
 protected:
