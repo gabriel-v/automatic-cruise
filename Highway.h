@@ -46,10 +46,10 @@ public:
 
     virtual void step(double dt);
 
+    std::vector<Lane> lanes;
 
 protected:
-    std::vector<Lane> lanes;
-    //Vehicle &prefferredVehicle;
+    Vehicle *prefferredVehicle;
 private:
 
 };

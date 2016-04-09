@@ -33,6 +33,9 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+#include "Interval.h"
+#include "Neighbours.h"
+
 class Vehicle {
 public:
     Vehicle();
@@ -41,19 +44,45 @@ public:
 
     virtual ~Vehicle();
 
-protected:
-    const double MAX_LENGTH = 5.8;
-    const double MIN_LENGTH = 3.9;
-    const double MAX_WIDTH = 2.4;
-    const double MIN_WIDTH = 1.9;
+    virtual void think(const Neighbours &neighbours, double dt) = 0;
 
-    const double MAX_TERMINAL_SPEED = 220.0;
-    const double MIN_TERMINAL_SPEED = 120.0;
+
+protected:
+    double targetSpeed;
 
     double width, length;
     double x, v, a;
 
     bool crashed;
+
+public:
+    double getTargetSpeed() const {
+        return targetSpeed;
+    }
+
+    double getWidth() const {
+        return width;
+    }
+
+    double getLength() const {
+        return length;
+    }
+
+    double getX() const {
+        return x;
+    }
+
+    double getV() const {
+        return v;
+    }
+
+    double getA() const {
+        return a;
+    }
+
+    bool isCrashed() const {
+        return crashed;
+    }
 };
 
 #endif /* VEHICLE_H */

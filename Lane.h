@@ -45,8 +45,10 @@ public:
 
     virtual ~Lane();
 
-protected:
+
     std::deque<Vehicle> vehicles;
+
+protected:
 
 private:
 

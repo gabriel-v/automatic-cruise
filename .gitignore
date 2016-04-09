@@ -5,6 +5,7 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
+/build
 ### Qt template
 # C++ objects and libs
 

@@ -9,13 +9,15 @@ set(SOURCE_FILES
         Highway.h
         Vehicle.cpp
         Vehicle.h
-        Simulation.cpp
-        Simulation.h
         Lane.cpp
         Lane.h
         Window.cpp
         Window.h
-        Error.h)
+        Error.h
+        Interval.h
+        Neighbours.cpp
+        Neighbours.h
+        Target.h RandomVehicle.cpp RandomVehicle.h)
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 

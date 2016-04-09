@@ -31,11 +31,27 @@
  */
 
 #include "Highway.h"
+#include "RandomVehicle.h"
+
+const int N_LANES = 3;
+const int N_VEHICLES_PER_LANE = 100;
+Interval deltaX(15, 40); // m
+Interval intV(20, 60); // m / s
 
 Highway::Highway() {
+    for (int i = 0; i < N_LANES; i++) {
+        lanes.push_back(Lane());
+        double x = 0;
+        for(int j = 0; j < N_VEHICLES_PER_LANE; j++) {
+            x += deltaX.normal();
+            lanes[i].vehicles.push_back(RandomVehicle(x, intV.normal()));
+        }
+    }
+
+    prefferredVehicle = &(lanes[N_LANES/2].vehicles[N_VEHICLES_PER_LANE/2]);
 }
 
-Highway::Highway(const Highway &orig) {
+Highway::Highway(const Highway &orig): prefferredVehicle(orig.prefferredVehicle), lanes(orig.lanes) {
 }
 
 Highway::~Highway() {
@@ -43,6 +59,10 @@ Highway::~Highway() {
 
 
 void Highway::step(double dt) {
-
+    for(Lane &l: lanes) {
+        for (Vehicle &v: l.vehicles) {
+            // TODO v.think
+        }
+    }
 }
 

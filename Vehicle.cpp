@@ -33,6 +33,8 @@
 #include "Vehicle.h"
 
 Vehicle::Vehicle() {
+    x = v = a = targetSpeed = 0;
+    width = length = 1;
 }
 
 Vehicle::Vehicle(const Vehicle &orig) {
@@ -40,4 +42,6 @@ Vehicle::Vehicle(const Vehicle &orig) {
 
 Vehicle::~Vehicle() {
 }
+
+
 

@@ -56,6 +56,8 @@ public:
 
     void reset(int width, int height);
 
+    void zoomIn();
+    void zoomOut();
 
 protected:
     const Highway &highway;

@@ -151,3 +151,11 @@ void Window::reset(int width, int height) {
 }
 
 
+void Window::zoomIn() {
+    zoom /= 1.2;
+}
+
+void Window::zoomOut() {
+    zoom *= 1.2;
+}
+
