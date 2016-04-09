@@ -33,11 +33,36 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 
-class UserInterface {
+#include <GLFW/glfw3.h>
+#include "Highway.h"
+#include <chrono>
+
+class Window {
 public:
-    UserInterface();
-    UserInterface(const UserInterface& orig);
-    virtual ~UserInterface();
+
+    Window(const Highway &high);
+
+    void key_callback(int key, int scancode, int action, int mods);
+
+    virtual ~Window();
+
+    static void init();
+
+    static void term();
+
+    void start();
+
+    virtual void draw();
+
+    void reset(int width, int height);
+
+
+
+protected:
+    const Highway &highway;
+    GLFWwindow *window;
+    double zoom;
+    std::chrono::system_clock::time_point startTime;
 private:
 
 };

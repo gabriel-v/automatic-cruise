@@ -33,16 +33,20 @@
 #ifndef LANE_H
 #define LANE_H
 #include <deque>
+#include "Vehicle.h"
+
 class Lane {
-protected:
-    std::deque<Vehicle> vehicles;
-    
-    
+
 public:
     Lane();
     Lane(const Lane& orig);
     virtual ~Lane();
+
+protected:
+    std::deque<Vehicle> vehicles;
+
 private:
+
 
 };
 

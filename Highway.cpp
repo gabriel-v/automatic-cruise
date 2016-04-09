@@ -41,3 +41,8 @@ Highway::Highway(const Highway& orig) {
 Highway::~Highway() {
 }
 
+
+void Highway::step(double dt) {
+
+}
+

@@ -1,7 +1,15 @@
 #include <iostream>
+#include "Window.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    Window::init();
+
+    Highway high;
+
+    Window win(high);
+    win.start();
+
+    Window::term();
     return 0;
 }

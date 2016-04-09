@@ -33,11 +33,21 @@
 #ifndef HIGHWAY_H
 #define HIGHWAY_H
 
+#include <vector>
+#include "Lane.h"
+
 class Highway {
 public:
     Highway();
     Highway(const Highway& orig);
     virtual ~Highway();
+
+    virtual void step(double dt);
+
+
+protected:
+    std::vector<Lane> lanes;
+    //Vehicle &prefferredVehicle;
 private:
 
 };

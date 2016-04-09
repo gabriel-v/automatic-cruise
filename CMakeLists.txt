@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 2.8)
 project(lec_acc_cpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
@@ -13,6 +13,24 @@ set(SOURCE_FILES
         Simulation.h
         Lane.cpp
         Lane.h
-        UserInterface.cpp
-        UserInterface.h)
+        Window.cpp
+        Window.h
+        Error.h)
 add_executable(lec_acc_cpp ${SOURCE_FILES})
+
+
+# We use OpenGL as a backend for drawing stuff
+find_package(OpenGL REQUIRED)
+include_directories(${OPENGL_INCLUDE_DIR})
+target_link_libraries(lec_acc_cpp ${OPENGL_LIBRARIES})
+
+
+# We'll load these with PkgConfig
+find_package(PkgConfig REQUIRED)
+
+
+# This is for a window and some key events
+pkg_search_module(GLFW REQUIRED glfw3)
+include_directories(${GLFW_INCLUDE_DIRS})
+target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
