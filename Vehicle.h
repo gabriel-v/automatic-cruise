@@ -46,6 +46,8 @@ public:
 
     virtual void think(const Neighbours &neighbours, double dt);
 
+    virtual bool operator<(const Vehicle &other);
+
 
 protected:
     double targetSpeed;

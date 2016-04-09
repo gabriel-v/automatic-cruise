@@ -30,26 +30,34 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <algorithm>
+#include <iostream>
 #include "Highway.h"
 #include "RandomVehicle.h"
 
 const int N_LANES = 3;
 const int N_VEHICLES_PER_LANE = 100;
-Interval deltaX(15, 40); // m
+Interval deltaX(35, 80); // m
 Interval intV(20, 60); // m / s
 
-Highway::Highway() {
-    RandomVehicle X(0,0);
+Highway::Highway(): prefferredVehicle(NULL) {
     for (int i = 0; i < N_LANES; i++) {
-        lanes.push_back(Lane());
-        double x = 0;
+        Lane lane;
+
+//        lanes[i].vehicles.resize(N_VEHICLES_PER_LANE + 20);
+        double x = deltaX.uniform();
         for(int j = 0; j < N_VEHICLES_PER_LANE; j++) {
-            x += deltaX.normal();
-            lanes[i].vehicles.push_back(RandomVehicle(x, intV.normal()));
+            x += deltaX.uniform();
+//            lanes[i].vehicles.push_back(RandomVehicle(x, intV.normal()));
+            RandomVehicle vehicle(x, intV.normal());
+            lane.vehicles.push_back(vehicle);
         }
+        lanes.push_back(lane);
     }
 
-    prefferredVehicle = &(lanes[N_LANES/2].vehicles[N_VEHICLES_PER_LANE/2]);
+    for(int i = 0; i < N_LANES; i++) std::cerr << lanes[i].vehicles.size() << std::endl;
+
+    prefferredVehicle = &(lanes[N_LANES/2].vehicles.at(N_VEHICLES_PER_LANE/2));
 }
 
 Highway::Highway(const Highway &orig): prefferredVehicle(orig.prefferredVehicle), lanes(orig.lanes) {
@@ -60,6 +68,10 @@ Highway::~Highway() {
 
 
 void Highway::step(double dt) {
+    for (Lane &l: lanes) {
+        std::sort(l.vehicles.begin(), l.vehicles.end());
+    }
+
     for(Lane &l: lanes) {
         for (Vehicle &v: l.vehicles) {
             // TODO v.think

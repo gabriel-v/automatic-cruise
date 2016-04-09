@@ -41,7 +41,7 @@ public:
     virtual void think(const Neighbours &neighbours, double dt) override;
 
     RandomVehicle(double x, double v);
-
+    RandomVehicle(const RandomVehicle& x);
     virtual ~RandomVehicle();
 };
 

@@ -48,7 +48,6 @@ public:
 
     std::vector<Lane> lanes;
 
-protected:
     Vehicle *prefferredVehicle;
 private:
 

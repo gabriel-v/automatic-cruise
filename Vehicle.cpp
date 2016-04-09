@@ -36,9 +36,14 @@
 Vehicle::Vehicle() {
     x = v = a = targetSpeed = 0;
     width = length = 1;
+    crashed = 0;
+
 }
 
-Vehicle::Vehicle(const Vehicle &orig) {
+
+Vehicle::Vehicle(const Vehicle &orig) : a(orig.a), v(orig.v), x(orig.x), targetSpeed(orig.targetSpeed),
+                                        width(orig.width), length(orig.length), crashed(orig.crashed) {
+
 }
 
 Vehicle::~Vehicle() {
@@ -47,6 +52,12 @@ Vehicle::~Vehicle() {
 void Vehicle::think(const Neighbours &neighbours, double dt) {
     throw Error("Vehicle is abstract!");
 }
+
+bool Vehicle::operator<(const Vehicle &other) {
+    return x < other.x;
+}
+
+
 
 
 

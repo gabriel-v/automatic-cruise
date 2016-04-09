@@ -60,12 +60,16 @@ public:
     void zoomOut();
 
 protected:
+    double maxLeft, maxRight;
     const Highway &highway;
     GLFWwindow *window;
     double zoom;
     std::chrono::system_clock::time_point startTime;
 private:
 
+    std::pair<double, double> roadToScreen(double x, double lane);
+
+    void drawVehicle(const Vehicle &v, double lane);
 };
 
 #endif /* USERINTERFACE_H */

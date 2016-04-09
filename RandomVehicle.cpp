@@ -36,7 +36,7 @@ Interval intWidth(3.5, 4.3);
 Interval intHeight(5.9, 7.6);
 
 
-RandomVehicle::RandomVehicle(double xx, double vv) {
+RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
     width = intWidth.normal();
     length = intHeight.normal();
 
@@ -53,6 +53,12 @@ void RandomVehicle::think(const Neighbours &neighbours, double dt) {
 RandomVehicle::~RandomVehicle() {
 
 }
+
+RandomVehicle::RandomVehicle(const RandomVehicle &other): Vehicle(other) {
+
+}
+
+
 
 
 

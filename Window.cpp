@@ -37,6 +37,8 @@
 #include "Error.h"
 #include "Window.h"
 
+const double LANE_WIDTH = 7.1;
+
 static void global_error_callback(int x, const char *message) {
     std::cerr << "Error " << x << ": " << message << std::endl;
 }
@@ -54,11 +56,20 @@ static void global_window_size_callback(GLFWwindow *window, int w, int h) {
 
 
 void Window::key_callback(int key, int scancode, int action, int mods) {
-    if (action == GLFW_PRESS) {
+    if (action == GLFW_PRESS || action == GLFW_REPEAT) {
         switch (key) {
             case GLFW_KEY_Q:
             case GLFW_KEY_ESCAPE:
                 glfwSetWindowShouldClose(window, 1);
+                break;
+
+            case GLFW_KEY_MINUS:
+            case GLFW_KEY_KP_SUBTRACT:
+                zoomOut();
+                break;
+            case GLFW_KEY_KP_ADD:
+            case GLFW_KEY_EQUAL:
+                zoomIn();
                 break;
             default:
                 std::cerr << "Pressed: " << key << std::endl;
@@ -68,7 +79,7 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 }
 
 
-Window::Window(const Highway &high) : highway(high), zoom(1.0) {
+Window::Window(const Highway &high) : highway(high), zoom(3.0) {
 /* Create a windowed mode window and its OpenGL context */
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -116,6 +127,7 @@ void Window::start() {
 
         reset(width, height);
 
+        glClearColor(0.0, 0.4, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         draw();
@@ -125,24 +137,70 @@ void Window::start() {
     }
 }
 
+void drawRect(double left, double right, double bottom, double top) {
+    glBegin(GL_POLYGON);
+    glVertex2d(left, top);
+    glVertex2d(left, bottom);
+    glVertex2d(right, bottom);
+    glVertex2d(right, top);
+    glEnd();
+}
+
+std::pair<double, double> Window::roadToScreen(double x, double lane) {
+    double centerX = highway.prefferredVehicle->getX();
+    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+
+    return std::make_pair((x - centerX) * ratio, LANE_WIDTH * ratio * (lane - (highway.lanes.size() - 1.0) / 2));
+};
+
+void Window::drawVehicle(const Vehicle &v, double lane) {
+    std::pair<double, double> center = roadToScreen(v.getX(), lane);
+    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+    drawRect(center.first - ratio * v.getLength(), center.first + ratio * v.getLength() / 2,
+             center.second - ratio * v.getWidth() / 2, center.second + ratio * v.getWidth() / 2);
+}
+
+void drawDash(double xMeters, double yScreen) {
+
+}
+
 void Window::draw() {
 
 
-    auto t2 = std::chrono::system_clock::now();
+//    auto t2 = std::chrono::system_clock::now();
+//
+//    std::chrono::duration<double, std::milli> fp = t2 - startTime;
+//    double fp_ms = fp.count() / 1000;
+//    glColor3f(1, 1, 1);
+//    glBegin(GL_TRIANGLE_STRIP);
+//    glVertex2d(0, 0);
+//    glVertex2d(cos(fp_ms), sin(fp_ms));
+//    glVertex2d(cos(fp_ms + M_PI_2), sin(M_PI_2 + fp_ms));
+//    glEnd();
 
-    std::chrono::duration<double, std::milli> fp = t2 - startTime;
-    double fp_ms = fp.count() / 1000;
-    glColor3f(1, 1, 1);
-    glBegin(GL_TRIANGLE_STRIP);
-    glVertex2d(0, 0);
-    glVertex2d(cos(fp_ms), sin(fp_ms));
-    glVertex2d(cos(fp_ms + M_PI_2), sin(M_PI_2 + fp_ms));
-    glEnd();
+    glColor3f(0.1, 0.2, 0.3);
+    drawRect(maxLeft, maxRight, -1, 1);
+
+
+    glColor3f(0.9, 0.9, 0.9);
+    drawRect(maxLeft, maxRight, 0.98, 0.95);
+    drawRect(maxLeft, maxRight, -0.98, -0.95);
+
+    glColor3f(0.7, 0.3, 0.1);
+    for(int i = 0; i < highway.lanes.size(); i++) {
+        for(const Vehicle &v: highway.lanes[i].vehicles) {
+            drawVehicle(v, i);
+        }
+    }
+
 }
 
 
 void Window::reset(int width, int height) {
     glViewport(0, 0, width, height);
+    maxLeft = -zoom * width / height;
+    maxRight = zoom * width / height;
+
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -152,10 +210,12 @@ void Window::reset(int width, int height) {
 
 
 void Window::zoomIn() {
-    zoom /= 1.2;
+    zoom /= 1.15;
+    if (zoom < 1.5) zoom = 1.5;
 }
 
 void Window::zoomOut() {
-    zoom *= 1.2;
+    zoom *= 1.15;
+    if(zoom > 45) zoom = 45;
 }
 
