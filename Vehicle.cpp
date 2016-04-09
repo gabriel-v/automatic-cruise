@@ -49,13 +49,20 @@ Vehicle::Vehicle(const Vehicle &orig) : a(orig.a), v(orig.v), x(orig.x), targetS
 Vehicle::~Vehicle() {
 }
 
-void Vehicle::think(const Neighbours &neighbours, double dt) {
+void Vehicle::think(const Neighbours &neighbours) {
     throw Error("Vehicle is abstract!");
 }
 
 bool Vehicle::operator<(const Vehicle &other) {
     return x < other.x;
 }
+
+void Vehicle::step(double dt) {
+    v += dt * a;
+    x += dt * v;
+}
+
+
 
 
 

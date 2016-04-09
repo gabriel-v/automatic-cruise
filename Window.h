@@ -40,7 +40,7 @@
 class Window {
 public:
 
-    Window(const Highway &high);
+    Window(Highway &high);
 
     void key_callback(int key, int scancode, int action, int mods);
 
@@ -61,7 +61,7 @@ public:
 
 protected:
     double maxLeft, maxRight;
-    const Highway &highway;
+    Highway &highway;
     GLFWwindow *window;
     double zoom;
     std::chrono::system_clock::time_point startTime;
@@ -70,6 +70,8 @@ private:
     std::pair<double, double> roadToScreen(double x, double lane);
 
     void drawVehicle(const Vehicle &v, double lane);
+
+    double timeElapsed();
 };
 
 #endif /* USERINTERFACE_H */

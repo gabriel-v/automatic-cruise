@@ -60,7 +60,7 @@ Highway::Highway(): prefferredVehicle(NULL) {
     prefferredVehicle = &(lanes[N_LANES/2].vehicles.at(N_VEHICLES_PER_LANE/2));
 }
 
-Highway::Highway(const Highway &orig): prefferredVehicle(orig.prefferredVehicle), lanes(orig.lanes) {
+Highway::Highway(const Highway &orig): lanes(orig.lanes), prefferredVehicle(orig.prefferredVehicle) {
 }
 
 Highway::~Highway() {
@@ -72,9 +72,11 @@ void Highway::step(double dt) {
         std::sort(l.vehicles.begin(), l.vehicles.end());
     }
 
+    Neighbours n(NULL, NULL);
     for(Lane &l: lanes) {
         for (Vehicle &v: l.vehicles) {
-            // TODO v.think
+           // v.think(n);
+            v.step(dt);
         }
     }
 }

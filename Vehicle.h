@@ -44,17 +44,18 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours &neighbours, double dt);
+    virtual void think(const Neighbours &neighbours);
+
+    virtual void step(double dt);
 
     virtual bool operator<(const Vehicle &other);
 
 
 protected:
-    double targetSpeed;
 
-    double width, length;
     double x, v, a;
-
+    double targetSpeed;
+    double width, length;
     bool crashed;
 
 public:

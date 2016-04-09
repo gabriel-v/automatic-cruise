@@ -30,6 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <iostream>
 #include "RandomVehicle.h"
 
 Interval intWidth(3.5, 4.3);
@@ -37,17 +38,14 @@ Interval intHeight(5.9, 7.6);
 
 
 RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
+    x = xx;
+    v = targetSpeed = vv;
     width = intWidth.normal();
     length = intHeight.normal();
-
-    x = xx;
-    v = vv;
-    targetSpeed = vv;
-    a = 0;
 }
 
-void RandomVehicle::think(const Neighbours &neighbours, double dt) {
-
+void RandomVehicle::think(const Neighbours &neighbours) {
+    std::cout << "Thinking!\n";
 }
 
 RandomVehicle::~RandomVehicle() {

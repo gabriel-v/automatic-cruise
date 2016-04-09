@@ -79,7 +79,7 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 }
 
 
-Window::Window(const Highway &high) : highway(high), zoom(3.0) {
+Window::Window(Highway &high) : highway(high), zoom(3.5) {
 /* Create a windowed mode window and its OpenGL context */
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -118,9 +118,16 @@ void Window::term() {
     glfwTerminate();
 }
 
+double Window::timeElapsed() {
+    return std::chrono::duration<double>(startTime - std::chrono::high_resolution_clock::now()).count();
+}
+
 
 void Window::start() {
+    double last = timeElapsed() - 1.0 / 60.0;
     while (!glfwWindowShouldClose(window)) {
+        double now = timeElapsed();
+
         int width, height;
         glfwMakeContextCurrent(window);
         glfwGetFramebufferSize(window, &width, &height);
@@ -130,6 +137,7 @@ void Window::start() {
         glClearColor(0.0, 0.4, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        highway.step(now -last);
         draw();
 
         glfwSwapBuffers(window);
