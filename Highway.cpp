@@ -126,6 +126,15 @@ Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
     return t;
 }
 
+void Highway::sort() {
+
+    for (Lane *l: lanes) {
+        std::sort(l->vehicles.begin(), l->vehicles.end(),
+                  [](const Vehicle *a, const Vehicle *b) {
+                      return a->getX() < b->getX();
+                  });
+    }
+}
 
 void Highway::step(double dt) {
 
@@ -134,14 +143,6 @@ void Highway::step(double dt) {
         teleportVehicles();
         lastTeleportTime -= TELEPORT_INTERVAL;
     }
-
-    for (Lane *l: lanes) {
-        std::sort(l->vehicles.begin(), l->vehicles.end(),
-                  [](const Vehicle *a, const Vehicle *b) {
-                      return a->getX() < b->getX();
-                  });
-    }
-
 
     std::map<Vehicle *, Neighbours *> links;
     std::vector<std::deque<Vehicle *>::iterator> iters;
