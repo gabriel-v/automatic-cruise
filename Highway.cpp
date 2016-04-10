@@ -36,18 +36,21 @@
 #include "RandomVehicle.h"
 
 const int N_LANES = 3;
-const int N_VEHICLES_PER_LANE = 100;
-Interval deltaX(45, 80); // m
-Interval intV(20, 40); // m / s
+const double MAX_DELTA_X = 105, MIN_DELTA_X = 40;
+const int N_VEHICLES_PER_LANE = 250;
+const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 3;
+const double TELEPORT_INTERVAL = 5.0;
+Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
+Interval intV(20, 80); // m / s
 
-Highway::Highway(): prefferredVehicle(NULL) {
+Highway::Highway(): prefferredVehicle(NULL), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
         Lane *lane = new Lane;
 
         double x = deltaX.uniform();
         for(int j = 0; j < N_VEHICLES_PER_LANE; j++) {
             x += deltaX.uniform();
-            RandomVehicle *vehicle = new RandomVehicle(x, intV.normal());
+            RandomVehicle *vehicle = new RandomVehicle(x, intV.uniform());
             lane->vehicles.push_back(vehicle);
         }
         lanes.push_back(lane);
@@ -56,7 +59,7 @@ Highway::Highway(): prefferredVehicle(NULL) {
     prefferredVehicle = (lanes[N_LANES/2]->vehicles.at(N_VEHICLES_PER_LANE/2));
 }
 
-Highway::Highway(const Highway &orig): lanes(orig.lanes), prefferredVehicle(orig.prefferredVehicle) {
+Highway::Highway(const Highway &orig): lanes(orig.lanes), prefferredVehicle(orig.prefferredVehicle), lastTeleportTime(0) {
 }
 
 Highway::~Highway() {
@@ -66,9 +69,55 @@ Highway::~Highway() {
     lanes.clear();
 }
 
+void Highway::teleportVehicles() {
+    double centerX = prefferredVehicle->getX();
+    double X;
+
+
+    for (Lane *l: lanes) {
+        std::vector<Vehicle *> inFront, inBack;
+
+
+        while(std::abs(l->vehicles.front()->getX() - centerX) > TELEPORT_DISTANCE) {
+            inFront.push_back(l->vehicles.front());
+            l->vehicles.pop_front();
+        }
+
+        while(std::abs(l->vehicles.back()->getX() - centerX) > TELEPORT_DISTANCE) {
+            inBack.push_back(l->vehicles.back());
+            l->vehicles.pop_back();
+        }
+
+        X = l->vehicles.back()->getX() + deltaX.uniform();
+        for(Vehicle *v: inFront) {
+            v->setX(X);
+            l->vehicles.push_back(v);
+            X += deltaX.uniform();
+        }
+
+        X = l->vehicles.front()->getX() - deltaX.uniform();
+        for(Vehicle *v: inBack) {
+            v->setX(X);
+            l->vehicles.push_front(v);
+            X -= deltaX.uniform();
+        }
+
+        inBack.clear();
+        inFront.clear();
+
+    }
+}
+
 
 void Highway::step(double dt) {
-    for (Lane *l: lanes) {
+
+    lastTeleportTime += dt;
+    if(lastTeleportTime > TELEPORT_INTERVAL) {
+        teleportVehicles();
+        lastTeleportTime -= TELEPORT_INTERVAL;
+    }
+
+    for(Lane *l: lanes) {
         std::sort(l->vehicles.begin(), l->vehicles.end());
     }
 
@@ -79,6 +128,5 @@ void Highway::step(double dt) {
             v->step(dt);
         }
     }
-    std::cerr << prefferredVehicle->getX() << std::endl;
 }
 

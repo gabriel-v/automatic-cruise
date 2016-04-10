@@ -49,8 +49,13 @@ public:
     std::vector<Lane *> lanes;
 
     Vehicle *prefferredVehicle;
+
+protected:
+    double lastTeleportTime;
 private:
 
+
+    void teleportVehicles();
 };
 
 #endif /* HIGHWAY_H */

@@ -37,7 +37,7 @@
 #include "Error.h"
 #include "Window.h"
 
-const double LANE_WIDTH = 7.0;
+const double LANE_WIDTH = 8.0;
 
 static void global_error_callback(int x, const char *message) {
     std::cerr << "Error " << x << ": " << message << std::endl;
@@ -98,6 +98,9 @@ Window::Window(Highway &high) : highway(high), zoom(3.5) {
     glfwSetKeyCallback(window, global_key_callback);
     glfwSetWindowSizeCallback(window, global_window_size_callback);
     glfwSwapInterval(1);
+
+    glEnable(GL_POLYGON_SMOOTH);
+    glEnable(GL_LINE_SMOOTH);
 
     activeWindows[window] = this;
 }
@@ -172,14 +175,14 @@ void Window::drawVehicle(const Vehicle &v, double lane) {
 }
 
 void Window::drawDash(double xMeters, double lane) {
-    xMeters = int(xMeters / 14) * 14;
-    std::pair<double, double> center = roadToScreen(xMeters, lane);
+    xMeters = int((xMeters) / 16) * 16;
+    std::pair<double, double> center = roadToScreen(xMeters - lane * lane * 3, lane);
     double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
 
-    double step = ratio * 7;
+    double step = ratio * 8;
 
     for(double x = center.first + maxLeft; x < maxRight; x += step) {
-        drawRect(x, x + step * 3 / 7, center.second - 0.015, center.second + 0.015);
+        drawRect(x, x + step / 2, center.second - 0.03, center.second + 0.03);
     }
 }
 
@@ -189,11 +192,13 @@ void Window::draw() {
     drawRect(maxLeft, maxRight, -1, 1);
 
     glColor3f(0.9, 0.9, 0.9);
-    drawRect(maxLeft, maxRight, 0.98, 0.95);
-    drawRect(maxLeft, maxRight, -0.98, -0.95);
+    drawRect(maxLeft, maxRight, 0.99, 0.93);
+    drawRect(maxLeft, maxRight, -0.99, -0.93);
 
-    drawDash(highway.prefferredVehicle->getX(), 0.5);
-    drawDash(highway.prefferredVehicle->getX(), 1.5);
+    for(int i = 0; i < highway.lanes.size() - 1; i++) {
+        drawDash(highway.prefferredVehicle->getX(), i + 0.5);
+    }
+
 
     glColor3f(0.7, 0.3, 0.1);
     for(int i = 0; i < highway.lanes.size(); i++) {

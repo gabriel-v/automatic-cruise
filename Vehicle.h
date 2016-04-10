@@ -99,6 +99,11 @@ public:
     double getB() const {
         return b;
     }
+
+
+    void setX(double x) {
+        this->x = x;
+    }
 };
 
 #endif /* VEHICLE_H */
