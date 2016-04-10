@@ -52,12 +52,13 @@ public:
 
     void start();
 
-    virtual void draw();
-
     void reset(int width, int height);
 
     void zoomIn();
+
     void zoomOut();
+
+    virtual void draw() = 0;
 
 protected:
     double maxLeft, maxRight;
@@ -65,15 +66,12 @@ protected:
     GLFWwindow *window;
     double zoom;
     std::chrono::system_clock::time_point startTime;
+    static constexpr double LANE_WIDTH = 8.0;
+
 private:
-
-    std::pair<double, double> roadToScreen(double x, double lane);
-
-    void drawVehicle(const Vehicle &v, double lane);
 
     double timeElapsed();
 
-    void drawDash(double xMeters, double yScreen);
 };
 
 #endif /* USERINTERFACE_H */

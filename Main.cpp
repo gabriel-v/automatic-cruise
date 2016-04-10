@@ -31,13 +31,14 @@
  */
 
 #include "Window.h"
+#include "Window2D.h"
 
 int main() {
     Window::init();
 
     Highway high;
 
-    Window win(high);
+    Window2D win(high);
     win.start();
 
     Window::term();

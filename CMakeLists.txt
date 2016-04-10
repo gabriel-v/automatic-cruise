@@ -12,6 +12,8 @@ set(SOURCE_FILES
         Highway.h
         Vehicle.cpp
         Vehicle.h
+        Window2D.cpp
+        Window2D.h
         Lane.cpp
         Lane.h
         Window.cpp
