@@ -37,26 +37,28 @@
 
 Interval intColor(0.0, 0.5);
 
+const double MIN_A = -50;
+const double MAX_A = 35;
+
 Vehicle::Vehicle() {
     x = v = a = targetSpeed = 0;
     width = length = 1;
-    crashed = 0;
 
-    r = intColor.normal() + 0.5;
-    g = intColor.normal() + 0.5;
+    r = intColor.normal() + 0.4;
+    g = intColor.normal() + 0.4;
     b = intColor.normal() + 0.5;
 }
 
 
-Vehicle::Vehicle(const Vehicle &orig) : a(orig.a), v(orig.v), x(orig.x), targetSpeed(orig.targetSpeed),
-                                        width(orig.width), length(orig.length), crashed(orig.crashed) {
-
+Vehicle::Vehicle(const Vehicle &orig) :
+        x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed),
+        width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b) {
 }
 
 Vehicle::~Vehicle() {
 }
 
-void Vehicle::think(const Neighbours &neighbours) {
+void Vehicle::think(const Neighbours *neighbours) {
     throw Error("Vehicle is abstract!");
 }
 
@@ -65,6 +67,8 @@ bool Vehicle::operator<(const Vehicle &other) {
 }
 
 void Vehicle::step(double dt) {
+    if(a < MIN_A) a = MIN_A;
+    if(a > MAX_A) a = MAX_A;
     v += dt * a;
     x += dt * v;
 }

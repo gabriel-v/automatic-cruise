@@ -32,23 +32,25 @@
 
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include "Highway.h"
 #include "RandomVehicle.h"
 
-const int N_LANES = 3;
-const double MAX_DELTA_X = 105, MIN_DELTA_X = 40;
-const int N_VEHICLES_PER_LANE = 250;
-const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 3;
-const double TELEPORT_INTERVAL = 5.0;
-Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
-Interval intV(20, 80); // m / s
+const int N_LANES = 5;
+const double MAX_DELTA_X = 165, MIN_DELTA_X = 50;
+const int N_VEHICLES_PER_LANE = 80;
+const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
+const double TELEPORT_INTERVAL = 20.0;
 
-Highway::Highway(): prefferredVehicle(NULL), lastTeleportTime(0) {
+Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
+Interval intV(26, 45); // m / s
+
+Highway::Highway() : prefferredVehicle(NULL), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
         Lane *lane = new Lane;
 
         double x = deltaX.uniform();
-        for(int j = 0; j < N_VEHICLES_PER_LANE; j++) {
+        for (int j = 0; j < N_VEHICLES_PER_LANE; j++) {
             x += deltaX.uniform();
             RandomVehicle *vehicle = new RandomVehicle(x, intV.uniform());
             lane->vehicles.push_back(vehicle);
@@ -56,10 +58,14 @@ Highway::Highway(): prefferredVehicle(NULL), lastTeleportTime(0) {
         lanes.push_back(lane);
     }
 
-    prefferredVehicle = (lanes[N_LANES/2]->vehicles.at(N_VEHICLES_PER_LANE/2));
+    prefferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
+    prefferredVehicle->setTargetSpeed(100);
 }
 
-Highway::Highway(const Highway &orig): lanes(orig.lanes), prefferredVehicle(orig.prefferredVehicle), lastTeleportTime(0) {
+Highway::Highway(const Highway &orig) :
+        lanes(orig.lanes),
+        prefferredVehicle(orig.prefferredVehicle),
+        lastTeleportTime(0) {
 }
 
 Highway::~Highway() {
@@ -73,60 +79,132 @@ void Highway::teleportVehicles() {
     double centerX = prefferredVehicle->getX();
     double X;
 
-
+    Vehicle *v;
     for (Lane *l: lanes) {
-        std::vector<Vehicle *> inFront, inBack;
-
-
-        while(std::abs(l->vehicles.front()->getX() - centerX) > TELEPORT_DISTANCE) {
-            inFront.push_back(l->vehicles.front());
+        int addFront = 0, addBack = 0;
+        while (std::abs(l->vehicles.front()->getX() - centerX) > TELEPORT_DISTANCE) {
+            v = l->vehicles.front();
             l->vehicles.pop_front();
+            addBack++;
+            delete v;
         }
 
-        while(std::abs(l->vehicles.back()->getX() - centerX) > TELEPORT_DISTANCE) {
-            inBack.push_back(l->vehicles.back());
+        while (std::abs(l->vehicles.back()->getX() - centerX) > TELEPORT_DISTANCE) {
+            v = l->vehicles.back();
             l->vehicles.pop_back();
+            addFront++;
+            delete v;
         }
 
-        X = l->vehicles.back()->getX() + deltaX.uniform();
-        for(Vehicle *v: inFront) {
-            v->setX(X);
+        X = l->vehicles.back()->getX() + deltaX.uniform() * 2;
+        for (int i = 0; i < addBack; i++) {
+            v = new RandomVehicle(X, intV.uniform());
             l->vehicles.push_back(v);
             X += deltaX.uniform();
         }
 
-        X = l->vehicles.front()->getX() - deltaX.uniform();
-        for(Vehicle *v: inBack) {
-            v->setX(X);
+        X = l->vehicles.front()->getX() - deltaX.uniform() * 2;
+        for (int i = 0; i < addFront; i++) {
+            v = new RandomVehicle(X, intV.uniform());
             l->vehicles.push_front(v);
             X -= deltaX.uniform();
         }
 
-        inBack.clear();
-        inFront.clear();
-
     }
+}
+
+
+Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
+    Target *t = new Target();
+    t->dist = targ->getX() - targ->getLength() / 2 - current->getX() - current->getLength() / 2;
+    t->vRel = targ->getV() - current->getV();
+    return t;
 }
 
 
 void Highway::step(double dt) {
 
     lastTeleportTime += dt;
-    if(lastTeleportTime > TELEPORT_INTERVAL) {
+    if (lastTeleportTime > TELEPORT_INTERVAL) {
         teleportVehicles();
         lastTeleportTime -= TELEPORT_INTERVAL;
     }
 
-    for(Lane *l: lanes) {
-        std::sort(l->vehicles.begin(), l->vehicles.end());
+    for (Lane *l: lanes) {
+        std::sort(l->vehicles.begin(), l->vehicles.end(),
+                  [](const Vehicle *a, const Vehicle *b) {
+                      return a->getX() < b->getX();
+                  });
     }
 
-    Neighbours n(NULL, NULL);
-    for(Lane *l: lanes) {
+
+    std::map<Vehicle *, Neighbours *> links;
+
+//    std::vector<std::deque<Vehicle *>::iterator> iters;
+    for (Lane *l: lanes) {
+        auto it = l->vehicles.begin();
+        //iters.push_back(sit+1);
+        links[*(it)] = new Neighbours(target(*it, *(it + 1)), nullptr);
+
+        ++it;
+
+        auto e1 = l->vehicles.end() - 1;
+
+        while (it != e1) {
+            links[*it] = new Neighbours(target(*it, *(it + 1)), target(*it, *(it - 1)));
+            ++it;
+        }
+
+        links[*(it)] = new Neighbours(nullptr, target(*it, *(it - 1)));
+    }
+
+    /*while(!iters.empty()) {
+        int maxI = 0;
+        for(int i = 1; i < iters.size(); i++) {
+            if((*iters[i])->getX() < (*iters[maxI])->getX()) {
+                maxI = i;
+            }
+        }
+
+        auto &it = iters[maxI];
+        links[*it] = Neighbours(target(*it, *(it + 1)), target(*it, *(it - 1)));
+
+        // TODO: check links for left and right
+        if(maxI < lanes.size()) {
+            // we have a lane to the right
+            links[*it].withRight(target(*it, *iters[maxI + 1]), target(*it, *(iters[maxI + 1] - 1)));
+        }
+        if(maxI > 0) {
+            // we have a lane to the left
+            links[*it].withLeft(target(*it, *iters[maxI - 1]), target(*it, *(iters[maxI - 1] - 1)));
+        }
+
+        ++it;
+        if((it+1) == lanes[maxI]->vehicles.end()) {
+            iters.erase(iters.begin() + maxI);
+        }
+    } */
+
+
+    for (Lane *l: lanes) {
         for (Vehicle *v: l->vehicles) {
-            v->think(n);
+            v->think(links[v]);
+        }
+    }
+
+    for (auto &p: links) {
+        delete p.second;
+    }
+
+
+    for (Lane *l: lanes) {
+        for (Vehicle *v: l->vehicles) {
             v->step(dt);
         }
     }
+
+
+    std::cerr << "\r" << prefferredVehicle->getV();
+
 }
 

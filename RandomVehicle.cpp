@@ -33,9 +33,11 @@
 #include <iostream>
 #include "RandomVehicle.h"
 
-Interval intWidth(3.5, 4.3);
-Interval intLength(5.9, 7.6);
-
+Interval intWidth(3.3, 3.9);
+Interval intLength(5.5, 6.6);
+const double REACTION_TIME = 2.5;
+const double TARGET_DISTANCE = 35;
+const double PANIC_DISTANCE = 15;
 
 RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
     x = xx;
@@ -44,8 +46,18 @@ RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
     length = intLength.normal();
 }
 
-void RandomVehicle::think(const Neighbours &neighbours) {
+void RandomVehicle::think(const Neighbours *n) {
 //    std::cerr << v << std::endl;
+    double distCoef;
+    if(n->front != nullptr) {
+        distCoef = std::exp(- 0.5 * (n->front->dist - TARGET_DISTANCE) / TARGET_DISTANCE);
+        a = distCoef / (distCoef + 1) * -2 * TARGET_DISTANCE / REACTION_TIME / REACTION_TIME + 2 * n->front->vRel / REACTION_TIME;
+        a += 1 / (distCoef + 1) * (targetSpeed - v) / REACTION_TIME;
+
+        if(n->front->dist < PANIC_DISTANCE) a -= exp(PANIC_DISTANCE - n->front->dist) - 1;
+    } else {
+        a = (targetSpeed - v) / REACTION_TIME;
+    }
 }
 
 RandomVehicle::~RandomVehicle() {

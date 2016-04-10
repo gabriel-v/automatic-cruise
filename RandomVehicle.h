@@ -38,7 +38,7 @@
 class RandomVehicle: public Vehicle {
 public:
 
-    virtual void think(const Neighbours &neighbours) override;
+    virtual void think(const Neighbours *n) override;
 
     RandomVehicle(double x, double v);
     RandomVehicle(const RandomVehicle& x);

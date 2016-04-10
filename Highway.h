@@ -56,6 +56,8 @@ private:
 
 
     void teleportVehicles();
+
+    Target *target(const Vehicle *current, const Vehicle *targ);
 };
 
 #endif /* HIGHWAY_H */

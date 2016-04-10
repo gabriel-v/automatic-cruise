@@ -44,7 +44,7 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours &neighbours);
+    virtual void think(const Neighbours *neighbours);
 
     virtual void step(double dt);
 
@@ -56,7 +56,6 @@ protected:
     double targetSpeed;
     double width, length;
     double r, g, b;
-    bool crashed;
 
 public:
     double getTargetSpeed() const {
@@ -83,11 +82,6 @@ public:
         return a;
     }
 
-    bool isCrashed() const {
-        return crashed;
-    }
-
-
     double getR() const {
         return r;
     }
@@ -103,6 +97,11 @@ public:
 
     void setX(double x) {
         this->x = x;
+    }
+
+
+    void setTargetSpeed(double targetSpeed) {
+        this->targetSpeed = targetSpeed;
     }
 };
 
