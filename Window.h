@@ -72,6 +72,8 @@ private:
     void drawVehicle(const Vehicle &v, double lane);
 
     double timeElapsed();
+
+    void drawDash(double xMeters, double yScreen);
 };
 
 #endif /* USERINTERFACE_H */

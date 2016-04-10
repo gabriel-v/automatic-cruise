@@ -46,7 +46,7 @@ public:
 
     virtual void step(double dt);
 
-    std::vector<Lane> lanes;
+    std::vector<Lane *> lanes;
 
     Vehicle *prefferredVehicle;
 private:

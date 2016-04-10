@@ -37,7 +37,7 @@
 #include "Error.h"
 #include "Window.h"
 
-const double LANE_WIDTH = 7.1;
+const double LANE_WIDTH = 7.0;
 
 static void global_error_callback(int x, const char *message) {
     std::cerr << "Error " << x << ": " << message << std::endl;
@@ -119,7 +119,7 @@ void Window::term() {
 }
 
 double Window::timeElapsed() {
-    return std::chrono::duration<double>(startTime - std::chrono::high_resolution_clock::now()).count();
+    return std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
 }
 
 
@@ -139,6 +139,8 @@ void Window::start() {
 
         highway.step(now -last);
         draw();
+
+        last = now;
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -168,38 +170,39 @@ void Window::drawVehicle(const Vehicle &v, double lane) {
              center.second - ratio * v.getWidth() / 2, center.second + ratio * v.getWidth() / 2);
 }
 
-void drawDash(double xMeters, double yScreen) {
+void Window::drawDash(double xMeters, double lane) {
+    xMeters = int(xMeters / 14) * 14;
+    std::pair<double, double> center = roadToScreen(xMeters, lane);
+    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
 
+    double step = ratio * 7;
+
+
+
+    for(double x = center.first + maxLeft; x < maxRight; x += step) {
+        drawRect(x, x + step * 3 / 7, center.second - 0.015, center.second + 0.015);
+    }
 }
 
 void Window::draw() {
 
-
-//    auto t2 = std::chrono::system_clock::now();
-//
-//    std::chrono::duration<double, std::milli> fp = t2 - startTime;
-//    double fp_ms = fp.count() / 1000;
-//    glColor3f(1, 1, 1);
-//    glBegin(GL_TRIANGLE_STRIP);
-//    glVertex2d(0, 0);
-//    glVertex2d(cos(fp_ms), sin(fp_ms));
-//    glVertex2d(cos(fp_ms + M_PI_2), sin(M_PI_2 + fp_ms));
-//    glEnd();
-
     glColor3f(0.1, 0.2, 0.3);
     drawRect(maxLeft, maxRight, -1, 1);
-
 
     glColor3f(0.9, 0.9, 0.9);
     drawRect(maxLeft, maxRight, 0.98, 0.95);
     drawRect(maxLeft, maxRight, -0.98, -0.95);
 
+    drawDash(highway.prefferredVehicle->getX(), 0.5);
+    drawDash(highway.prefferredVehicle->getX(), 1.5);
+
     glColor3f(0.7, 0.3, 0.1);
     for(int i = 0; i < highway.lanes.size(); i++) {
-        for(const Vehicle &v: highway.lanes[i].vehicles) {
-            drawVehicle(v, i);
+        for(const Vehicle *v: highway.lanes[i]->vehicles) {
+            drawVehicle(*v, i);
         }
     }
+
 
 }
 

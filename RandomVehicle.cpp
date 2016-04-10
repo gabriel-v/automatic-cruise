@@ -34,18 +34,18 @@
 #include "RandomVehicle.h"
 
 Interval intWidth(3.5, 4.3);
-Interval intHeight(5.9, 7.6);
+Interval intLength(5.9, 7.6);
 
 
 RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
     x = xx;
     v = targetSpeed = vv;
     width = intWidth.normal();
-    length = intHeight.normal();
+    length = intLength.normal();
 }
 
 void RandomVehicle::think(const Neighbours &neighbours) {
-    std::cout << "Thinking!\n";
+//    std::cerr << v << std::endl;
 }
 
 RandomVehicle::~RandomVehicle() {

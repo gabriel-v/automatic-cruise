@@ -37,47 +37,48 @@
 
 const int N_LANES = 3;
 const int N_VEHICLES_PER_LANE = 100;
-Interval deltaX(35, 80); // m
-Interval intV(20, 60); // m / s
+Interval deltaX(45, 80); // m
+Interval intV(20, 40); // m / s
 
 Highway::Highway(): prefferredVehicle(NULL) {
     for (int i = 0; i < N_LANES; i++) {
-        Lane lane;
+        Lane *lane = new Lane;
 
-//        lanes[i].vehicles.resize(N_VEHICLES_PER_LANE + 20);
         double x = deltaX.uniform();
         for(int j = 0; j < N_VEHICLES_PER_LANE; j++) {
             x += deltaX.uniform();
-//            lanes[i].vehicles.push_back(RandomVehicle(x, intV.normal()));
-            RandomVehicle vehicle(x, intV.normal());
-            lane.vehicles.push_back(vehicle);
+            RandomVehicle *vehicle = new RandomVehicle(x, intV.normal());
+            lane->vehicles.push_back(vehicle);
         }
         lanes.push_back(lane);
     }
 
-    for(int i = 0; i < N_LANES; i++) std::cerr << lanes[i].vehicles.size() << std::endl;
-
-    prefferredVehicle = &(lanes[N_LANES/2].vehicles.at(N_VEHICLES_PER_LANE/2));
+    prefferredVehicle = (lanes[N_LANES/2]->vehicles.at(N_VEHICLES_PER_LANE/2));
 }
 
 Highway::Highway(const Highway &orig): lanes(orig.lanes), prefferredVehicle(orig.prefferredVehicle) {
 }
 
 Highway::~Highway() {
+    for (Lane *l: lanes) {
+        delete l;
+    }
+    lanes.clear();
 }
 
 
 void Highway::step(double dt) {
-    for (Lane &l: lanes) {
-        std::sort(l.vehicles.begin(), l.vehicles.end());
+    for (Lane *l: lanes) {
+        std::sort(l->vehicles.begin(), l->vehicles.end());
     }
 
     Neighbours n(NULL, NULL);
-    for(Lane &l: lanes) {
-        for (Vehicle &v: l.vehicles) {
-           // v.think(n);
-            v.step(dt);
+    for(Lane *l: lanes) {
+        for (Vehicle *v: l->vehicles) {
+            v->think(n);
+            v->step(dt);
         }
     }
+    std::cerr << prefferredVehicle->getX() << std::endl;
 }
 
