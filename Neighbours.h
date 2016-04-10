@@ -42,8 +42,8 @@ struct  Neighbours {
     Target *front, *back, *frontLeft, *frontRight, *backLeft, *backRight;
 
     Neighbours(Target *front, Target *back);
-    Neighbours withLeft(Target *front, Target *back);
-    Neighbours withRight(Target *front, Target *back);
+    Neighbours *withLeft(Target *front, Target *back);
+    Neighbours *withRight(Target *front, Target *back);
 
     Neighbours(const Neighbours& other);
 

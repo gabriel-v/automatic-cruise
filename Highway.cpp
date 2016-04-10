@@ -38,14 +38,14 @@
 
 const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 50;
-const int N_VEHICLES_PER_LANE = 80;
+const int N_VEHICLES_PER_LANE = 150;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 20.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
 
-Highway::Highway() : prefferredVehicle(NULL), lastTeleportTime(0) {
+Highway::Highway() : prefferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
         Lane *lane = new Lane;
 
@@ -59,7 +59,7 @@ Highway::Highway() : prefferredVehicle(NULL), lastTeleportTime(0) {
     }
 
     prefferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
-    prefferredVehicle->setTargetSpeed(130);
+    prefferredVehicle->setTargetSpeed(80);
 }
 
 Highway::Highway(const Highway &orig) :
@@ -116,7 +116,12 @@ void Highway::teleportVehicles() {
 
 Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
     Target *t = new Target();
-    t->dist = targ->getX() - targ->getLength() / 2 - current->getX() - current->getLength() / 2;
+    if(targ->getX() > current->getX()) {
+        t->dist = (targ->getX() - targ->getLength() / 2) - (current->getX() + current->getLength() / 2);
+    } else {
+        t->dist = (targ->getX() + targ->getLength() / 2) - (current->getX() - current->getLength() / 2);
+    }
+
     t->vRel = targ->getV() - current->getV();
     return t;
 }
@@ -139,11 +144,11 @@ void Highway::step(double dt) {
 
 
     std::map<Vehicle *, Neighbours *> links;
+    std::vector<std::deque<Vehicle *>::iterator> iters;
 
-//    std::vector<std::deque<Vehicle *>::iterator> iters;
     for (Lane *l: lanes) {
         auto it = l->vehicles.begin();
-        //iters.push_back(sit+1);
+        iters.push_back(it+1);
         links[*(it)] = new Neighbours(target(*it, *(it + 1)), nullptr);
 
         ++it;
@@ -158,32 +163,37 @@ void Highway::step(double dt) {
         links[*(it)] = new Neighbours(nullptr, target(*it, *(it - 1)));
     }
 
-    /*while(!iters.empty()) {
-        int maxI = 0;
-        for(int i = 1; i < iters.size(); i++) {
+
+    int carsSeen = 0;
+    while(!iters.empty()) {
+
+        carsSeen++;
+        uint maxI = 0;
+        for(uint i = 1; i < iters.size(); i++) {
             if((*iters[i])->getX() < (*iters[maxI])->getX()) {
                 maxI = i;
             }
         }
 
-        auto &it = iters[maxI];
-        links[*it] = Neighbours(target(*it, *(it + 1)), target(*it, *(it - 1)));
-
         // TODO: check links for left and right
-        if(maxI < lanes.size()) {
+        if(maxI < lanes.size() - 1) {
+            Target *prev = target(*iters[maxI], *(iters[maxI + 1] - 1));
+            Target *next = target(*iters[maxI], *iters[maxI + 1]);
             // we have a lane to the right
-            links[*it].withRight(target(*it, *iters[maxI + 1]), target(*it, *(iters[maxI + 1] - 1)));
+            links[*iters[maxI]]->withRight(next, prev);
         }
         if(maxI > 0) {
+            Target *prev = target(*iters[maxI], *(iters[maxI - 1] - 1));
+            Target *next = target(*iters[maxI], *iters[maxI - 1]);
             // we have a lane to the left
-            links[*it].withLeft(target(*it, *iters[maxI - 1]), target(*it, *(iters[maxI - 1] - 1)));
+            links[*iters[maxI]]->withLeft(next, prev);
         }
 
-        ++it;
-        if((it+1) == lanes[maxI]->vehicles.end()) {
-            iters.erase(iters.begin() + maxI);
+        ++iters[maxI];
+        if((iters[maxI]+1) == lanes[maxI]->vehicles.end()) {
+            break;
         }
-    } */
+    }
 
 
     for (Lane *l: lanes) {

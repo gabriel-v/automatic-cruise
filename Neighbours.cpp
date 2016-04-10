@@ -39,22 +39,25 @@ Neighbours::Neighbours(Target *front, Target *back) {
     backLeft = backRight = frontLeft = frontRight = nullptr;
 }
 
-Neighbours Neighbours::withLeft(Target *front, Target *back) {
+Neighbours *Neighbours::withLeft(Target *front, Target *back) {
     frontLeft = front;
     backLeft = back;
-    return *this;
+    return this;
 }
 
-Neighbours Neighbours::withRight(Target *front, Target *back) {
+Neighbours *Neighbours::withRight(Target *front, Target *back) {
     frontRight = front;
     backRight = back;
-    return *this;
+    return this;
 }
 
-Neighbours::Neighbours(const Neighbours &other) :
-        front(new Target(*other.front)), back(new Target(*other.back)),
-        frontLeft(new Target(*other.frontLeft)), frontRight(new Target(*other.frontRight)),
-        backLeft(new Target(*other.backLeft)), backRight(new Target(*other.backRight)) {
+Neighbours::Neighbours(const Neighbours &other){
+    if(other.front != nullptr) front = new Target(*other.front);
+    if(other.back != nullptr) back = new Target(*other.back);
+    if(other.frontLeft != nullptr) frontLeft = new Target(*other.frontLeft);
+    if(other.frontRight != nullptr) frontRight = new Target(*other.frontRight);
+    if(other.backLeft != nullptr) backLeft = new Target(*other.backLeft);
+    if(other.backRight != nullptr) backRight = new Target(*other.backRight);
 }
 
 Neighbours::Neighbours() :
