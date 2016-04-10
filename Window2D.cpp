@@ -32,6 +32,7 @@
 
 #include "Window2D.h"
 
+const int GUIDE_LENGTH = 10;
 
 void Window2D::drawRect(double left, double right, double bottom, double top) {
     glBegin(GL_POLYGON);
@@ -68,10 +69,10 @@ void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
 }
 
 void Window2D::drawDash(double xMeters, double lane) {
-    xMeters = int((xMeters) / 16) * 16;
+    xMeters = int((xMeters) / GUIDE_LENGTH) * GUIDE_LENGTH;
     std::pair<double, double> center = roadToScreen(xMeters - lane * lane * 3, lane);
 
-    double step = ratio * 8;
+    double step = ratio * GUIDE_LENGTH;
 
     for (double x = center.first + maxLeft; x < maxRight; x += step) {
         drawRect(x, x + step / 2, center.second - 0.03, center.second + 0.03);

@@ -38,7 +38,7 @@ static Interval intLength(5.5, 6.6);
 static Interval intSpeed(26, 48); // m / s
 static Interval intActionPeriod(3, 6);
 static Interval intReactionTime(2.5, 3.6);
-static Interval intTargetDistance(35, 60);
+static Interval intTargetDistance(35, 50);
 
 
 static Interval intActionDecider(0, 100);
@@ -88,8 +88,8 @@ bool RandomVehicle::canChangeLane(Target *front, Target *back) {
 void RandomVehicle::decideAction(const Neighbours *n) {
     double decision = intActionDecider.uniform();
 
-    if (decision < 30) {
-        // 30% chance to try and change lane left, then right
+    if (decision < 35) {
+        // 35 % chance to try and change lane left, then right
         if (canChangeLane(n->frontLeft, n->backLeft)) {
             highway->notifyLaneChange(this, -1);
             return;
@@ -99,8 +99,8 @@ void RandomVehicle::decideAction(const Neighbours *n) {
             highway->notifyLaneChange(this, 1);
         }
 
-    } else if (decision < 60) {
-        // 30% chance to try and change lane right, then left
+    } else if (decision < 70) {
+        // 35 % chance to try and change lane right, then left
 
         if (canChangeLane(n->frontRight, n->backRight)) {
             highway->notifyLaneChange(this, 1);
@@ -112,11 +112,11 @@ void RandomVehicle::decideAction(const Neighbours *n) {
         }
 
     } else if (decision < 90) {
-        // % 30% chance to change speed
+        // % 20 % chance to change speed
         targetSpeed = intSpeed.uniform();
     } else {
-        // 10 % chance to think again in 2 seconds
-        timeUntilNextAction = 2.0;
+        // 10 % chance to think again in 1.5 seconds
+        timeUntilNextAction = 1.5;
     }
 
 }
@@ -133,7 +133,6 @@ void RandomVehicle::think(const Neighbours *n) {
 }
 
 RandomVehicle::~RandomVehicle() {
-
 }
 
 RandomVehicle::RandomVehicle(const RandomVehicle &other) :
