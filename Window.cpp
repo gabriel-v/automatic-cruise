@@ -166,6 +166,7 @@ std::pair<double, double> Window::roadToScreen(double x, double lane) {
 void Window::drawVehicle(const Vehicle &v, double lane) {
     std::pair<double, double> center = roadToScreen(v.getX(), lane);
     double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+    glColor3d(v.getR(), v.getG(), v.getB());
     drawRect(center.first - ratio * v.getLength(), center.first + ratio * v.getLength() / 2,
              center.second - ratio * v.getWidth() / 2, center.second + ratio * v.getWidth() / 2);
 }
@@ -176,8 +177,6 @@ void Window::drawDash(double xMeters, double lane) {
     double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
 
     double step = ratio * 7;
-
-
 
     for(double x = center.first + maxLeft; x < maxRight; x += step) {
         drawRect(x, x + step * 3 / 7, center.second - 0.015, center.second + 0.015);

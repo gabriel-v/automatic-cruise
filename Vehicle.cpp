@@ -33,11 +33,18 @@
 #include "Vehicle.h"
 #include "Error.h"
 
+#include "Interval.h"
+
+Interval intColor(0.0, 0.5);
+
 Vehicle::Vehicle() {
     x = v = a = targetSpeed = 0;
     width = length = 1;
     crashed = 0;
 
+    r = intColor.normal() + 0.5;
+    g = intColor.normal() + 0.5;
+    b = intColor.normal() + 0.5;
 }
 
 

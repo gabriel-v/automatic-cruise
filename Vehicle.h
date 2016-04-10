@@ -50,12 +50,12 @@ public:
 
     virtual bool operator<(const Vehicle &other);
 
-
 protected:
 
     double x, v, a;
     double targetSpeed;
     double width, length;
+    double r, g, b;
     bool crashed;
 
 public:
@@ -85,6 +85,19 @@ public:
 
     bool isCrashed() const {
         return crashed;
+    }
+
+
+    double getR() const {
+        return r;
+    }
+
+    double getG() const {
+        return g;
+    }
+
+    double getB() const {
+        return b;
     }
 };
 

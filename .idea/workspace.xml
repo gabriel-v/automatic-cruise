@@ -13,13 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.cpp" afterPath="$PROJECT_DIR$/Highway.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.h" afterPath="$PROJECT_DIR$/Highway.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lane.cpp" afterPath="$PROJECT_DIR$/Lane.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Lane.h" afterPath="$PROJECT_DIR$/Lane.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RandomVehicle.cpp" afterPath="$PROJECT_DIR$/RandomVehicle.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.cpp" afterPath="$PROJECT_DIR$/Vehicle.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.h" afterPath="$PROJECT_DIR$/Vehicle.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window.cpp" afterPath="$PROJECT_DIR$/Window.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window.h" afterPath="$PROJECT_DIR$/Window.h" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Window.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Window.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Window.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-697">
-              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+            <state relative-caret-position="348">
+              <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
               <folding>
                 <element signature="e#1607#1624#0" expanded="true" />
               </folding>
@@ -77,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomVehicle.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RandomVehicle.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RandomVehicle.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="48" column="1" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+            <state relative-caret-position="152">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
               <folding>
                 <element signature="e#1608#1627#0" expanded="true" />
               </folding>
@@ -109,16 +105,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lane.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lane.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Lane.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lane.h">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,8 +120,8 @@
       <file leaf-file-name="Vehicle.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+            <state relative-caret-position="399">
+              <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
               <folding>
                 <element signature="e#1608#1628#0" expanded="true" />
               </folding>
@@ -146,11 +132,21 @@
       <file leaf-file-name="Vehicle.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vehicle.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+            <state relative-caret-position="443">
+              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
               <folding>
                 <element signature="e#1645#1666#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Target.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Target.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,14 +177,14 @@
         <option value="$PROJECT_DIR$/Target.h" />
         <option value="$PROJECT_DIR$/RandomVehicle.h" />
         <option value="$PROJECT_DIR$/Interval.h" />
-        <option value="$PROJECT_DIR$/Vehicle.h" />
         <option value="$PROJECT_DIR$/Window.h" />
-        <option value="$PROJECT_DIR$/Vehicle.cpp" />
         <option value="$PROJECT_DIR$/Highway.h" />
         <option value="$PROJECT_DIR$/Lane.h" />
         <option value="$PROJECT_DIR$/Lane.cpp" />
         <option value="$PROJECT_DIR$/RandomVehicle.cpp" />
         <option value="$PROJECT_DIR$/Highway.cpp" />
+        <option value="$PROJECT_DIR$/Vehicle.cpp" />
+        <option value="$PROJECT_DIR$/Vehicle.h" />
         <option value="$PROJECT_DIR$/Window.cpp" />
       </list>
     </option>
@@ -515,7 +511,14 @@
       <option name="project" value="LOCAL" />
       <updated>1460241695713</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed the sim. Cars hover through each other.">
+      <created>1460271572944</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1460271572944</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -561,7 +564,8 @@
     <MESSAGE value="Add licence. Also, compiles now." />
     <MESSAGE value="It draws!!" />
     <MESSAGE value="They move!" />
-    <option name="LAST_COMMIT_MESSAGE" value="They move!" />
+    <MESSAGE value="Fixed the sim. Cars hover through each other." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the sim. Cars hover through each other." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -778,13 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Target.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/5.3.0/bits/stl_deque.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -864,51 +861,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vehicle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
-          <folding>
-            <element signature="e#1645#1666#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
-          <folding>
-            <element signature="e#1608#1628#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Highway.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Highway.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
-          <folding>
-            <element signature="e#1608#1628#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Window.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-          <folding>
-            <element signature="e#1607#1624#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,10 +882,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RandomVehicle.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="48" column="1" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
+        <state relative-caret-position="152">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
           <folding>
             <element signature="e#1608#1627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Target.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="3" selection-start-line="30" selection-start-column="3" selection-end-line="30" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vehicle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
+          <folding>
+            <element signature="e#1645#1666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+          <folding>
+            <element signature="e#1608#1628#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Highway.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding>
+            <element signature="e#1608#1628#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Window.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="207" column="0" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+          <folding>
+            <element signature="e#1607#1624#0" expanded="true" />
           </folding>
         </state>
       </provider>
