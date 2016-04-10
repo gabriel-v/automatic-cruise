@@ -36,9 +36,16 @@
 #include "Interval.h"
 #include "Neighbours.h"
 
+class Vehicle;
+
+class LaneChangeObserver {
+public:
+    virtual void notifyLaneChange(Vehicle *v, int direction) = 0;
+};
+
 class Vehicle {
 public:
-    Vehicle();
+    Vehicle(LaneChangeObserver *highway, double lane);
 
     Vehicle(const Vehicle &orig);
 
@@ -56,6 +63,8 @@ protected:
     double targetSpeed;
     double width, length;
     double r, g, b;
+    LaneChangeObserver *highway;
+    double lane;
 
 public:
     double getTargetSpeed() const {
@@ -102,6 +111,15 @@ public:
 
     void setTargetSpeed(double targetSpeed) {
         this->targetSpeed = targetSpeed;
+    }
+
+    void setLane(double lane) {
+        this->lane = lane;
+    }
+
+
+    double getLane() const {
+        return lane;
     }
 };
 

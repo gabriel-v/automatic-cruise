@@ -51,13 +51,13 @@ Neighbours *Neighbours::withRight(Target *front, Target *back) {
     return this;
 }
 
-Neighbours::Neighbours(const Neighbours &other){
-    if(other.front != nullptr) front = new Target(*other.front);
-    if(other.back != nullptr) back = new Target(*other.back);
-    if(other.frontLeft != nullptr) frontLeft = new Target(*other.frontLeft);
-    if(other.frontRight != nullptr) frontRight = new Target(*other.frontRight);
-    if(other.backLeft != nullptr) backLeft = new Target(*other.backLeft);
-    if(other.backRight != nullptr) backRight = new Target(*other.backRight);
+Neighbours::Neighbours(const Neighbours &other) {
+    if (other.front != nullptr) front = new Target(*other.front);
+    if (other.back != nullptr) back = new Target(*other.back);
+    if (other.frontLeft != nullptr) frontLeft = new Target(*other.frontLeft);
+    if (other.frontRight != nullptr) frontRight = new Target(*other.frontRight);
+    if (other.backLeft != nullptr) backLeft = new Target(*other.backLeft);
+    if (other.backRight != nullptr) backRight = new Target(*other.backRight);
 }
 
 Neighbours::Neighbours() :

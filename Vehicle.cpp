@@ -33,14 +33,12 @@
 #include "Vehicle.h"
 #include "Error.h"
 
-#include "Interval.h"
-
 Interval intColor(0.0, 0.5);
 
 const double MIN_A = -25;
 const double MAX_A = 19;
 
-Vehicle::Vehicle() {
+Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
     x = v = a = targetSpeed = 0;
     width = length = 1;
 
@@ -52,7 +50,8 @@ Vehicle::Vehicle() {
 
 Vehicle::Vehicle(const Vehicle &orig) :
         x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed),
-        width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b) {
+        width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b),
+        highway(orig.highway), lane(orig.lane) {
 }
 
 Vehicle::~Vehicle() {
@@ -67,8 +66,8 @@ bool Vehicle::operator<(const Vehicle &other) {
 }
 
 void Vehicle::step(double dt) {
-    if(a < MIN_A) a = MIN_A;
-    if(a > MAX_A) a = MAX_A;
+    if (a < MIN_A) a = MIN_A;
+    if (a > MAX_A) a = MAX_A;
     v += dt * a;
     x += dt * v;
 }

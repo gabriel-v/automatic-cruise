@@ -40,7 +40,7 @@ class Window2D : public Window {
 
     std::pair<double, double> roadToScreen(double x, double lane);
 
-    void drawVehicle(const Vehicle *v, double lane);
+    void drawVehicle(const Vehicle *v);
 
     void drawDash(double xMeters, double yScreen);
 
@@ -48,7 +48,7 @@ class Window2D : public Window {
 
     std::pair<double, double> roadLimits();
 
-    void drawVehicles(const std::deque<Vehicle *> vs, double lane);
+    void drawVehicles(const std::deque<Vehicle *> vs);
 
     double ratio;
     double centerX;

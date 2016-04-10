@@ -36,11 +36,11 @@
 Lane::Lane() {
 }
 
-Lane::Lane(const Lane &orig): vehicles(orig.vehicles) {
+Lane::Lane(const Lane &orig) : vehicles(orig.vehicles) {
 }
 
 Lane::~Lane() {
-    for(Vehicle *v: vehicles) {
+    for (Vehicle *v: vehicles) {
         delete v;
     }
     vehicles.clear();

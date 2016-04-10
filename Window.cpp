@@ -36,8 +36,6 @@
 #include <complex>
 #include "Error.h"
 #include "Window.h"
-#include "Window2D.h"
-
 
 
 static void global_error_callback(int x, const char *message) {
@@ -151,11 +149,11 @@ void Window::start() {
         glClearColor(0.0, 0.4, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        highway.step(now -last);
+        highway.step(now - last);
         draw();
 
         accum += now - last;
-        if(accum > 1.0) {
+        if (accum > 1.0) {
             std::cerr << "\rFPS: " << frames << " \t";
             accum -= 1.0;
             frames = 0;
@@ -189,6 +187,6 @@ void Window::zoomIn() {
 
 void Window::zoomOut() {
     zoom *= 1.15;
-    if(zoom > 45) zoom = 45;
+    if (zoom > 45) zoom = 45;
 }
 

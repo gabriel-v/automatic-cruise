@@ -35,20 +35,29 @@
 
 #include "Vehicle.h"
 
-class RandomVehicle: public Vehicle {
+class RandomVehicle : public Vehicle {
 public:
 
     virtual void think(const Neighbours *n) override;
+
     virtual void step(double dt) override;
 
-    RandomVehicle(double x);
-    RandomVehicle(const RandomVehicle& x);
+    RandomVehicle(LaneChangeObserver *highway, double x, double lane);
+
+    RandomVehicle(const RandomVehicle &x);
+
     virtual ~RandomVehicle();
 
 protected:
     double reactionTime;
     double targetDistance;
     double timeUntilNextAction;
+
+    void decideAcceleration(const Neighbours *n);
+
+    void decideAction(const Neighbours *n);
+
+    bool canChangeLane(Target *front, Target *back);
 };
 
 

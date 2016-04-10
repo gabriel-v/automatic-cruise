@@ -38,9 +38,9 @@ struct Target {
     double vRel;
     double dist;
 
-    Target(): vRel(0), dist(0){}
+    Target() : vRel(0), dist(0) { }
 
-    Target (const Target& o): vRel(o.vRel), dist(o.dist){
+    Target(const Target &o) : vRel(o.vRel), dist(o.dist) {
     }
 };
 

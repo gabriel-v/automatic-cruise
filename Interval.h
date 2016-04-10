@@ -43,8 +43,8 @@ private:
     std::normal_distribution<double> normal_dist;
     double min, max;
 
-    template <typename T>
-    T clip(const T& n, const T& lower, const T& upper) {
+    template<typename T>
+    T clip(const T &n, const T &lower, const T &upper) {
         return std::max(lower, std::min(n, upper));
     }
 

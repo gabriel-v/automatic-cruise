@@ -33,10 +33,19 @@
 #ifndef HIGHWAY_H
 #define HIGHWAY_H
 
+#include <map>
 #include <vector>
 #include "Lane.h"
 
-class Highway {
+
+struct LaneChangeData {
+    int from;
+    int to;
+    double progress;
+    int direction;
+};
+
+class Highway : public LaneChangeObserver {
 public:
     Highway();
 
@@ -46,6 +55,8 @@ public:
 
     virtual void step(double dt);
 
+    virtual void notifyLaneChange(Vehicle *v, int direction);
+
     std::vector<Lane *> lanes;
 
     Vehicle *prefferredVehicle;
@@ -54,6 +65,8 @@ protected:
     double lastTeleportTime;
 private:
 
+
+    std::map<Vehicle *, LaneChangeData> laneChangers;
 
     void teleportVehicles();
 
