@@ -135,9 +135,12 @@ double Window::timeElapsed() {
 
 
 void Window::start() {
+    double accum = 0;
+    int frames = 0;
     double last = timeElapsed() - 1.0 / 60.0;
     while (!glfwWindowShouldClose(window)) {
         double now = timeElapsed();
+        frames++;
 
         int width, height;
         glfwMakeContextCurrent(window);
@@ -150,6 +153,13 @@ void Window::start() {
 
         highway.step(now -last);
         draw();
+
+        accum += now - last;
+        if(accum > 1.0) {
+            std::cerr << "\rFPS: " << frames << " \t";
+            accum -= 1.0;
+            frames = 0;
+        }
 
         last = now;
 

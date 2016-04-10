@@ -42,26 +42,34 @@ void Window2D::drawRect(double left, double right, double bottom, double top) {
     glEnd();
 };
 
+std::pair<double, double> Window2D::roadLimits() {
+    return std::make_pair(centerX + maxLeft / ratio - 10, centerX + maxRight / ratio + 10);
+};
 
 std::pair<double, double> Window2D::roadToScreen(double x, double lane) {
-    double centerX = highway.prefferredVehicle->getX();
-    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-
     return std::make_pair((x - centerX) * ratio, LANE_WIDTH * ratio * (lane - (highway.lanes.size() - 1.0) / 2));
 }
 
-void Window2D::drawVehicle(const Vehicle &v, double lane) {
-    std::pair<double, double> center = roadToScreen(v.getX(), lane);
-    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-    glColor3d(v.getR(), v.getG(), v.getB());
-    drawRect(center.first - ratio * v.getLength(), center.first + ratio * v.getLength() / 2,
-             center.second - ratio * v.getWidth() / 2, center.second + ratio * v.getWidth() / 2);
+void Window2D::drawVehicle(const Vehicle *v, double lane) {
+    std::pair<double, double> center = roadToScreen(v->getX(), lane);
+    glColor3d(v->getR(), v->getG(), v->getB());
+    drawRect(center.first - ratio * v->getLength(), center.first + ratio * v->getLength() / 2,
+             center.second - ratio * v->getWidth() / 2, center.second + ratio * v->getWidth() / 2);
+}
+
+void Window2D::drawVehicles(const std::deque<Vehicle*> vs, double lane) {
+    std::pair<double, double> cameraLimits = roadLimits();
+    auto it = vs.begin();
+    while(it != vs.end() && (*it)->getX() < cameraLimits.first) ++it;
+    while(it != vs.end() && (*it)->getX() < cameraLimits.second) {
+        drawVehicle(*it, lane);
+        ++it;
+    }
 }
 
 void Window2D::drawDash(double xMeters, double lane) {
     xMeters = int((xMeters) / 16) * 16;
     std::pair<double, double> center = roadToScreen(xMeters - lane * lane * 3, lane);
-    double ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
 
     double step = ratio * 8;
 
@@ -71,6 +79,8 @@ void Window2D::drawDash(double xMeters, double lane) {
 }
 
 void Window2D::draw() {
+
+    centerX = highway.prefferredVehicle->getX();
 
     glColor3f(0.1, 0.2, 0.3);
     drawRect(maxLeft, maxRight, -1, 1);
@@ -84,11 +94,10 @@ void Window2D::draw() {
     }
 
 
+
     glColor3f(0.7, 0.3, 0.1);
     for(uint i = 0; i < highway.lanes.size(); i++) {
-        for(const Vehicle *v: highway.lanes[i]->vehicles) {
-            drawVehicle(*v, i);
-        }
+        drawVehicles(highway.lanes[i]->vehicles, i);
     }
 
 

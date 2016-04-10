@@ -175,7 +175,6 @@ void Highway::step(double dt) {
             }
         }
 
-        // TODO: check links for left and right
         if(maxI < lanes.size() - 1) {
             Target *prev = target(*iters[maxI], *(iters[maxI + 1] - 1));
             Target *next = target(*iters[maxI], *iters[maxI + 1]);
@@ -212,9 +211,5 @@ void Highway::step(double dt) {
             v->step(dt);
         }
     }
-
-
-    std::cerr << "\r" << prefferredVehicle->getV();
-
 }
 
