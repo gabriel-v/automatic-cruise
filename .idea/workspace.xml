@@ -14,9 +14,6 @@
     <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.cpp" afterPath="$PROJECT_DIR$/Highway.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window.cpp" afterPath="$PROJECT_DIR$/Window.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.cpp" afterPath="$PROJECT_DIR$/Window2D.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.h" afterPath="$PROJECT_DIR$/Window2D.h" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Highway.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
+            <state relative-caret-position="237">
+              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
               <folding>
                 <element signature="e#1608#1628#0" expanded="true" />
               </folding>
@@ -93,7 +90,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Window2D.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Window2D.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Window2D.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1040">
@@ -176,10 +173,10 @@
         <option value="$PROJECT_DIR$/Neighbours.cpp" />
         <option value="$PROJECT_DIR$/Neighbours.h" />
         <option value="$PROJECT_DIR$/RandomVehicle.cpp" />
-        <option value="$PROJECT_DIR$/Highway.cpp" />
         <option value="$PROJECT_DIR$/Window.cpp" />
         <option value="$PROJECT_DIR$/Window2D.h" />
         <option value="$PROJECT_DIR$/Window2D.cpp" />
+        <option value="$PROJECT_DIR$/Highway.cpp" />
       </list>
     </option>
   </component>
@@ -554,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1460309696685</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Optimize the OpenGL calls">
+      <created>1460311536687</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1460311536687</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -618,7 +622,8 @@
     <MESSAGE value="RandomVehicle works. No random speed shuffling. No lane changing." />
     <MESSAGE value="Vehicles now shuffle speed." />
     <MESSAGE value="Vehicles now receive all neighbours" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vehicles now receive all neighbours" />
+    <MESSAGE value="Optimize the OpenGL calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimize the OpenGL calls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -949,16 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Highway.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="212" column="5" selection-start-line="212" selection-start-column="5" selection-end-line="212" selection-end-column="5" />
-          <folding>
-            <element signature="e#1608#1628#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Window.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -990,6 +985,16 @@
         <state relative-caret-position="1040">
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Highway.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+          <folding>
+            <element signature="e#1608#1628#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
