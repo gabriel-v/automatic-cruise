@@ -144,6 +144,11 @@ void Highway::step(double dt) {
         lastTeleportTime -= TELEPORT_INTERVAL;
     }
 
+    if(shouldSort) {
+        shouldSort = false;
+        sort();
+    }
+
     std::map<Vehicle *, Neighbours *> links;
     std::vector<std::deque<Vehicle *>::iterator> iters;
 
@@ -235,29 +240,17 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
     data.to = data.from + direction;
 
     if (data.to < 0) return;
-    if (data.to >= lanes.size()) return;
+    if (data.to >= (int) lanes.size()) return;
 
     data.progress = 0;
     laneChangers[v] = data;
-
-    /*auto it = lanes[data.to]->vehicles.begin() + 1;
-
-    while (it != lanes[data.to]->vehicles.end() && (*it)->getX() < v->getX()) {
-        ++it;
-    }
-
-    if (it != lanes[data.to]->vehicles.end()) {
-        lanes[data.to]->vehicles.insert(it - 1, v);
-    } else {
-        lanes[data.to]->vehicles.push_back(v);
-    }*/
 
     lanes[data.to]->vehicles.push_back(v);
     auto it = lanes[data.from]->vehicles.begin();
     while (it != lanes[data.from]->vehicles.end() && *it != v) ++it;
     lanes[data.from]->vehicles.erase(it);
 
-    sort();
+    shouldSort = true;
 }
 
 

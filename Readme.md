@@ -16,7 +16,7 @@ First year of study.
 ## Project: Adaptive cruise control system for road vehicles
 
 For reasons we cannot explain, we tried to use Java for this project.
-It didn't work. So here's the C++ version.
+It didn't work. So here's the C++11 version.
 
 We'll be using OpenGL 2 for the graphical simulation, and GLFW3 as the toolkit.
 See [http://www.glfw.org/docs/latest/](glfw.org/docs).
@@ -34,6 +34,7 @@ licenced under BSD-3.
 - Wrote it on the SD card using `dd`
 - Connected the touchscreen, modified the boot parameters to display everything on it
 - Ran a number of demos on the UDOO to see what it really supports
+- Settle on GLFW3 and OpenGL 1.x (may use 2.x in the future)
 
 
 -------------------------------------------------------------------------------------------------------
@@ -49,14 +50,17 @@ licenced under BSD-3.
 
 #### The simulation
 
-Each lane is implemented as a doubly linked list of vehicles.
+Each lane is implemented as a deque of vehicles.
 On each simulation step, each vehicle receives its neighbours from the simulator: distances and relative 
 velocities for the vehicle up front, the one trailing it, and the two closest vehicles on each adjacent lane.
+
+The highway has one preferred vehicle, the one with the ACC. The camera will track this vehicle.
+
 
 #### The graphical UI
 
 As the UI is 2D, viewed from the top, we'll be lazy and use the `OpenGL 1.x` API.
-No shaders, no shiny things. Just `glOrtho()`, `glBegin(GL_TRIANGLES)` ... `glEnd()` and that's it.
+No shaders, no shiny things. Just `glOrtho()`, `glBegin(GL_POLYGON)` ... `glEnd()` and that's it.
 
 If we have the time, we may switch to rendering 3D models and having the camera hover around
 like a news helicopter but that's in the unforeseeable future.

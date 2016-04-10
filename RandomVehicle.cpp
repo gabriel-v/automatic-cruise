@@ -36,7 +36,7 @@
 static Interval intWidth(3.3, 3.9);
 static Interval intLength(5.5, 6.6);
 static Interval intSpeed(26, 48); // m / s
-static Interval intActionPeriod(3, 6);
+static Interval intActionPeriod(2.6, 5);
 static Interval intReactionTime(2.5, 3.6);
 static Interval intTargetDistance(35, 50);
 

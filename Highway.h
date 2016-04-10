@@ -65,7 +65,6 @@ protected:
     double lastTeleportTime;
 private:
 
-
     std::map<Vehicle *, LaneChangeData> laneChangers;
 
     void teleportVehicles();
@@ -73,6 +72,8 @@ private:
     Target *target(const Vehicle *current, const Vehicle *targ);
 
     void sort();
+
+    bool shouldSort;
 };
 
 #endif /* HIGHWAY_H */
