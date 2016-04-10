@@ -39,10 +39,16 @@ class RandomVehicle: public Vehicle {
 public:
 
     virtual void think(const Neighbours *n) override;
+    virtual void step(double dt) override;
 
-    RandomVehicle(double x, double v);
+    RandomVehicle(double x);
     RandomVehicle(const RandomVehicle& x);
     virtual ~RandomVehicle();
+
+protected:
+    double reactionTime;
+    double targetDistance;
+    double timeUntilNextAction;
 };
 
 

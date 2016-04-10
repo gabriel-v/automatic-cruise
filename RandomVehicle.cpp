@@ -33,30 +33,37 @@
 #include <iostream>
 #include "RandomVehicle.h"
 
-Interval intWidth(3.3, 3.9);
-Interval intLength(5.5, 6.6);
-const double REACTION_TIME = 2.5;
-const double TARGET_DISTANCE = 35;
-const double PANIC_DISTANCE = 15;
+static Interval intWidth(3.3, 3.9);
+static Interval intLength(5.5, 6.6);
+static Interval intSpeed(26, 48); // m / s
+static Interval intActionPeriod(7, 12);
+static Interval intReactionTime(1.9, 3.6);
+static Interval intTargetDistance(20, 50);
 
-RandomVehicle::RandomVehicle(double xx, double vv): Vehicle() {
+const double panicDistance = 15;
+
+RandomVehicle::RandomVehicle(double xx): Vehicle() {
     x = xx;
-    v = targetSpeed = vv;
+    v = targetSpeed = intSpeed.uniform();
     width = intWidth.normal();
     length = intLength.normal();
+    timeUntilNextAction = intActionPeriod.uniform();
+
+    reactionTime = intReactionTime.uniform();
+    targetDistance = intTargetDistance.uniform();
 }
 
 void RandomVehicle::think(const Neighbours *n) {
 //    std::cerr << v << std::endl;
     double distCoef;
     if(n->front != nullptr) {
-        distCoef = std::exp(- 0.5 * (n->front->dist - TARGET_DISTANCE) / TARGET_DISTANCE);
-        a = distCoef / (distCoef + 1) * -2 * TARGET_DISTANCE / REACTION_TIME / REACTION_TIME + 2 * n->front->vRel / REACTION_TIME;
-        a += 1 / (distCoef + 1) * (targetSpeed - v) / REACTION_TIME;
+        distCoef = std::exp(- 0.5 * (n->front->dist - targetDistance) / targetDistance);
+        a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime + 2 * n->front->vRel / reactionTime;
+        a += 1 / (distCoef + 1) * (targetSpeed - v) / reactionTime;
 
-        if(n->front->dist < PANIC_DISTANCE) a -= exp(PANIC_DISTANCE - n->front->dist) - 1;
+            a -= exp(1.5 * (panicDistance - n->front->dist));
     } else {
-        a = (targetSpeed - v) / REACTION_TIME;
+        a = (targetSpeed - v) / reactionTime;
     }
 }
 
@@ -64,9 +71,24 @@ RandomVehicle::~RandomVehicle() {
 
 }
 
-RandomVehicle::RandomVehicle(const RandomVehicle &other): Vehicle(other) {
+RandomVehicle::RandomVehicle(const RandomVehicle &other):
+        Vehicle(other),
+        timeUntilNextAction(other.timeUntilNextAction) {
 
 }
+
+void RandomVehicle::step(double dt) {
+    Vehicle::step(dt);
+
+    timeUntilNextAction -= dt;
+
+    if(timeUntilNextAction < 0) {
+        timeUntilNextAction = intActionPeriod.uniform();
+        targetSpeed = intSpeed.uniform();
+    }
+}
+
+
 
 
 

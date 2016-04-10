@@ -44,7 +44,7 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours *neighbours);
+    virtual void think(const Neighbours *n);
 
     virtual void step(double dt);
 

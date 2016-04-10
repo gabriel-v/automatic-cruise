@@ -36,14 +36,14 @@
 #include "Highway.h"
 #include "RandomVehicle.h"
 
-const int N_LANES = 5;
+const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 50;
 const int N_VEHICLES_PER_LANE = 80;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 20.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
-Interval intV(26, 45); // m / s
+
 
 Highway::Highway() : prefferredVehicle(NULL), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
@@ -52,14 +52,14 @@ Highway::Highway() : prefferredVehicle(NULL), lastTeleportTime(0) {
         double x = deltaX.uniform();
         for (int j = 0; j < N_VEHICLES_PER_LANE; j++) {
             x += deltaX.uniform();
-            RandomVehicle *vehicle = new RandomVehicle(x, intV.uniform());
+            RandomVehicle *vehicle = new RandomVehicle(x);
             lane->vehicles.push_back(vehicle);
         }
         lanes.push_back(lane);
     }
 
     prefferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
-    prefferredVehicle->setTargetSpeed(100);
+    prefferredVehicle->setTargetSpeed(130);
 }
 
 Highway::Highway(const Highway &orig) :
@@ -98,14 +98,14 @@ void Highway::teleportVehicles() {
 
         X = l->vehicles.back()->getX() + deltaX.uniform() * 2;
         for (int i = 0; i < addBack; i++) {
-            v = new RandomVehicle(X, intV.uniform());
+            v = new RandomVehicle(X);
             l->vehicles.push_back(v);
             X += deltaX.uniform();
         }
 
         X = l->vehicles.front()->getX() - deltaX.uniform() * 2;
         for (int i = 0; i < addFront; i++) {
-            v = new RandomVehicle(X, intV.uniform());
+            v = new RandomVehicle(X);
             l->vehicles.push_front(v);
             X -= deltaX.uniform();
         }

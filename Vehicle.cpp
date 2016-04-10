@@ -37,8 +37,8 @@
 
 Interval intColor(0.0, 0.5);
 
-const double MIN_A = -50;
-const double MAX_A = 35;
+const double MIN_A = -25;
+const double MAX_A = 19;
 
 Vehicle::Vehicle() {
     x = v = a = targetSpeed = 0;
@@ -58,7 +58,7 @@ Vehicle::Vehicle(const Vehicle &orig) :
 Vehicle::~Vehicle() {
 }
 
-void Vehicle::think(const Neighbours *neighbours) {
+void Vehicle::think(const Neighbours *n) {
     throw Error("Vehicle is abstract!");
 }
 
