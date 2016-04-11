@@ -221,6 +221,16 @@ void Highway::step(double dt) {
         Vehicle *v = p.first;
         LaneChangeData &data = p.second;
 
+        if(!data.changed) {
+            data.changed = true;
+            lanes[data.to]->vehicles.push_back(v);
+            auto it = lanes[data.from]->vehicles.begin();
+            while (it != lanes[data.from]->vehicles.end() && *it != v) ++it;
+            lanes[data.from]->vehicles.erase(it);
+
+            shouldSort = true;
+        }
+
         data.progress += dt;
         v->setLane(data.from + data.progress * data.direction);
 
@@ -238,19 +248,13 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
     data.direction = direction;
     data.from = (int) std::round(v->getLane());
     data.to = data.from + direction;
+    data.changed = false;
 
     if (data.to < 0) return;
     if (data.to >= (int) lanes.size()) return;
 
     data.progress = 0;
     laneChangers[v] = data;
-
-    lanes[data.to]->vehicles.push_back(v);
-    auto it = lanes[data.from]->vehicles.begin();
-    while (it != lanes[data.from]->vehicles.end() && *it != v) ++it;
-    lanes[data.from]->vehicles.erase(it);
-
-    shouldSort = true;
 }
 
 

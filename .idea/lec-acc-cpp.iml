@@ -2,23 +2,23 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Vehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Neighbours.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lane.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Neighbours.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Highway.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Vehicle.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Error.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lane.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Highway.h" isTestSource="false" />
     </content>
@@ -27,14 +27,14 @@
       <library name="Header Search Paths">
         <CLASSES>
           <root url="file:///usr/include" />
-          <root url="file:///usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
           <root url="file:///usr/local/include" />
         </CLASSES>
         <SOURCES>
           <root url="file:///usr/include" />
-          <root url="file:///usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include-fixed" />
-          <root url="file:///usr/lib/gcc/x86_64-unknown-linux-gnu/5.3.0/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
           <root url="file:///usr/local/include" />
         </SOURCES>
       </library>

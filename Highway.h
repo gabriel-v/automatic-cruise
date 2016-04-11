@@ -43,6 +43,7 @@ struct LaneChangeData {
     int to;
     double progress;
     int direction;
+    bool changed;
 };
 
 class Highway : public LaneChangeObserver {

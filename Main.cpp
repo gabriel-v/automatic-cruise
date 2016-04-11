@@ -30,13 +30,26 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <chrono>
+#include <iostream>
+
 #include "Window.h"
 #include "Window2D.h"
 
+const int SIMK = 3000;
+const double dt = 1.0/60.0;
 int main() {
     Window::init();
 
     Highway high;
+
+    auto startTime = std::chrono::high_resolution_clock::now();
+    for(int i = 0; i < SIMK; i++){
+        high.step(dt);
+    }
+    double time = std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
+    std::cerr << "Time taken for 10k cycles: " << time << " s. Per frame: " << time / SIMK * 1000 << " ms" << std::endl;
+
 
     Window2D win(high);
     win.start();

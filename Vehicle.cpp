@@ -35,8 +35,8 @@
 
 Interval intColor(0.0, 0.5);
 
-const double MIN_A = -25;
-const double MAX_A = 19;
+const double MIN_A = -19;
+const double MAX_A = 12;
 
 Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
     x = v = a = targetSpeed = 0;
