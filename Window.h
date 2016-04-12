@@ -52,15 +52,20 @@ public:
 
     void start();
 
-    void reset(int width, int height);
-
-    void zoomIn();
-
-    void zoomOut();
-
     virtual void draw() = 0;
 
+    virtual void reset(int width, int height) = 0;
+
 protected:
+
+protected:
+
+
+
+    virtual void zoomIn() = 0;
+
+    virtual void zoomOut() = 0;
+
     double maxLeft, maxRight;
     Highway &highway;
     GLFWwindow *window;

@@ -39,7 +39,7 @@ struct FoliageTriangle {
     double pos[6];
     double dx;
 
-    FoliageTriangle(double centerX);
+    FoliageTriangle(double centerX, double ratio);
 };
 
 class Foliage2D {

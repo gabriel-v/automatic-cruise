@@ -30,17 +30,17 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "Window.h"
 #include "Window2D.h"
 
 const int GUIDE_LENGTH = 10;
 
 void Window2D::drawRect(double left, double right, double bottom, double top) {
-    glBegin(GL_POLYGON);
+
     glVertex2d(left, top);
     glVertex2d(left, bottom);
     glVertex2d(right, bottom);
     glVertex2d(right, top);
-    glEnd();
 };
 
 std::pair<double, double> Window2D::roadLimits() {
@@ -83,6 +83,7 @@ void Window2D::draw() {
     centerX = highway.prefferredVehicle->getX();
     foliage->draw(centerX, maxLeft, maxRight);
 
+    glBegin(GL_QUADS);
     glColor3f(0.1, 0.2, 0.3);
     drawRect(maxLeft, maxRight, -1, 1);
 
@@ -98,6 +99,29 @@ void Window2D::draw() {
     for (uint i = 0; i < highway.lanes.size(); i++) {
         drawVehicles(highway.lanes[i]->vehicles);
     }
+    glEnd();
 
 
+}
+
+void Window2D::reset(int width, int height) {
+    glViewport(0, 0, width, height);
+    maxLeft = -zoom * width / height;
+    maxRight = zoom * width / height;
+
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-zoom * width / height, zoom * width / height, -zoom, zoom, -1, 1);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void Window2D::zoomIn() {
+    zoom /= 1.15;
+    if (zoom < 1.5) zoom = 1.5;
+}
+
+void Window2D::zoomOut() {
+    zoom *= 1.15;
+    if (zoom > 45) zoom = 45;
 }

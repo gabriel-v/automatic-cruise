@@ -36,6 +36,7 @@
 #include <complex>
 #include "Error.h"
 #include "Window.h"
+#include "Window2D.h"
 
 
 static void global_error_callback(int x, const char *message) {
@@ -78,7 +79,7 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 }
 
 
-Window::Window(Highway &high) : highway(high), zoom(3.5) {
+Window::Window(Highway &high) : highway(high), zoom(4.5) {
 /* Create a windowed mode window and its OpenGL context */
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -166,27 +167,4 @@ void Window::start() {
     }
 }
 
-
-void Window::reset(int width, int height) {
-    glViewport(0, 0, width, height);
-    maxLeft = -zoom * width / height;
-    maxRight = zoom * width / height;
-
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(-zoom * width / height, zoom * width / height, -zoom, zoom, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-}
-
-
-void Window::zoomIn() {
-    zoom /= 1.15;
-    if (zoom < 1.5) zoom = 1.5;
-}
-
-void Window::zoomOut() {
-    zoom *= 1.15;
-    if (zoom > 45) zoom = 45;
-}
 

@@ -56,17 +56,28 @@ class Window2D : public Window {
 
     Foliage2D *foliage;
 
+protected:
+
+    virtual void reset(int width, int height);
+
+    virtual void zoomIn();
+
+    virtual void zoomOut();
+
 public:
     virtual void draw();
 
     Window2D(Highway &highway) : Window(highway) {
         ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+        centerX = highway.prefferredVehicle->getX();
         foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
     }
 
     Window2D(const Window &other) : Window(other) {
         ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+        centerX = highway.prefferredVehicle->getX();
         foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
+
     }
 
 

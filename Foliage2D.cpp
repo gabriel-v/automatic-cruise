@@ -36,35 +36,36 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-static const double POSITION_MAX = 15 * 60;
-static const int N_FOLIAGES = 30;
-static Interval intGreen(0.5, 0.7);
-static Interval intRedBlue(0.12, 0.22);
+static const double POSITION_MAX = 140;
+static const int N_FOLIAGES = 18;
+static Interval intGreen(0.4, 0.7);
+static Interval intRedBlue(0.12, 0.18);
 static Interval intPosition(-POSITION_MAX, POSITION_MAX);
+static Interval intHeight(-55, 55);
 
 
-FoliageTriangle::FoliageTriangle(double centerX) {
+FoliageTriangle::FoliageTriangle(double centerX, double ratio) {
     g = intGreen.uniform();
     r = intRedBlue.uniform();
     b = intRedBlue.uniform();
 
     for (int i = 0; i < 3; i++) {
-        pos[2 * i] = intPosition.uniform();
-        pos[2 * i + 1] = intPosition.uniform();
+        pos[2 * i] = intPosition.uniform() / 2;
+        pos[2 * i + 1] = intHeight.uniform();
     }
 
-    dx = centerX;
+    dx = centerX + intPosition.uniform()/ratio;
 }
 
 void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
     glBegin(GL_TRIANGLES);
     for (FoliageTriangle *tr: triangles) {
-        if (tr->dx < centerX + maxLeft / ratio - POSITION_MAX) {
-            tr->dx = centerX + maxRight / ratio + POSITION_MAX;
+        if (tr->dx < centerX + -1.5 * POSITION_MAX / ratio - POSITION_MAX) {
+            tr->dx = centerX + 1.5 * POSITION_MAX / ratio + POSITION_MAX + intPosition.normal();
         }
         glColor3d(tr->r, tr->g, tr->b);
         for (int i = 0; i < 3; i++) {
-            glVertex2d((-centerX + tr->pos[2 * i] +  tr->dx) * ratio, tr->pos[2 * i + 1] * ratio);
+            glVertex2d((-centerX + tr->pos[2 * i]/ratio +  tr->dx) * ratio, tr->pos[2 * i + 1]);
         }
     }
     glEnd();
@@ -72,7 +73,7 @@ void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
 
 Foliage2D::Foliage2D(double ratio, double centerX) : ratio(ratio) {
     for (int i = 0; i < N_FOLIAGES; i++) {
-        triangles.push_back(new FoliageTriangle(centerX));
+        triangles.push_back(new FoliageTriangle(centerX, ratio));
     }
 
 }
