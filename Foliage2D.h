@@ -39,13 +39,13 @@ struct FoliageTriangle {
     double pos[6];
     double dx;
 
-    FoliageTriangle();
+    FoliageTriangle(double centerX);
 };
 
 class Foliage2D {
 public:
     void draw(double centerX, double maxLeft, double maxRight);
-    Foliage2D(double ratio);
+    Foliage2D(double ratio, double centerX);
     virtual ~Foliage2D();
 protected:
     std::vector<FoliageTriangle *> triangles;

@@ -36,23 +36,24 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-static const double POSITION_MAX = 60;
+static const double POSITION_MAX = 15 * 60;
 static const int N_FOLIAGES = 30;
-static Interval intGreen(0.4, 1.0);
-static Interval intRedBlue(0.2, 0.6);
+static Interval intGreen(0.5, 0.7);
+static Interval intRedBlue(0.12, 0.22);
 static Interval intPosition(-POSITION_MAX, POSITION_MAX);
 
 
-FoliageTriangle::FoliageTriangle() {
+FoliageTriangle::FoliageTriangle(double centerX) {
     g = intGreen.uniform();
     r = intRedBlue.uniform();
     b = intRedBlue.uniform();
 
-    for (int i = 0; i < 6; i++) {
-        pos[i] = intPosition.uniform();
+    for (int i = 0; i < 3; i++) {
+        pos[2 * i] = intPosition.uniform();
+        pos[2 * i + 1] = intPosition.uniform();
     }
 
-    dx = 0;
+    dx = centerX;
 }
 
 void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
@@ -61,19 +62,17 @@ void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
         if (tr->dx < centerX + maxLeft / ratio - POSITION_MAX) {
             tr->dx = centerX + maxRight / ratio + POSITION_MAX;
         }
-        std::cout << "CenterX: " << centerX << " tr->x (screen): "
-        << (centerX - tr->pos[0] + tr->dx) * ratio << std::endl;
-        glColor3d(tr->r, tr->b, tr->g);
+        glColor3d(tr->r, tr->g, tr->b);
         for (int i = 0; i < 3; i++) {
-            glVertex2d((centerX - tr->pos[2 * i] + tr->dx) * ratio, tr->pos[2 * i + 1] * ratio);
+            glVertex2d((-centerX + tr->pos[2 * i] +  tr->dx) * ratio, tr->pos[2 * i + 1] * ratio);
         }
     }
     glEnd();
 }
 
-Foliage2D::Foliage2D(double ratio) : ratio(ratio) {
+Foliage2D::Foliage2D(double ratio, double centerX) : ratio(ratio) {
     for (int i = 0; i < N_FOLIAGES; i++) {
-        triangles.push_back(new FoliageTriangle);
+        triangles.push_back(new FoliageTriangle(centerX));
     }
 
 }

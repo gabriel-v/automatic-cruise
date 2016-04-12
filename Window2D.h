@@ -61,12 +61,12 @@ public:
 
     Window2D(Highway &highway) : Window(highway) {
         ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
+        foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
     }
 
     Window2D(const Window &other) : Window(other) {
         ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
+        foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
     }
 
 
