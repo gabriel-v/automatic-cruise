@@ -2,6 +2,7 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lane.cpp" isTestSource="false" />
@@ -12,6 +13,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Window2D.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Main.cpp" isTestSource="false" />

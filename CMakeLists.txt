@@ -21,7 +21,7 @@ set(SOURCE_FILES
         Error.h
         Interval.h
         RandomVehicle.cpp
-        RandomVehicle.h)
+        RandomVehicle.h Foliage2D.cpp Foliage2D.h)
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 

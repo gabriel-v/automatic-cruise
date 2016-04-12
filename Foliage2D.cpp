@@ -29,48 +29,57 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#ifndef LEC_ACC_CPP_WINDOW2D_H
-#define LEC_ACC_CPP_WINDOW2D_H
-
-
-#include "Window.h"
 #include "Foliage2D.h"
 
-class Window2D : public Window {
+#include "Interval.h"
 
-    std::pair<double, double> roadToScreen(double x, double lane);
+#include <GLFW/glfw3.h>
+#include <iostream>
 
-    void drawVehicle(const Vehicle *v);
+static const double POSITION_MAX = 60;
+static const int N_FOLIAGES = 30;
+static Interval intGreen(0.4, 1.0);
+static Interval intRedBlue(0.2, 0.6);
+static Interval intPosition(-POSITION_MAX, POSITION_MAX);
 
-    void drawDash(double xMeters, double yScreen);
 
-    void drawRect(double left, double right, double bottom, double top);
+FoliageTriangle::FoliageTriangle() {
+    g = intGreen.uniform();
+    r = intRedBlue.uniform();
+    b = intRedBlue.uniform();
 
-    std::pair<double, double> roadLimits();
-
-    void drawVehicles(const std::deque<Vehicle *> vs);
-
-    double ratio;
-    double centerX;
-
-    Foliage2D *foliage;
-
-public:
-    virtual void draw();
-
-    Window2D(Highway &highway) : Window(highway) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
+    for (int i = 0; i < 6; i++) {
+        pos[i] = intPosition.uniform();
     }
 
-    Window2D(const Window &other) : Window(other) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
+    dx = 0;
+}
+
+void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
+    glBegin(GL_TRIANGLES);
+    for (FoliageTriangle *tr: triangles) {
+        if (tr->dx < centerX + maxLeft / ratio - POSITION_MAX) {
+            tr->dx = centerX + maxRight / ratio + POSITION_MAX;
+        }
+        std::cout << "CenterX: " << centerX << " tr->x (screen): "
+        << (centerX - tr->pos[0] + tr->dx) * ratio << std::endl;
+        glColor3d(tr->r, tr->b, tr->g);
+        for (int i = 0; i < 3; i++) {
+            glVertex2d((centerX - tr->pos[2 * i] + tr->dx) * ratio, tr->pos[2 * i + 1] * ratio);
+        }
+    }
+    glEnd();
+}
+
+Foliage2D::Foliage2D(double ratio) : ratio(ratio) {
+    for (int i = 0; i < N_FOLIAGES; i++) {
+        triangles.push_back(new FoliageTriangle);
     }
 
+}
 
-};
-
-
-#endif
+Foliage2D::~Foliage2D() {
+    for (FoliageTriangle *tr: triangles) {
+        delete tr;
+    }
+}

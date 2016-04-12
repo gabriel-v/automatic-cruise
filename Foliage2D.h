@@ -29,47 +29,27 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef LEC_ACC_CPP_FOLIAGE2D_H
+#define LEC_ACC_CPP_FOLIAGE2D_H
 
-#ifndef LEC_ACC_CPP_WINDOW2D_H
-#define LEC_ACC_CPP_WINDOW2D_H
+#include <vector>
 
+struct FoliageTriangle {
+    double r, g, b;
+    double pos[6];
+    double dx;
 
-#include "Window.h"
-#include "Foliage2D.h"
+    FoliageTriangle();
+};
 
-class Window2D : public Window {
-
-    std::pair<double, double> roadToScreen(double x, double lane);
-
-    void drawVehicle(const Vehicle *v);
-
-    void drawDash(double xMeters, double yScreen);
-
-    void drawRect(double left, double right, double bottom, double top);
-
-    std::pair<double, double> roadLimits();
-
-    void drawVehicles(const std::deque<Vehicle *> vs);
-
-    double ratio;
-    double centerX;
-
-    Foliage2D *foliage;
-
+class Foliage2D {
 public:
-    virtual void draw();
-
-    Window2D(Highway &highway) : Window(highway) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
-    }
-
-    Window2D(const Window &other) : Window(other) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        foliage = new Foliage2D(ratio);
-    }
-
-
+    void draw(double centerX, double maxLeft, double maxRight);
+    Foliage2D(double ratio);
+    virtual ~Foliage2D();
+protected:
+    std::vector<FoliageTriangle *> triangles;
+    double ratio;
 };
 
 
