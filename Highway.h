@@ -36,6 +36,7 @@
 #include <map>
 #include <vector>
 #include "Lane.h"
+#include "Vehicle.h"
 
 
 struct LaneChangeData {
@@ -74,7 +75,7 @@ private:
 
     void sort();
 
-    bool shouldSort;
+    bool shouldSort = false;
 };
 
 #endif /* HIGHWAY_H */

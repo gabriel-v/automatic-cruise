@@ -44,7 +44,7 @@ struct FoliageTriangle {
 
 class Foliage2D {
 public:
-    void draw(double centerX, double maxLeft, double maxRight);
+    void draw(double centerX);
     Foliage2D(double ratio, double centerX);
     virtual ~Foliage2D();
 protected:

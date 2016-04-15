@@ -44,20 +44,19 @@ public:
 
     RandomVehicle(LaneChangeObserver *highway, double x, double lane);
 
-    RandomVehicle(const RandomVehicle &x);
+    RandomVehicle(const RandomVehicle &orig);
 
     virtual ~RandomVehicle();
 
 protected:
-    double reactionTime;
-    double targetDistance;
+
     double timeUntilNextAction;
 
-    void decideAcceleration(const Neighbours *n);
+    virtual void decideAcceleration(const Neighbours *n);
 
-    void decideAction(const Neighbours *n);
+    virtual void decideAction(const Neighbours *n);
 
-    bool canChangeLane(Target *front, Target *back);
+    virtual bool canChangeLane(Target *front, Target *back);
 };
 
 

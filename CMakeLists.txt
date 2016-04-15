@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(lec_acc_cpp)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -g")
 
 set(SOURCE_FILES
         Main.cpp
@@ -21,7 +21,9 @@ set(SOURCE_FILES
         Error.h
         Interval.h
         RandomVehicle.cpp
-        RandomVehicle.h Foliage2D.cpp Foliage2D.h)
+        RandomVehicle.h
+        Foliage2D.cpp Foliage2D.h
+        ACCVehicle.cpp ACCVehicle.h)
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 

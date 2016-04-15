@@ -29,31 +29,29 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#include <chrono>
-#include <iostream>
-
-#include "Window.h"
-#include "Window2D.h"
-
-const int SIMK = 3000;
-const double dt = 1.0/60.0;
-int main() {
-    Window::init();
-
-    Highway high;
-
-    auto startTime = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < SIMK; i++){
-        high.step(dt);
-    }
-    double time = std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
-    std::cerr << "Time taken for 3k cycles: " << time << " s. Per frame: " << time / SIMK * 1000 << " ms" << std::endl;
+#ifndef LEC_ACC_CPP_ACCVEHICLE_H
+#define LEC_ACC_CPP_ACCVEHICLE_H
 
 
-    Window2D win(high);
-    win.start();
+#include "RandomVehicle.h"
 
-    Window::term();
-    return 0;
-}
+class ACCVehicle: public Vehicle {
+
+public:
+    ACCVehicle(const Vehicle &x);
+
+protected:
+    virtual void decideAction(const Neighbours *n) override;
+
+    virtual void decideAcceleration(const Neighbours *n);
+
+    virtual bool canChangeLane(Target *front, Target *back);
+
+public:
+    virtual void think(const Neighbours *n) override;
+
+    virtual void step(double dt) override;
+};
+
+
+#endif

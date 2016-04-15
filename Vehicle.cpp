@@ -33,14 +33,29 @@
 #include "Vehicle.h"
 #include "Error.h"
 
-Interval intColor(0.0, 0.5);
+static Interval intSpeed(26, 48); // m / s
+static Interval intWidth(3.3, 3.9);
+static Interval intLength(5.5, 6.6);
+static Interval intTargetDistance(35, 50);
+static Interval intColor(0.0, 0.5);
+static Interval intReactionTime(2.5, 3.6);
+
+
+const double PANIC_DISTANCE = 12.0;
 
 const double MIN_A = -19;
 const double MAX_A = 12;
 
 Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
-    x = v = a = targetSpeed = 0;
-    width = length = 1;
+    x = a = v = 0;
+
+    v = targetSpeed = intSpeed.uniform();
+    width = intWidth.normal();
+    length = intLength.normal();
+    targetDistance = intTargetDistance.uniform();
+
+    reactionTime = intReactionTime.uniform();
+    panicDistance = PANIC_DISTANCE;
 
     r = intColor.normal() + 0.4;
     g = intColor.normal() + 0.4;
@@ -49,17 +64,15 @@ Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), l
 
 
 Vehicle::Vehicle(const Vehicle &orig) :
-        x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed),
+        x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed), targetDistance(orig.targetDistance),
         width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b),
-        highway(orig.highway), lane(orig.lane) {
+        highway(orig.highway), lane(orig.lane), panicDistance(orig.panicDistance),
+        reactionTime(orig.reactionTime) {
 }
 
 Vehicle::~Vehicle() {
 }
 
-void Vehicle::think(const Neighbours *n) {
-    throw Error("Vehicle is abstract!");
-}
 
 bool Vehicle::operator<(const Vehicle &other) {
     return x < other.x;
@@ -70,6 +83,7 @@ void Vehicle::step(double dt) {
     if (a > MAX_A) a = MAX_A;
     v += dt * a;
     x += dt * v;
+    if (v < 0) v = 0;
 }
 
 

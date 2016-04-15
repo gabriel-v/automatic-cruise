@@ -35,9 +35,10 @@
 #include <map>
 #include "Highway.h"
 #include "RandomVehicle.h"
+#include "ACCVehicle.h"
 
 const int N_LANES = 3;
-const double MAX_DELTA_X = 165, MIN_DELTA_X = 50;
+const double MAX_DELTA_X = 165, MIN_DELTA_X = 55;
 const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 20.0;
@@ -59,6 +60,9 @@ Highway::Highway() : prefferredVehicle(nullptr), lastTeleportTime(0) {
     }
 
     prefferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
+    lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2] = new ACCVehicle(*prefferredVehicle);
+    delete prefferredVehicle;
+    prefferredVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2];
 }
 
 Highway::Highway(const Highway &orig) :

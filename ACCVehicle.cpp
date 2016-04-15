@@ -29,31 +29,42 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include "ACCVehicle.h"
 
-#include <chrono>
-#include <iostream>
 
-#include "Window.h"
-#include "Window2D.h"
 
-const int SIMK = 3000;
-const double dt = 1.0/60.0;
-int main() {
-    Window::init();
+ACCVehicle::ACCVehicle(const Vehicle &x): Vehicle(x) {
 
-    Highway high;
+}
 
-    auto startTime = std::chrono::high_resolution_clock::now();
-    for(int i = 0; i < SIMK; i++){
-        high.step(dt);
+void ACCVehicle::decideAction(const Neighbours *n) {
+    //RandomVehicle::decideAction(n);
+}
+
+
+void ACCVehicle::decideAcceleration(const Neighbours *n) {
+    double distCoef;
+    if (n->front != nullptr) {
+        distCoef = (double) std::exp(- 3 * (n->front->dist - targetDistance) / targetDistance);
+        a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
+            + 2 * n->front->vRel / reactionTime;
+        a += 1 / (distCoef + 1) * (targetSpeed - v) / reactionTime;
+
+        a -= std::exp(1.5 * (panicDistance - n->front->dist));
+    } else {
+        a = (targetSpeed - v) / reactionTime;
     }
-    double time = std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
-    std::cerr << "Time taken for 3k cycles: " << time << " s. Per frame: " << time / SIMK * 1000 << " ms" << std::endl;
+}
+
+bool ACCVehicle::canChangeLane(Target *front, Target *back) {
+    return false;
+}
 
 
-    Window2D win(high);
-    win.start();
+void ACCVehicle::think(const Neighbours *n) {
+    //Vehicle::think(n);
+}
 
-    Window::term();
-    return 0;
+void ACCVehicle::step(double dt) {
+    Vehicle::step(dt);
 }

@@ -51,7 +51,7 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours *n);
+    virtual void think(const Neighbours *n) = 0;
 
     virtual void step(double dt);
 
@@ -61,10 +61,20 @@ protected:
 
     double x, v, a;
     double targetSpeed;
+    double targetDistance;
     double width, length;
     double r, g, b;
     LaneChangeObserver *highway;
     double lane;
+    double panicDistance;
+    double reactionTime;
+
+
+    virtual void decideAcceleration(const Neighbours *n) = 0;
+
+    virtual void decideAction(const Neighbours *n) = 0;
+
+    virtual bool canChangeLane(Target *front, Target *back) = 0;
 
 public:
     double getTargetSpeed() const {

@@ -81,7 +81,7 @@ void Window2D::drawDash(double xMeters, double lane) {
 
 void Window2D::draw() {
     centerX = highway.prefferredVehicle->getX();
-    foliage->draw(centerX, maxLeft, maxRight);
+    foliage->draw(centerX);
 
     glBegin(GL_QUADS);
     glColor3f(0.1, 0.2, 0.3);

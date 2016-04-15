@@ -36,7 +36,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-static const double POSITION_MAX = 140;
+static const double POSITION_MAX = 170;
 static const int N_FOLIAGES = 18;
 static Interval intGreen(0.4, 0.7);
 static Interval intRedBlue(0.12, 0.18);
@@ -54,14 +54,14 @@ FoliageTriangle::FoliageTriangle(double centerX, double ratio) {
         pos[2 * i + 1] = intHeight.uniform();
     }
 
-    dx = centerX + intPosition.uniform()/ratio;
+    dx = centerX  + intPosition.uniform()/ratio;
 }
 
-void Foliage2D::draw(double centerX, double maxLeft, double maxRight) {
+void Foliage2D::draw(double centerX) {
     glBegin(GL_TRIANGLES);
     for (FoliageTriangle *tr: triangles) {
-        if (tr->dx < centerX + -1.5 * POSITION_MAX / ratio - POSITION_MAX) {
-            tr->dx = centerX + 1.5 * POSITION_MAX / ratio + POSITION_MAX + intPosition.normal();
+        if (tr->dx < centerX +  - POSITION_MAX / ratio) {
+            tr->dx = centerX +  POSITION_MAX / ratio + intPosition.normal();
         }
         glColor3d(tr->r, tr->g, tr->b);
         for (int i = 0; i < 3; i++) {
