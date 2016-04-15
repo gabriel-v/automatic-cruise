@@ -59,7 +59,7 @@ Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), l
 
     r = intColor.normal() + 0.4;
     g = intColor.normal() + 0.4;
-    b = intColor.normal() + 0.5;
+    b = intColor.normal() + 0.3;
 }
 
 

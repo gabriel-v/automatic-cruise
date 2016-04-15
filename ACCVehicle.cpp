@@ -34,7 +34,9 @@
 
 
 ACCVehicle::ACCVehicle(const Vehicle &x): Vehicle(x) {
-
+    r = 0.1;
+    b = 0.1;
+    g = 1.0;
 }
 
 void ACCVehicle::decideAction(const Neighbours *n) {
@@ -50,7 +52,7 @@ void ACCVehicle::decideAcceleration(const Neighbours *n) {
             + 2 * n->front->vRel / reactionTime;
         a += 1 / (distCoef + 1) * (targetSpeed - v) / reactionTime;
 
-        a -= std::exp(1.5 * (panicDistance - n->front->dist));
+        a -= std::exp(7.5 * (panicDistance - n->front->dist));
     } else {
         a = (targetSpeed - v) / reactionTime;
     }
@@ -63,6 +65,8 @@ bool ACCVehicle::canChangeLane(Target *front, Target *back) {
 
 void ACCVehicle::think(const Neighbours *n) {
     //Vehicle::think(n);
+    decideAcceleration(n);
+
 }
 
 void ACCVehicle::step(double dt) {

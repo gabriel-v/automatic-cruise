@@ -12,20 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ACCVehicle.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ACCVehicle.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/lec-acc-cpp.iml" afterPath="$PROJECT_DIR$/.idea/lec-acc-cpp.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foliage2D.cpp" afterPath="$PROJECT_DIR$/Foliage2D.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Foliage2D.h" afterPath="$PROJECT_DIR$/Foliage2D.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.cpp" afterPath="$PROJECT_DIR$/Highway.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.h" afterPath="$PROJECT_DIR$/Highway.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.cpp" afterPath="$PROJECT_DIR$/Main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RandomVehicle.cpp" afterPath="$PROJECT_DIR$/RandomVehicle.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RandomVehicle.h" afterPath="$PROJECT_DIR$/RandomVehicle.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ACCVehicle.cpp" afterPath="$PROJECT_DIR$/ACCVehicle.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.cpp" afterPath="$PROJECT_DIR$/Vehicle.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.h" afterPath="$PROJECT_DIR$/Vehicle.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.cpp" afterPath="$PROJECT_DIR$/Window2D.cpp" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
@@ -47,24 +36,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Highway.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6327078">
+            <state vertical-scroll-proportion="0.0">
               <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Highway.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Highway.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
-              <folding>
-                <element signature="e#1645#1659#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -73,17 +50,7 @@
         <entry file="file://$PROJECT_DIR$/Main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Foliage2D.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Foliage2D.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="35" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,10 +60,20 @@
         <entry file="file://$PROJECT_DIR$/Window2D.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+              <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
               <folding>
                 <element signature="e#1608#1627#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Neighbours.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Neighbours.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/RandomVehicle.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <caret line="111" column="26" selection-start-line="111" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="e#1608#1627#0" expanded="true" />
               </folding>
@@ -113,21 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomVehicle.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RandomVehicle.h">
+      <file leaf-file-name="Window.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Window.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <caret line="165" column="14" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Foliage2D.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Foliage2D.h">
+      <file leaf-file-name="Window2D.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Window2D.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,17 +114,27 @@
         <entry file="file://$PROJECT_DIR$/ACCVehicle.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+              <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vehicle.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+      <file leaf-file-name="ACCVehicle.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ACCVehicle.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vehicle.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.43565685">
+              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -182,20 +169,20 @@
         <option value="$PROJECT_DIR$/Readme.md" />
         <option value="$PROJECT_DIR$/Window.cpp" />
         <option value="$PROJECT_DIR$/Window.h" />
-        <option value="$PROJECT_DIR$/Window2D.h" />
         <option value="$PROJECT_DIR$/ACCVehicle.h" />
         <option value="$PROJECT_DIR$/Vehicle.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/ACCVehicle.cpp" />
         <option value="$PROJECT_DIR$/RandomVehicle.cpp" />
         <option value="$PROJECT_DIR$/Highway.h" />
-        <option value="$PROJECT_DIR$/Main.cpp" />
-        <option value="$PROJECT_DIR$/Vehicle.cpp" />
         <option value="$PROJECT_DIR$/RandomVehicle.h" />
         <option value="$PROJECT_DIR$/Foliage2D.cpp" />
         <option value="$PROJECT_DIR$/Foliage2D.h" />
-        <option value="$PROJECT_DIR$/Window2D.cpp" />
         <option value="$PROJECT_DIR$/Highway.cpp" />
+        <option value="$PROJECT_DIR$/ACCVehicle.cpp" />
+        <option value="$PROJECT_DIR$/Window2D.h" />
+        <option value="$PROJECT_DIR$/Window2D.cpp" />
+        <option value="$PROJECT_DIR$/Main.cpp" />
+        <option value="$PROJECT_DIR$/Vehicle.cpp" />
       </list>
     </option>
   </component>
@@ -504,7 +491,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460493383017</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Segfault from sort? SIR. YES. SIR.">
+      <created>1460731554101</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1460731554101</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -576,7 +569,8 @@
     <MESSAGE value="The sim now runs a warm-up period before showing the UI." />
     <MESSAGE value="Add foliages" />
     <MESSAGE value="Refactor drawing functions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor drawing functions." />
+    <MESSAGE value="Segfault from sort? SIR. YES. SIR." />
+    <option name="LAST_COMMIT_MESSAGE" value="Segfault from sort? SIR. YES. SIR." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -815,13 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Neighbours.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Neighbours.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -843,36 +830,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Window2D.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Window.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="165" column="14" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
-          <folding>
-            <element signature="e#1607#1624#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Window.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="50" selection-start-line="56" selection-start-column="50" selection-end-line="56" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ACCVehicle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -911,45 +872,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ACCVehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="35" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RandomVehicle.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RandomVehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#1608#1627#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -969,20 +896,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Window2D.cpp">
+    <entry file="file://$PROJECT_DIR$/Highway.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ACCVehicle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomVehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="26" selection-start-line="111" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding>
             <element signature="e#1608#1627#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Highway.cpp">
+    <entry file="file://$PROJECT_DIR$/Window2D.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6327078">
-          <caret line="65" column="1" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Neighbours.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ACCVehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="11" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Window2D.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
+          <folding>
+            <element signature="e#1608#1627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Window.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="165" column="14" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.43565685">
+          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
           <folding />
         </state>
       </provider>

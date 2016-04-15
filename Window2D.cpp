@@ -80,7 +80,8 @@ void Window2D::drawDash(double xMeters, double lane) {
 }
 
 void Window2D::draw() {
-    centerX = highway.prefferredVehicle->getX();
+    double front = maxRight/ratio / 2.5;
+    centerX = (highway.prefferredVehicle->getX())  + front ;
     foliage->draw(centerX);
 
     glBegin(GL_QUADS);
@@ -92,7 +93,7 @@ void Window2D::draw() {
     drawRect(maxLeft, maxRight, -0.99, -0.93);
 
     for (uint i = 0; i < highway.lanes.size() - 1; i++) {
-        drawDash(highway.prefferredVehicle->getX(), i + 0.5);
+        drawDash(centerX, i + 0.5);
     }
 
     glColor3f(0.7, 0.3, 0.1);
