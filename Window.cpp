@@ -34,12 +34,10 @@
 #include <GLFW/glfw3.h>
 #include <map>
 #include <complex>
-#include <imgui.h>
 #include "Error.h"
 #include "Window.h"
-#include "imgui_impl_glfw.h"
-#include "Window2D.h"
 
+static int window_reference_count = 0;
 
 static void global_error_callback(int x, const char *message) {
     std::cerr << "Error " << x << ": " << message << std::endl;
@@ -49,7 +47,7 @@ static std::map<GLFWwindow *, Window *> activeWindows;
 
 static void global_key_callback(GLFWwindow *window, int key, int scancode, int action,
                                 int mods) {
-    ImGui_ImplGlFw_KeyCallback(window, key, scancode, action, mods);
+    activeWindows[window]->presenter->key_callback(key, scancode, action, mods);
     activeWindows[window]->key_callback(key, scancode, action, mods);
 }
 
@@ -78,10 +76,21 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 }
 
 
-Window::Window(Highway &high) : highway(high), zoom(4.5) {
-/* Create a windowed mode window and its OpenGL context */
+Window::Window(Highway &high) : highway(high) {
+    if(window_reference_count > 0) {
+        throw Error("Only one Window is permitted!");
+    } else {
+        window_reference_count++;
+    }
+
+    glfwSetErrorCallback(global_error_callback);
+    if (!glfwInit()) {
+        throw Error("Glfw library init failed");
+    }
+
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
     int width = vidmode->width;
     int height = vidmode->height;
 
@@ -93,16 +102,13 @@ Window::Window(Highway &high) : highway(high), zoom(4.5) {
     }
     glfwMakeContextCurrent(window);
 
-    // Setup ImGui binding
-    ImGui_ImplGlfw_Init(window, true);
+    presenter = new UIPresenter(highway, window);
 
-
-    /* Make the window's context current */
-
+    activeWindows[window] = this;
     glfwSetKeyCallback(window, global_key_callback);
     glfwSwapInterval(1);
 
-    glEnable(GL_POLYGON_SMOOTH);
+    /*glEnable(GL_POLYGON_SMOOTH);
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -110,27 +116,13 @@ Window::Window(Highway &high) : highway(high), zoom(4.5) {
     glEnable(GL_BLEND);
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_SCISSOR_TEST);
-    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE); */
 
-    activeWindows[window] = this;
 }
 
 Window::~Window() {
+    delete presenter;
     glfwDestroyWindow(window);
-}
-
-void Window::init() {
-    glfwSetErrorCallback(global_error_callback);
-    if (!glfwInit()) {
-        throw Error("Glfw initGL failed");
-    }
-
-
-}
-
-
-void Window::term() {
-    ImGui_ImplGlfw_Shutdown();
     glfwTerminate();
 }
 
@@ -138,40 +130,14 @@ double Window::timeElapsed() {
     return std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
 }
 
-
 void Window::start() {
     double last = timeElapsed() - 1.0 / 60.0;
 
-    bool show_test_window = true;
-    bool show_another_window = false;
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
-        ImGui_ImplGlfw_NewFrame();
 
-        {
-            static float f = 0.0f;
-            ImGui::Text("Hello, world!");
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-            if (ImGui::Button("Test Window")) show_test_window ^= 1;
-            if (ImGui::Button("Another Window")) show_another_window ^= 1;
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-        }
-
-        if (show_another_window)
-        {
-            ImGui::SetNextWindowSize(ImVec2(200,100), ImGuiSetCond_FirstUseEver);
-            ImGui::Begin("Another Window", &show_another_window);
-            ImGui::Text("Hello");
-            ImGui::End();
-        }
-
-        // 3. Show the ImGui test window. Most of the sample code is in ImGui::ShowTestWindow()
-        if (show_test_window)
-        {
-            ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
-            ImGui::ShowTestWindow(&show_test_window);
-        }
+        presenter->present();
 
         double now = timeElapsed();
 
@@ -187,7 +153,8 @@ void Window::start() {
 
         last = now;
 
-        ImGui::Render();
+        presenter->render();
+
         glfwSwapBuffers(window);
     }
 }

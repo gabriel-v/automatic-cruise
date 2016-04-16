@@ -43,6 +43,10 @@ const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 20.0;
 
+
+const int STABILISE_STEPS = 1000;
+const double STABILISE_DT = 1.0/60.0;
+
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
 
@@ -262,6 +266,8 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
 }
 
 
-
-
-
+void Highway::stabilise() {
+    for(int i = 0; i < STABILISE_STEPS; i++){
+        step(STABILISE_DT);
+    }
+}

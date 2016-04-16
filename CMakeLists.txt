@@ -28,7 +28,7 @@ set(SOURCE_FILES
         ACCVehicle.h
         imgui_impl_glfw.cpp
         imgui_impl_glfw.h
-        )
+		UIPresenter.cpp UIPresenter.h)
 
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
@@ -44,6 +44,7 @@ IF(APPLE)
 	add_subdirectory(glfw)
 	include_directories(glfw/include)
 	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
 ELSE()
 	# We'll load these with PkgConfig
 	find_package(PkgConfig REQUIRED)

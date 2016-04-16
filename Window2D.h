@@ -64,18 +64,15 @@ protected:
 
     virtual void zoomOut();
 
+    double maxLeft, maxRight;
+    double zoom;
+
 public:
     virtual void draw(int width, int height);
 
-    Window2D(Highway &highway) : Window(highway) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        centerX = highway.prefferredVehicle->getX();
-        foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
-    }
+    Window2D(Highway &highway);
 
-    Window2D(const Window &other) : Window2D(other.highway) {
-    }
-
+    virtual ~Window2D();
 
 };
 

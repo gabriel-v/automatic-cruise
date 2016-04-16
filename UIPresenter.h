@@ -29,56 +29,45 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-#ifndef HIGHWAY_H
-#define HIGHWAY_H
-
-#include <map>
-#include <vector>
-#include "Lane.h"
-#include "Vehicle.h"
+#ifndef LEC_ACC_CPP_UICONTROLLER_H
+#define LEC_ACC_CPP_UICONTROLLER_H
 
 
-struct LaneChangeData {
-    int from;
-    int to;
-    double progress;
-    int direction;
-    bool changed;
-};
+#include <GLFW/glfw3.h>
+#include <string>
+#include "Highway.h"
 
-class Highway : public LaneChangeObserver {
-public:
-    Highway();
-
-    Highway(const Highway &orig);
-
-    virtual ~Highway();
-
-    virtual void step(double dt);
-
-    virtual void notifyLaneChange(Vehicle *v, int direction);
-
-    std::vector<Lane *> lanes;
-
-    Vehicle *prefferredVehicle;
-
-    virtual void stabilise();
-
+class UIPresenter {
 protected:
-    double lastTeleportTime;
-private:
+    Highway &highway;
+    GLFWwindow *window;
 
-    std::map<Vehicle *, LaneChangeData> laneChangers;
+    bool showStatsView = true;
+    float accTargetDistance = 50.0f;
+    float accTargetSpeed = 30.0f;
 
-    void teleportVehicles();
 
-    Target *target(const Vehicle *current, const Vehicle *targ);
 
-    void sort();
+    std::string status;
 
-    bool shouldSort = false;
+    void statsView();
+    void commandView();
+
+
+
+public:
+    UIPresenter(Highway &highway, GLFWwindow *window);
+
+    UIPresenter(const UIPresenter & orig);
+
+    virtual ~UIPresenter();
+
+    void present();
+
+    void render();
+
+    void key_callback(int key, int scancode, int action, int mods);
 };
 
-#endif /* HIGHWAY_H */
 
+#endif

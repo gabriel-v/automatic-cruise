@@ -127,3 +127,13 @@ void Window2D::zoomOut() {
     zoom *= 1.15;
     if (zoom > 45) zoom = 45;
 }
+
+Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5)  {
+    ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
+    centerX = highway.prefferredVehicle->getX();
+    foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
+}
+
+Window2D::~Window2D() {
+
+}
