@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Foliage2D.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Vehicle.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lane.cpp" isTestSource="false" />
@@ -11,589 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/ACCVehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Highway.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/datafiles/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/SubscriberSlot.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/FontManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/FormattedRenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ColourRect.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Scheme.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderMaterial.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/BitmapImage.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/BidiVisualMapping.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/GlobalEventSet.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Expat/XMLParserModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Expat/XMLParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Expat/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Libxml2/XMLParserModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Libxml2/XMLParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParserModules/Libxml2/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/String.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRenderer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/SimpleTimer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/DefaultRenderedStringParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderingSurface.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Event.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Property.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLAttributes.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ChainedXMLHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/WidgetLookFeel.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/FormattingSetting.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/ComponentBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/StateImagery.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/XMLHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/ImageryComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/TextComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/XMLEnumHelper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/SectionSpecification.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/PropertyInitialiser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/NamedArea.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/LayerSpecification.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/Dimensions.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/ImagerySection.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/WidgetComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/EventAction.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/PropertyDefinitionBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/FrameComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/EventLinkDefinition.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/falagard/WidgetLookManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Quaternion.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/SchemeManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Animation_xmlHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Clipboard.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderedStringImageComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/LeftAlignedRenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/EventArgs.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Rect.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ShaderParameterBindings.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/EventSet.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CentredRenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CompositeResourceProvider.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/FreeImage/ImageCodec.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/FreeImage/ImageCodecModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/FreeImage/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/DevIL/ImageCodec.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/DevIL/ImageCodecModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/DevIL/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodecModules/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderingWindow.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderedStringTextComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/FreeTypeFont.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/AnimationManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ScriptModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/BoundSlot.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/TextUtils.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/PixmapFont.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Colour.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/IconvStringTranscoder.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderQueue.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/FactoryModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Base.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/GUILayout_xmlHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowFactoryManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageCodec.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/PropertyHelper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/TreeView.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/StandardItemModel.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/ListView.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/ItemModel.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/GenericItemModel.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/views/ItemView.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ScrolledContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Combobox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/TreeWidget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ItemListBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/FrameWindow.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Tooltip.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/GridLayoutContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/SequentialLayoutContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/PushButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ItemEntry.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/TabControl.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/MultiColumnList.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ProgressBar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ListHeader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/MenuBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ButtonBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/MultiLineEditbox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Scrollbar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ScrollablePane.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/HorizontalLayoutContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Spinner.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/MenuItem.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Editbox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/RadioButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ComboDropList.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/VerticalLayoutContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Menubar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/DefaultWindow.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/LayoutContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/TabButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/GroupBox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Titlebar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/DragContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ToggleButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Slider.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ListWidget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/Thumb.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ListHeaderSegment.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ListboxTextItem.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/PopupMenu.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/widgets/ListboxItem.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/System.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/KeyFrame.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Image.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/PropertySet.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Window.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Scheme_xmlHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/FactoryRegisterer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowFactory.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ScriptModules/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/AnimationInstance.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/PCRERegexMatcher.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderedStringComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Tooltip.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/MultiColumnList.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/TabButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ListHeaderSegment.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Slider.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ToggleButton.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/TreeView.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ItemEntry.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ItemViewRenderer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Button.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Editbox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ListHeader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/MenuItem.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/FrameWindow.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ScrollablePane.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Titlebar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ProgressBar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Default.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/StaticImage.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Static.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/ListView.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Menubar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/StaticText.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/PopupMenu.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Module.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/Scrollbar.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/TabControl.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/Core/MultiLineEditbox.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererSets/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Exceptions.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Renderer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RightAlignedRenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/JustifiedRenderedString.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/DynamicModule.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/Module.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/ColourPicker/Conversions.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/ColourPicker/Controls.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/ColourPicker/Types.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CommonDialogs/ColourPicker/ColourPicker.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/ImageManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/JustifiedRenderedStringWordWrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowRendererManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/XMLSerializer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/CoordConverter.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Cursor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/GeometryBuffer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/TextureTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3Texture.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GeometryBufferBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/Texture.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLShaderWrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3FBOTextureTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3GeometryBuffer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/Shaders.inl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLGeometryBuffer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLFBOTextureTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/RendererBase.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3StateChangeWrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3Shader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLBaseShaderWrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/RenderTarget.inl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/ViewportTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLRenderer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/StateChangeWrapper.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GL3Renderer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLTexture.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/ShaderManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/Shader.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/OpenGL/GLXPBTextureTarget.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RendererModules/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/DefaultResourceProvider.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Font_xmlHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/NamedElement.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Vertex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/DataContainer.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/LinkedEvent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/BasicRenderedStringParser.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/NamedXMLResourceManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Logger.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Font.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/GUIContext.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/DefaultLogger.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderEffectManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/UndoHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGPaintStyle.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGDataManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGBasicShape.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGData.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGImage.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/svg/SVGTesselator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/RenderedStringWidgetComponent.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Animation.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Element.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Affector.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/InputAggregator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/WindowNavigator.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/src/Config_xmlHandler.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/CEGUI-OPENGL.pc.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/CEGUI-OPENGL3.pc.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Scheme.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Font_xmlHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FunctorPointerSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/IteratorBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Config.h.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FreeFunctionSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderingContext.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FormattedRenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderEffectManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/KeyFrame.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Animation_xmlHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/GUIContext.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/DataContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/UndoHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/IconvStringTranscoder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Logger.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ModuleConfig.h.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ShaderParameterBindings.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWindowRendererFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/DefaultRenderedStringParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Vertex.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/BidiVisualMapping.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CoordConverter.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CEGUI.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Cursor.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/EventArgs.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/DefaultLogger.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Event.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TypedProperty.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/EventSet.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/AndroidUtils.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/PCRERegexMatcher.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/InputEventReceiver.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Win32ClipboardProvider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Image.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Exceptions.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/AnimationManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/DefaultResourceProvider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Version.h.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Base.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RightAlignedRenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/PropertySet.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/System.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/LeftAlignedRenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/JustifiedRenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ColourRect.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Element.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Vector.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderEffectFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/StringTranscoder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/BasicRenderedStringParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Window.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Interpolator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/PixmapFont.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowNavigator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/GlobalEventSet.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderingWindow.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CommonDialogs/Module.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CommonDialogs/ColourPicker/Conversions.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CommonDialogs/ColourPicker/Controls.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CommonDialogs/ColourPicker/Types.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CommonDialogs/ColourPicker/ColourPicker.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageCodecModules/FreeImage/ImageCodecModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageCodecModules/FreeImage/ImageCodec.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageCodecModules/DevIL/ImageCodecModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageCodecModules/DevIL/ImageCodec.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/BoundSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Win32StringTranscoder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/DynamicModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWindowProperty.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplProperty.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CompositeResourceProvider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/MinibidiVisualMapping.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FunctorReferenceBinder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLAttributes.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Quaternion.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FunctorCopySlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/UDim.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/MemberFunctionSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/SimpleTimer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FribidiVisualMapping.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/StaticImage.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/TreeView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ScrollablePane.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ListView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ToggleButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ListHeaderSegment.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ListHeader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Scrollbar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ProgressBar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/MultiColumnList.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Editbox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Tooltip.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/StaticText.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Slider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Default.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/TabButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Module.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/MenuItem.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/FrameWindow.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Menubar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Static.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/PopupMenu.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/TabControl.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/MultiLineEditbox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Titlebar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/Button.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ItemViewRenderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRendererSets/Core/ItemEntry.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/PropertyHelper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FactoryRegisterer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ShaderWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ForwardRefs.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ResourceProvider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLParserModules/Expat/XMLParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLParserModules/Expat/XMLParserModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLParserModules/Libxml2/XMLParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLParserModules/Libxml2/XMLParserModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringWidgetComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringParser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderingSurface.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/AnimationInstance.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/ApplePBTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/StateChangeWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/ViewportTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GeometryBufferBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3GeometryBuffer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/RendererBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/WGLPBTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLFBOTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLES2StateChangeWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLGeometryBuffer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3StateChangeWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3Shader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/TextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLES2Renderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/ShaderManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3FBOTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLRenderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLES2Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLBaseShaderWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLXPBTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/Shader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLES2GeometryBuffer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLShaderWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLTexture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GLES2FBOTextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/RenderTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL3Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/GL.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RendererModules/OpenGL/Texture.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FreeTypeFont.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ModuleConfig.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FontManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FontGlyph.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowFactoryManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/InputEvents.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringImageComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/LinkedEvent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWindowFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Font.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/SlotFunctorBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/GUILayout_xmlHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Singleton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWRFactoryRegisterer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RegexMatcher.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Property.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ScriptModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Config_xmlHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/NamedElement.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLSerializer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Size.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TextureTarget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/NamedDefinitionCollator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/SectionSpecification.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/WidgetLookFeel.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/StateImagery.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/WidgetComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/PropertyLinkDefinition.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/FormattingSetting.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/LayerSpecification.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/XMLHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/EventLinkDefinition.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/Enums.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/FrameComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/NamedArea.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/ImageryComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/ComponentBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/XMLEnumHelper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/PropertyInitialiser.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/WidgetLookManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/PropertyDefinitionBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/PropertyDefinition.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/FalagardPropertyBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/ImagerySection.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/EventAction.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/TextComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/falagard/Dimensions.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageCodec.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGPaintStyle.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGImage.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGDataManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGData.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGTesselator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/svg/SVGBasicShape.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FactoryModule.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/BitmapImage.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Rect.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/String.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringWordWrapper.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderEffect.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/SemanticInputEvent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Animation.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/InjectedInputReceiver.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/SchemeManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/InputEvent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/WindowRenderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ChainedXMLHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/NamedXMLResourceManager.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderQueue.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Scheme_xmlHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RefCounted.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/All.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/GenericItemModel.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/StandardItemModel.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/TreeView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/ListView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/ItemView.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/views/ItemModel.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/MinizipResourceProvider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderedStringTextComponent.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/RenderMaterial.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/ImageFactory.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Renderer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/SubscriberSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWindowFactoryRegisterer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplWindowRendererProperty.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/CentredRenderedString.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/FunctorReferenceSlot.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Colour.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/XMLHandler.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Clipboard.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Config.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Version.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/GridLayoutContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/RadioButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Scrollbar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ItemListBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Tooltip.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Combobox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/PopupMenu.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/HorizontalLayoutContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Spinner.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/DefaultWindow.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ListWidget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ListHeaderSegment.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ScrolledContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/DragContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ToggleButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/MenuItem.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ListboxTextItem.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ComboDropList.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Slider.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/TabButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Thumb.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Titlebar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ListboxItem.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/GroupBox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/MenuBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ProgressBar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Menubar.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/VerticalLayoutContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/FrameWindow.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/PushButton.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/TabControl.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/LayoutContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/SequentialLayoutContainer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/MultiLineEditbox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ScrollablePane.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ListHeader.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/All.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/Editbox.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/MultiColumnList.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ItemEntry.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/ButtonBase.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/widgets/TreeWidget.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/InputAggregator.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/GeometryBuffer.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TplInterpolators.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/TextUtils.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/include/CEGUI/Affector.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cegui/CEGUI.pc.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/doc/doxygen/doxyfile.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/samples/common/include/CEGUISamplesConfig.h.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/CEGUIFindHelpers.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindEXPAT.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindTOLUAPP.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindPVRTools.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindOpenGLES3.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindFreetype.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindLua51.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindGLM.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindDirectXSDK.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindGLFW.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindSILLY.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindXercesC.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindPCRE.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindOpenGLES.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindFreeImage.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindOgre.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindTinyXML.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindOpenGLES2.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindRapidXML.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/CEGUIMacros.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindFribidi.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindIconv.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindMinizip.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindGLEW.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindCorona.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindIrrlicht.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindOIS.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindDirectFB.cmake" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CEGUI/cmake/FindDevIL.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Error.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.h" isTestSource="false" />
@@ -614,6 +31,7 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw3.pc.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/x11_window.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/x11_platform.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/src/glx_context.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_time.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/xkb_unicode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/posix_time.h" isTestSource="false" />
@@ -624,13 +42,12 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw3Config.cmake.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/input.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/src/glx_context.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/vulkan.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/glfw_config.h.in" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/xkb_unicode.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/src/x11_init.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/cmake_uninstall.cmake.in" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/cursor.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/glfwinfo.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/title.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/empty.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/tearing.c" isTestSource="false" />
@@ -638,29 +55,39 @@
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/monitors.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/windows.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/events.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/iconify.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/cursor.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/threads.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/icon.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/joysticks.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/timeout.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/clipboard.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/msaa.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/gamma.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/iconify.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/tests/sharing.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/tests/glfwinfo.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3native.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/include/GLFW/glfw3.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/CMake/modules/FindVulkan.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/simple.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/heightmap.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/particles.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/boing.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/wave.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/particles.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/gears.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/glfw/examples/splitview.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/glfw/examples/boing.c" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/stb_truetype.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/stb_rect_pack.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/stb_textedit.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imconfig.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_internal.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_demo.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_draw.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Foliage2D.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ACCVehicle.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
@@ -668,7 +95,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lane.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vehicle.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Highway.h" isTestSource="false" />
     </content>
@@ -676,36 +103,28 @@
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file:///usr/include" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file://$MODULE_DIR$/glfw/deps" />
           <root url="file://$MODULE_DIR$/glfw/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Release/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Release/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Debug/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Debug/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/RelWithDebInfo/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/RelWithDebInfo/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/MinSizeRel/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/MinSizeRel/CEGUI/cegui/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file:///usr/include" />
-          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
           <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/include" />
           <root url="file:///usr/local/include" />
           <root url="file://$MODULE_DIR$/glfw/deps" />
           <root url="file://$MODULE_DIR$/glfw/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Release/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Release/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Debug/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/Debug/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/RelWithDebInfo/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/RelWithDebInfo/CEGUI/cegui/include" />
           <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/MinSizeRel/glfw/src" />
-          <root url="file://$USER_HOME$/.CLion12/system/cmake/generated/cb262f09/cb262f09/MinSizeRel/CEGUI/cegui/include" />
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/glfw/deps/glad/glad.h" />

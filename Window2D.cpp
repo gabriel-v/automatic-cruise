@@ -30,6 +30,8 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+
 #include "Window.h"
 #include "Window2D.h"
 
@@ -101,7 +103,6 @@ void Window2D::draw() {
         drawVehicles(highway.lanes[i]->vehicles);
     }
     glEnd();
-
 
 }
 

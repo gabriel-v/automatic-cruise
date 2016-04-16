@@ -37,9 +37,14 @@ add_subdirectory(glfw)
 include_directories(glfw/include)
 target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
 
-add_subdirectory(CEGUI)
-include_directories(CEGUI/cegui/include ${CEGUI_INCLUDE_DIRS})
-target_link_libraries(lec_acc_cpp ${CEGUI_LIBRARIES})
+add_subdirectory(imgui)
+include_directories(imgui)
+target_link_libraries(lec_acc_cpp imgui)
+
+
+#add_subdirectory(CEGUI)
+#include_directories(CEGUI/cegui/include ${CEGUI_INCLUDE_DIRS})
+#target_link_libraries(lec_acc_cpp ${CEGUI_LIBRARIES})
 
 # We'll load these with PkgConfig
 #find_package(PkgConfig REQUIRED)
@@ -49,12 +54,3 @@ target_link_libraries(lec_acc_cpp ${CEGUI_LIBRARIES})
 #include_directories(${GLFW_INCLUDE_DIRS})
 #target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
 #target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
-#
-#pkg_search_module(CEGUI REQUIRED CEGUI)
-#include_directories(${CEGUI_INCLUDE_DIRS})
-#target_link_libraries(lec_acc_cpp ${CEGUI_LIBRARIES})
-#
-#pkg_search_module(CEGUI-OPENGL REQUIRED CEGUI-OPENGL)
-#include_directories(${CEGUI-OPENGL_INCLUDE_DIRS})
-#target_link_libraries(lec_acc_cpp ${CEGUI-OPENGL_LIBRARIES})
-#

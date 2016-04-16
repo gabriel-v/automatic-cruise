@@ -56,18 +56,16 @@ public:
 
     virtual void reset(int width, int height) = 0;
 
-protected:
+    Highway &highway;
 
 protected:
-
-
 
     virtual void zoomIn() = 0;
 
     virtual void zoomOut() = 0;
 
     double maxLeft, maxRight;
-    Highway &highway;
+
     GLFWwindow *window;
     double zoom;
     std::chrono::system_clock::time_point startTime;

@@ -32,7 +32,7 @@
 
 #include <chrono>
 #include <iostream>
-//#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
+
 #include "Window.h"
 #include "Window2D.h"
 
@@ -53,17 +53,8 @@ int main() {
 
     Window2D win(high);
 
-//    CEGUI::OpenGLRenderer& myRenderer =
-//            CEGUI::OpenGLRenderer::bootstrapSystem();
-
     win.start();
 
     Window::term();
     return 0;
 }
-
-//int main() {
-//    CEGUI::OpenGLRenderer& myRenderer =
-//            CEGUI::OpenGLRenderer::bootstrapSystem();
-
-//}
