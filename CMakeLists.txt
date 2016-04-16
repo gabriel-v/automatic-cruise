@@ -38,25 +38,22 @@ find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
 target_link_libraries(lec_acc_cpp ${OPENGL_LIBRARIES})
 
-
-add_subdirectory(glfw)
-include_directories(glfw/include)
-target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+# Load GLFW3
+IF(APPLE)
+	# For Stefan's $1k toy
+	add_subdirectory(glfw)
+	include_directories(glfw/include)
+	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+ELSE()
+	# We'll load these with PkgConfig
+	find_package(PkgConfig REQUIRED)
+	pkg_search_module(GLFW REQUIRED glfw3)
+	include_directories(${GLFW_INCLUDE_DIRS})
+	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
+ENDIF()
 
 add_subdirectory(imgui)
 include_directories(imgui)
 target_link_libraries(lec_acc_cpp imgui)
 
-
-#add_subdirectory(CEGUI)
-#include_directories(CEGUI/cegui/include ${CEGUI_INCLUDE_DIRS})
-#target_link_libraries(lec_acc_cpp ${CEGUI_LIBRARIES})
-
-# We'll load these with PkgConfig
-#find_package(PkgConfig REQUIRED)
-
-# This is for a window and some key events
-#pkg_search_module(GLFW REQUIRED glfw3)
-#include_directories(${GLFW_INCLUDE_DIRS})
-#target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
-#target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
