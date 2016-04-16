@@ -33,16 +33,20 @@
 #include "UIPresenter.h"
 #include "imgui_impl_glfw.h"
 
-UIPresenter::UIPresenter(Highway &highway, GLFWwindow *window):
+static const double RESET_TIMEOUT = 6.0;
+
+UIPresenter::UIPresenter(Highway &highway, GLFWwindow *window, ScreenMapper *screenMapper):
         highway(highway),
-        window(window) {
+        window(window),
+        screenMapper(screenMapper) {
     ImGui_ImplGlfw_Init(window, true);
-    status = "OK.";
+    resetState();
 }
 
 UIPresenter::UIPresenter(const UIPresenter &orig):
         highway(orig.highway),
-        window(orig.window) {
+        window(orig.window),
+        screenMapper(orig.screenMapper) {
 
 }
 
@@ -50,8 +54,7 @@ UIPresenter::~UIPresenter() {
     ImGui_ImplGlfw_Shutdown();
 }
 
-void UIPresenter::present() {
-
+void UIPresenter::present(double dt) {
     ImGui_ImplGlfw_NewFrame();
 
     commandView();
@@ -59,48 +62,88 @@ void UIPresenter::present() {
         statsView();
     }
 
+    timeToStateReset -= dt;
+    if(timeToStateReset < 0) {
+        resetState();
+    }
+
+    highway.preferredVehicle->setTargetSpeed(accTargetSpeed / 3.6);
+    highway.preferredVehicle->setTargetDistance(accTargetDistance);
+
+    ImGui::ShowTestWindow(nullptr);
 }
 
 void UIPresenter::key_callback(int key, int scancode, int action, int mods) {
     ImGui_ImplGlFw_KeyCallback(window, key, scancode, action, mods);
 }
 
-void UIPresenter::render() {
+void UIPresenter::mouse_button_callback(int button, int action, int mods) {
+    ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
+    Point cursorPos;
+    glfwGetCursorPos(window, &cursorPos.x, &cursorPos.y);
 
+    Point roadCoords = screenMapper->pixelToRoadCoordinates(cursorPos);
+    if(waitingForVehiclePlacement) {
+        waitingForVehiclePlacement = false;
+        highway.addVehicleAt(roadCoords.x, roadCoords.y);
+        setState("Vehicle added.");
+    } else {
+        highway.selectVehicleAt(roadCoords.x, roadCoords.y);
+        setState("Vehicle selected.");
+    }
+
+}
+
+void UIPresenter::render() {
     ImGui::Render();
 }
 
 
 void UIPresenter::commandView() {
-    static bool opened = true;
-    ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiSetCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiSetCond_FirstUseEver);
-    ImGui::Begin("Command", &opened);
+    ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_Once);
+    ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-    ImGui::SliderFloat("ACC Target Speed", &accTargetSpeed, 0.0f, 250.0f);
-    ImGui::SliderFloat("ACC Target Distance", &accTargetDistance, 10.0f, 120.0f);
+    ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 0.0f, 340.0f);
+    ImGui::SliderFloat("ACC target distance", &accTargetDistance, 10.0f, 200.0f);
 
-    if (ImGui::Button("Toggle Stats")) {
+
+    if (ImGui::Button("Toggle statistics window")) {
         showStatsView ^= 1;
     }
-
-    if (ImGui::Button("ACC change lane left")) {
-        status = "Not Implemented.";
+    ImGui::SameLine();
+    if (ImGui::Button("Zoom In")) {
+        screenMapper->zoomIn();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("Zoom Out")) {
+        screenMapper->zoomOut();
     }
 
-    if (ImGui::Button("ACC change lane right")) {
-        status = "Not Implemented.";
+    ImGui::Text("ACC: Change lane ");
+    ImGui::SameLine();
+    if (ImGui::SmallButton("left")) {
+        setState("Lane change requested.");
+    }
+    ImGui::SameLine();
+    if (ImGui::SmallButton("right")) {
+        setState("Lane change requested.");
+    }
+    ImGui::SameLine();
+    if (ImGui::SmallButton("randomly")) {
+        setState("Lane change requested.");
     }
 
-    if (ImGui::Button("Add vehicle forward")) {
-        status = "Not Implemented.";
+    ImGui::Text("Sim: Add vehicle ");
+    ImGui::SameLine();
+    if (ImGui::SmallButton("in front")) {
+        highway.addVehicleInFrontOfPreferred();
+        setState("Vehicle added.");
     }
 
-    if (ImGui::Button("Reset highway")) {
-        status = "Not Implemented.";
-    }
-    if (ImGui::Button("Add vehicle forward")) {
-        status = "Not Implemented.";
+    ImGui::SameLine();
+    if (ImGui::SmallButton("anywhere")) {
+        waitingForVehiclePlacement = true;
+        setState("Click on the road!");
     }
 
     ImGui::Text("Status: %s", status.c_str());
@@ -109,14 +152,24 @@ void UIPresenter::commandView() {
 }
 
 void UIPresenter::statsView() {
-    ImGui::SetNextWindowPos(ImVec2(5, 320), ImGuiSetCond_FirstUseEver);
-    ImGui::SetNextWindowSize(ImVec2(400, 200), ImGuiSetCond_FirstUseEver);
-    ImGui::Begin("Statistics", &showStatsView);
+    ImGui::SetNextWindowPos(ImVec2(420, 10), ImGuiSetCond_Once);
+    ImGui::Begin("Statistics", &showStatsView, ImGuiWindowFlags_AlwaysAutoResize);
 
     ImGui::Text("FPS: %.0f (%.1f ms/frame) ",  ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
-    ImGui::Text("ACC Speed: %.0f km/h", highway.prefferredVehicle->getV() * 3.6f);
+    ImGui::Text("ACC Speed: %.0f km/h", highway.preferredVehicle->getV() * 3.6f);
     ImGui::Text("ACC Distance to next vehicle: %.0f meters", 0.0f);
 
     ImGui::End();
 }
 
+
+void UIPresenter::setState(std::string statusString) {
+    status = statusString;
+    timeToStateReset = RESET_TIMEOUT;
+}
+
+void UIPresenter::resetState() {
+    status = "OK.";
+    timeToStateReset = RESET_TIMEOUT;
+    waitingForVehiclePlacement = false;
+}

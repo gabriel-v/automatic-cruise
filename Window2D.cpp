@@ -34,6 +34,7 @@
 
 #include "Window.h"
 #include "Window2D.h"
+#include "Error.h"
 
 const int GUIDE_LENGTH = 10;
 
@@ -49,15 +50,12 @@ std::pair<double, double> Window2D::roadLimits() {
     return std::make_pair(centerX + maxLeft / ratio - 10, centerX + maxRight / ratio + 10);
 };
 
-std::pair<double, double> Window2D::roadToScreen(double x, double lane) {
-    return std::make_pair((x - centerX) * ratio, LANE_WIDTH * ratio * (lane - (highway.lanes.size() - 1.0) / 2));
-}
 
 void Window2D::drawVehicle(const Vehicle *v) {
-    std::pair<double, double> center = roadToScreen(v->getX(), v->getLane());
+    Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
     glColor3d(v->getR(), v->getG(), v->getB());
-    drawRect(center.first - ratio * v->getLength(), center.first + ratio * v->getLength() / 2,
-             center.second - ratio * v->getWidth() / 2, center.second + ratio * v->getWidth() / 2);
+    drawRect(center.x - ratio * v->getLength(), center.x + ratio * v->getLength() / 2,
+             center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
 }
 
 void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
@@ -72,12 +70,12 @@ void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
 
 void Window2D::drawDash(double xMeters, double lane) {
     xMeters = int((xMeters) / GUIDE_LENGTH) * GUIDE_LENGTH;
-    std::pair<double, double> center = roadToScreen(xMeters - lane * lane * 3, lane);
+    Point center = roadToScreenCoordinates(Point(xMeters - lane * lane * 3, lane));
 
     double step = ratio * GUIDE_LENGTH;
 
-    for (double x = center.first + maxLeft; x < maxRight; x += step) {
-        drawRect(x, x + step / 2, center.second - 0.03, center.second + 0.03);
+    for (double x = center.x + maxLeft; x < maxRight; x += step) {
+        drawRect(x, x + step / 2, center.y - 0.03, center.y + 0.03);
     }
 }
 
@@ -93,7 +91,7 @@ void Window2D::draw(int width, int height) {
 
 
     double front = maxRight/ratio / 2.5;
-    centerX = (highway.prefferredVehicle->getX())  + front ;
+    centerX = (highway.preferredVehicle->getX()) + front ;
     foliage->draw(centerX);
 
     glBegin(GL_QUADS);
@@ -130,10 +128,20 @@ void Window2D::zoomOut() {
 
 Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5)  {
     ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-    centerX = highway.prefferredVehicle->getX();
-    foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
+    centerX = highway.preferredVehicle->getX();
+    foliage = new Foliage2D(ratio, highway.preferredVehicle->getX());
 }
 
 Window2D::~Window2D() {
 
+}
+
+
+Point Window2D::pixelToRoadCoordinates(Point pixelCoords) {
+    throw Error("pixelToRoadCoordinates not implemented");
+    return Point();
+}
+
+Point Window2D::roadToScreenCoordinates(Point roadCoords) {
+    return Point((roadCoords.x - centerX) * ratio, LANE_WIDTH * ratio * (roadCoords.y - (highway.lanes.size() - 1.0) / 2));
 }

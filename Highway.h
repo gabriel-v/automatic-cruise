@@ -55,19 +55,32 @@ public:
 
     virtual ~Highway();
 
-    virtual void step(double dt);
+    void step(double dt);
 
-    virtual void notifyLaneChange(Vehicle *v, int direction);
+    void notifyLaneChange(Vehicle *v, int direction);
+
+    void stabilise();
+
+    void addVehicleAt(double X, double lane);
+
+    void addVehicleInFrontOfPreferred();
+
+    void selectVehicleAt(double X, double lane);
+
+    void unselectVehicle();
 
     std::vector<Lane *> lanes;
 
-    Vehicle *prefferredVehicle;
+    Vehicle *preferredVehicle = nullptr;
 
-    virtual void stabilise();
+    Vehicle *selectedVehicle = nullptr;
 
-protected:
-    double lastTeleportTime;
+    double preferedVehicleFrontDistance = 0;
+
 private:
+    double lastTeleportTime = 0;
+
+    bool shouldSort = false;
 
     std::map<Vehicle *, LaneChangeData> laneChangers;
 
@@ -77,7 +90,6 @@ private:
 
     void sort();
 
-    bool shouldSort = false;
 };
 
 #endif /* HIGHWAY_H */

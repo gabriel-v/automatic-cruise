@@ -39,8 +39,6 @@
 class Window2D : public Window {
 private:
 
-    std::pair<double, double> roadToScreen(double x, double lane);
-
     void drawVehicle(const Vehicle *v);
 
     void drawDash(double xMeters, double yScreen);
@@ -63,6 +61,11 @@ protected:
     virtual void zoomIn();
 
     virtual void zoomOut();
+
+    virtual Point pixelToRoadCoordinates(Point pixelCoords);
+
+    virtual Point roadToScreenCoordinates(Point roadCoords);
+
 
     double maxLeft, maxRight;
     double zoom;

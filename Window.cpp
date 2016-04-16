@@ -51,6 +51,9 @@ static void global_key_callback(GLFWwindow *window, int key, int scancode, int a
     activeWindows[window]->key_callback(key, scancode, action, mods);
 }
 
+static void global_mouse_button_callback(GLFWwindow *window, int button, int action, int mods) {
+    activeWindows[window]->presenter->mouse_button_callback(button, action, mods);
+}
 
 void Window::key_callback(int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS || action == GLFW_REPEAT) {
@@ -102,10 +105,11 @@ Window::Window(Highway &high) : highway(high) {
     }
     glfwMakeContextCurrent(window);
 
-    presenter = new UIPresenter(highway, window);
+    presenter = new UIPresenter(highway, window, this);
 
     activeWindows[window] = this;
     glfwSetKeyCallback(window, global_key_callback);
+    glfwSetMouseButtonCallback(window, global_mouse_button_callback);
     glfwSwapInterval(1);
 
     /*glEnable(GL_POLYGON_SMOOTH);
@@ -136,10 +140,9 @@ void Window::start() {
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
-
-        presenter->present();
-
         double now = timeElapsed();
+
+        presenter->present(now - last);
 
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);

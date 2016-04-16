@@ -113,11 +113,9 @@ public:
         return b;
     }
 
-
     void setX(double x) {
         this->x = x;
     }
-
 
     void setTargetSpeed(double targetSpeed) {
         this->targetSpeed = targetSpeed;
@@ -127,9 +125,12 @@ public:
         this->lane = lane;
     }
 
-
     double getLane() const {
         return lane;
+    }
+
+    void setTargetDistance(double targetDistance) {
+        this->targetDistance = targetDistance;
     }
 };
 

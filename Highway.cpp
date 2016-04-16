@@ -36,12 +36,13 @@
 #include "Highway.h"
 #include "RandomVehicle.h"
 #include "ACCVehicle.h"
+#include "Error.h"
 
 const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 55;
 const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
-const double TELEPORT_INTERVAL = 20.0;
+const double TELEPORT_INTERVAL = 10.0;
 
 
 const int STABILISE_STEPS = 1000;
@@ -49,8 +50,10 @@ const double STABILISE_DT = 1.0/60.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
+const Target FAR_IN_FRONT = Target(0, 1e50);
+const Target FAR_IN_BACK = Target(0, -1e50);
 
-Highway::Highway() : prefferredVehicle(nullptr), lastTeleportTime(0) {
+Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
         Lane *lane = new Lane;
 
@@ -63,15 +66,17 @@ Highway::Highway() : prefferredVehicle(nullptr), lastTeleportTime(0) {
         lanes.push_back(lane);
     }
 
-    prefferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
-    lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2] = new ACCVehicle(*prefferredVehicle);
-    delete prefferredVehicle;
-    prefferredVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2];
+    preferredVehicle = (lanes[N_LANES / 2]->vehicles.at(N_VEHICLES_PER_LANE / 2));
+    lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2] = new ACCVehicle(*preferredVehicle);
+    delete preferredVehicle;
+
+    preferredVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2];
+    selectedVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2 + 1];
 }
 
 Highway::Highway(const Highway &orig) :
         lanes(orig.lanes),
-        prefferredVehicle(orig.prefferredVehicle),
+        preferredVehicle(orig.preferredVehicle),
         lastTeleportTime(0) {
 }
 
@@ -83,7 +88,7 @@ Highway::~Highway() {
 }
 
 void Highway::teleportVehicles() {
-    double centerX = prefferredVehicle->getX();
+    double centerX = preferredVehicle->getX();
     double X;
 
     Vehicle *v;
@@ -163,7 +168,7 @@ void Highway::step(double dt) {
     for (Lane *l: lanes) {
         auto it = l->vehicles.begin();
         iters.push_back(it + 1);
-        links[*(it)] = new Neighbours(target(*it, *(it + 1)), nullptr);
+        links[*(it)] = new Neighbours(target(*it, *(it + 1)), new Target(FAR_IN_BACK));
 
         ++it;
 
@@ -174,7 +179,7 @@ void Highway::step(double dt) {
             ++it;
         }
 
-        links[*(it)] = new Neighbours(nullptr, target(*it, *(it - 1)));
+        links[*(it)] = new Neighbours(new Target(FAR_IN_FRONT), target(*it, *(it - 1)));
     }
 
 
@@ -270,4 +275,21 @@ void Highway::stabilise() {
     for(int i = 0; i < STABILISE_STEPS; i++){
         step(STABILISE_DT);
     }
+}
+
+
+void Highway::addVehicleAt(double X, double lane) {
+    throw Error("addVehicleAt not implemented");
+}
+
+void Highway::addVehicleInFrontOfPreferred() {
+    throw Error("addVehicleInFrontOfPreferred not implemented");
+}
+
+void Highway::selectVehicleAt(double X, double lane) {
+    throw Error("selectVehicleAt not implemented");
+}
+
+void Highway::unselectVehicle() {
+    selectedVehicle = nullptr;
 }

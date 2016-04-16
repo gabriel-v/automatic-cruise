@@ -37,36 +37,67 @@
 #include <string>
 #include "Highway.h"
 
+
+struct Point {
+    double x;
+    double y;
+
+    Point() {
+        x = y = 0;
+    }
+
+    Point(double x, double y): x(x), y(y){}
+};
+
+class ScreenMapper {
+public:
+    virtual Point pixelToRoadCoordinates(Point pixelCoords) = 0;
+    virtual Point roadToScreenCoordinates(Point roadCoords) = 0;
+    virtual void zoomIn() = 0;
+    virtual void zoomOut() = 0;
+};
+
 class UIPresenter {
 protected:
     Highway &highway;
     GLFWwindow *window;
+    ScreenMapper *screenMapper;
 
     bool showStatsView = true;
     float accTargetDistance = 50.0f;
-    float accTargetSpeed = 30.0f;
-
+    float accTargetSpeed = 110.0f;
 
 
     std::string status;
 
     void statsView();
+
     void commandView();
 
+    void setState(std::string status);
+
+    double timeToStateReset;
+
+    bool waitingForVehiclePlacement = false;
+
+    void resetState();
 
 
 public:
-    UIPresenter(Highway &highway, GLFWwindow *window);
+    UIPresenter(Highway &highway, GLFWwindow *window, ScreenMapper *screenMapper);
 
-    UIPresenter(const UIPresenter & orig);
+    UIPresenter(const UIPresenter &orig);
 
     virtual ~UIPresenter();
 
-    void present();
+    void present(double dt);
 
     void render();
 
     void key_callback(int key, int scancode, int action, int mods);
+
+    void mouse_button_callback(int button, int action, int mods);
+
 };
 
 

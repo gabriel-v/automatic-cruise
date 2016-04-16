@@ -38,7 +38,8 @@
 #include "UIPresenter.h"
 #include <chrono>
 
-class Window {
+
+class Window: public ScreenMapper {
 public:
 
     Window(Highway &high);
@@ -56,11 +57,6 @@ public:
     UIPresenter *presenter;
 
 protected:
-
-    virtual void zoomIn() = 0;
-
-    virtual void zoomOut() = 0;
-
 
     GLFWwindow *window;
     std::chrono::system_clock::time_point startTime;
