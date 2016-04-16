@@ -81,41 +81,41 @@ void Window2D::drawDash(double xMeters, double lane) {
     }
 }
 
-void Window2D::draw() {
-    double front = maxRight/ratio / 2.5;
-    centerX = (highway.prefferredVehicle->getX())  + front ;
-    foliage->draw(centerX);
+void Window2D::draw(int width, int height) {
 
-    glBegin(GL_QUADS);
-    glColor3f(0.1, 0.2, 0.3);
-    drawRect(maxLeft, maxRight, -1, 1);
-
-    glColor3f(0.9, 0.9, 0.9);
-    drawRect(maxLeft, maxRight, 0.99, 0.93);
-    drawRect(maxLeft, maxRight, -0.99, -0.93);
-
-    for (uint i = 0; i < highway.lanes.size() - 1; i++) {
-        drawDash(centerX, i + 0.5);
-    }
-
-    glColor3f(0.7, 0.3, 0.1);
-    for (uint i = 0; i < highway.lanes.size(); i++) {
-        drawVehicles(highway.lanes[i]->vehicles);
-    }
-    glEnd();
-
-}
-
-void Window2D::reset(int width, int height) {
-    glViewport(0, 0, width, height);
     maxLeft = -zoom * width / height;
     maxRight = zoom * width / height;
-
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(-zoom * width / height, zoom * width / height, -zoom, zoom, -1, 1);
     glMatrixMode(GL_MODELVIEW);
+
+
+    double front = maxRight/ratio / 2.5;
+    centerX = (highway.prefferredVehicle->getX())  + front ;
+    foliage->draw(centerX);
+
+    glBegin(GL_QUADS);
+    {
+        glColor3f(0.1, 0.2, 0.3);
+        drawRect(maxLeft, maxRight, -1, 1);
+
+        glColor3f(0.9, 0.9, 0.9);
+        drawRect(maxLeft, maxRight, 0.93, 0.99);
+        drawRect(maxLeft, maxRight, -0.99, -0.93);
+
+        for (uint i = 0; i < highway.lanes.size() - 1; i++) {
+            drawDash(centerX, i + 0.5);
+        }
+
+        glColor3f(0.7, 0.3, 0.1);
+        for (uint i = 0; i < highway.lanes.size(); i++) {
+            drawVehicles(highway.lanes[i]->vehicles);
+        }
+    }
+    glEnd();
+
 }
 
 void Window2D::zoomIn() {

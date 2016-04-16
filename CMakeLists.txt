@@ -22,8 +22,14 @@ set(SOURCE_FILES
         Interval.h
         RandomVehicle.cpp
         RandomVehicle.h
-        Foliage2D.cpp Foliage2D.h
-        ACCVehicle.cpp ACCVehicle.h)
+        Foliage2D.cpp
+        Foliage2D.h
+        ACCVehicle.cpp
+        ACCVehicle.h
+        imgui_impl_glfw.cpp
+        imgui_impl_glfw.h
+        )
+
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 

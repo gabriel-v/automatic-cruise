@@ -34,8 +34,10 @@
 #include <GLFW/glfw3.h>
 #include <map>
 #include <complex>
+#include <imgui.h>
 #include "Error.h"
 #include "Window.h"
+#include "imgui_impl_glfw.h"
 #include "Window2D.h"
 
 
@@ -47,11 +49,8 @@ static std::map<GLFWwindow *, Window *> activeWindows;
 
 static void global_key_callback(GLFWwindow *window, int key, int scancode, int action,
                                 int mods) {
+    ImGui_ImplGlFw_KeyCallback(window, key, scancode, action, mods);
     activeWindows[window]->key_callback(key, scancode, action, mods);
-}
-
-static void global_window_size_callback(GLFWwindow *window, int w, int h) {
-    activeWindows[window]->reset(w, h);
 }
 
 
@@ -92,11 +91,15 @@ Window::Window(Highway &high) : highway(high), zoom(4.5) {
         glfwTerminate();
         throw Error("Glfw window creation failed");
     }
+    glfwMakeContextCurrent(window);
+
+    // Setup ImGui binding
+    ImGui_ImplGlfw_Init(window, true);
+
 
     /* Make the window's context current */
 
     glfwSetKeyCallback(window, global_key_callback);
-    glfwSetWindowSizeCallback(window, global_window_size_callback);
     glfwSwapInterval(1);
 
     glEnable(GL_POLYGON_SMOOTH);
@@ -121,10 +124,13 @@ void Window::init() {
     if (!glfwInit()) {
         throw Error("Glfw initGL failed");
     }
+
+
 }
 
 
 void Window::term() {
+    ImGui_ImplGlfw_Shutdown();
     glfwTerminate();
 }
 
@@ -134,36 +140,55 @@ double Window::timeElapsed() {
 
 
 void Window::start() {
-    double accum = 0;
-    int frames = 0;
     double last = timeElapsed() - 1.0 / 60.0;
+
+    bool show_test_window = true;
+    bool show_another_window = false;
+
     while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+        ImGui_ImplGlfw_NewFrame();
+
+        {
+            static float f = 0.0f;
+            ImGui::Text("Hello, world!");
+            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
+            if (ImGui::Button("Test Window")) show_test_window ^= 1;
+            if (ImGui::Button("Another Window")) show_another_window ^= 1;
+            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        }
+
+        if (show_another_window)
+        {
+            ImGui::SetNextWindowSize(ImVec2(200,100), ImGuiSetCond_FirstUseEver);
+            ImGui::Begin("Another Window", &show_another_window);
+            ImGui::Text("Hello");
+            ImGui::End();
+        }
+
+        // 3. Show the ImGui test window. Most of the sample code is in ImGui::ShowTestWindow()
+        if (show_test_window)
+        {
+            ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiSetCond_FirstUseEver);
+            ImGui::ShowTestWindow(&show_test_window);
+        }
+
         double now = timeElapsed();
-        frames++;
 
         int width, height;
-        glfwMakeContextCurrent(window);
         glfwGetFramebufferSize(window, &width, &height);
-
-        reset(width, height);
+        glViewport(0, 0, width, height);
 
         glClearColor(0.0, 0.4, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         highway.step(now - last);
-        draw();
-
-        accum += now - last;
-        if (accum > 1.0) {
-            std::cerr << "\rFPS: " << frames << " \t";
-            accum -= 1.0;
-            frames = 0;
-        }
+        draw(width, height);
 
         last = now;
 
+        ImGui::Render();
         glfwSwapBuffers(window);
-        glfwPollEvents();
     }
 }
 

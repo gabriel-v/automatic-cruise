@@ -33,12 +33,11 @@
 #ifndef LEC_ACC_CPP_WINDOW2D_H
 #define LEC_ACC_CPP_WINDOW2D_H
 
-#include <CEGUI/RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
-
 #include "Window.h"
 #include "Foliage2D.h"
 
 class Window2D : public Window {
+private:
 
     std::pair<double, double> roadToScreen(double x, double lane);
 
@@ -61,14 +60,12 @@ class Window2D : public Window {
 
 protected:
 
-    virtual void reset(int width, int height);
-
     virtual void zoomIn();
 
     virtual void zoomOut();
 
 public:
-    virtual void draw();
+    virtual void draw(int width, int height);
 
     Window2D(Highway &highway) : Window(highway) {
         ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
@@ -77,10 +74,6 @@ public:
     }
 
     Window2D(const Window &other) : Window2D(other.highway) {
-        //ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-       // centerX = highway.prefferredVehicle->getX();
-        //foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
-
     }
 
 

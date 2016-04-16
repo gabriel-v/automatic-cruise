@@ -52,9 +52,7 @@ public:
 
     void start();
 
-    virtual void draw() = 0;
-
-    virtual void reset(int width, int height) = 0;
+    virtual void draw(int width, int height) = 0;
 
     Highway &highway;
 
