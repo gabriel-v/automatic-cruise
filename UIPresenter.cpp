@@ -103,7 +103,7 @@ void UIPresenter::commandView() {
         status = "Not Implemented.";
     }
 
-    ImGui::Text((std::string("Status: ").append(status)).c_str());
+    ImGui::Text("Status: %s", status.c_str());
 
     ImGui::End();
 }
