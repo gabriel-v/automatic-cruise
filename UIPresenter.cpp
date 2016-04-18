@@ -70,7 +70,8 @@ void UIPresenter::present(double dt) {
     highway.preferredVehicle->setTargetSpeed(accTargetSpeed / 3.6);
     highway.preferredVehicle->setTargetDistance(accTargetDistance);
 
-    ImGui::ShowTestWindow(nullptr);
+    if(showDemoView)
+        ImGui::ShowTestWindow(&showDemoView);
 }
 
 void UIPresenter::key_callback(int key, int scancode, int action, int mods) {
@@ -79,6 +80,10 @@ void UIPresenter::key_callback(int key, int scancode, int action, int mods) {
 
 void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
+
+    if(ImGui::GetIO().WantCaptureMouse) return;
+    if(action != GLFW_PRESS) return;
+
     Point cursorPos;
     glfwGetCursorPos(window, &cursorPos.x, &cursorPos.y);
 
@@ -87,11 +92,13 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
         waitingForVehiclePlacement = false;
         highway.addVehicleAt(roadCoords.x, roadCoords.y);
         setState("Vehicle added.");
+        return;
     } else {
         highway.selectVehicleAt(roadCoords.x, roadCoords.y);
-        setState("Vehicle selected.");
     }
 
+    if(highway.selectedVehicle != nullptr)
+        setState("Vehicle selected.");
 }
 
 void UIPresenter::render() {
@@ -117,6 +124,10 @@ void UIPresenter::commandView() {
     ImGui::SameLine();
     if (ImGui::Button("Zoom Out")) {
         screenMapper->zoomOut();
+    }
+    ImGui::SameLine();
+    if (ImGui::Button("ImGui Demo")) {
+        showDemoView ^= 1;
     }
 
     ImGui::Text("ACC: Change lane ");
@@ -157,7 +168,7 @@ void UIPresenter::statsView() {
 
     ImGui::Text("FPS: %.0f (%.1f ms/frame) ",  ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
     ImGui::Text("ACC Speed: %.0f km/h", highway.preferredVehicle->getV() * 3.6f);
-    ImGui::Text("ACC Distance to next vehicle: %.0f meters", 0.0f);
+    ImGui::Text("ACC Distance to next vehicle: %.0f meters", highway.preferedVehicleFrontDistance);
 
     ImGui::End();
 }

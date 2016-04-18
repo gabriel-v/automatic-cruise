@@ -217,6 +217,8 @@ void Highway::step(double dt) {
         }
     }
 
+    this->preferedVehicleFrontDistance = links[preferredVehicle]->front->dist;
+
     for (auto &p: links) {
         delete p.second;
     }
@@ -279,15 +281,41 @@ void Highway::stabilise() {
 
 
 void Highway::addVehicleAt(double X, double lane) {
-    throw Error("addVehicleAt not implemented");
+    int l = (int) std::round(lane);
+    if(l < 0 || l >= lanes.size()) return;
+    auto it = lanes[l]->vehicles.begin();
+    auto end = lanes[l]->vehicles.end();
+    while(it != end && (*it)->getX() < X) {
+        ++it;
+    }
+    if(it == end) {
+        X = lanes[l]->vehicles.back()->getX() + deltaX.uniform();
+    }
+
+    X = ((*it)->getX() + (*(it-1))->getX())/2;
+    lanes[l]->vehicles.insert(it, new RandomVehicle(this, X, lane));
 }
 
 void Highway::addVehicleInFrontOfPreferred() {
-    throw Error("addVehicleInFrontOfPreferred not implemented");
+    addVehicleAt(preferredVehicle->getX() + 1, preferredVehicle->getLane());
 }
 
 void Highway::selectVehicleAt(double X, double lane) {
-    throw Error("selectVehicleAt not implemented");
+    selectedVehicle = nullptr;
+
+    int l = (int) std::round(lane);
+    if(l < 0 || l >= lanes.size()) return;
+    auto it = lanes[l]->vehicles.begin();
+    auto end = lanes[l]->vehicles.end();
+    while(it != end && (*it)->getX() < X) {
+        ++it;
+    }
+    if(it == end) {
+        return;
+    }
+    Vehicle *v = *it;
+    if(v->getLength() / 2 > std::abs(X - v->getX())) return;
+    selectedVehicle = v;
 }
 
 void Highway::unselectVehicle() {

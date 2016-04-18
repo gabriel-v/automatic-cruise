@@ -80,7 +80,7 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 
 
 Window::Window(Highway &high) : highway(high) {
-    if(window_reference_count > 0) {
+    if (window_reference_count > 0) {
         throw Error("Only one Window is permitted!");
     } else {
         window_reference_count++;
@@ -94,10 +94,12 @@ Window::Window(Highway &high) : highway(high) {
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
-    int width = vidmode->width;
-    int height = vidmode->height;
+    width = vidmode->width;
+    height = vidmode->height;
 
-    window = glfwCreateWindow(width, height, "Automagic Cruise Control - Kernel Panic Blues", glfwGetPrimaryMonitor(),
+    window = glfwCreateWindow(width, height,
+                              "Automagic Cruise Control - Kernel Panic Blues",
+                              glfwGetPrimaryMonitor(),
                               NULL);
     if (!window) {
         glfwTerminate();
@@ -111,17 +113,6 @@ Window::Window(Highway &high) : highway(high) {
     glfwSetKeyCallback(window, global_key_callback);
     glfwSetMouseButtonCallback(window, global_mouse_button_callback);
     glfwSwapInterval(1);
-
-    /*glEnable(GL_POLYGON_SMOOTH);
-    glEnable(GL_LINE_SMOOTH);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-    glFrontFace(GL_CCW);
-    glEnable(GL_BLEND);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_SCISSOR_TEST);
-    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE); */
-
 }
 
 Window::~Window() {
@@ -131,7 +122,9 @@ Window::~Window() {
 }
 
 double Window::timeElapsed() {
-    return std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
+    return std::chrono::duration<double>(
+            std::chrono::high_resolution_clock::now() - startTime
+    ).count();
 }
 
 void Window::start() {
@@ -144,7 +137,6 @@ void Window::start() {
 
         presenter->present(now - last);
 
-        int width, height;
         glfwGetFramebufferSize(window, &width, &height);
         glViewport(0, 0, width, height);
 

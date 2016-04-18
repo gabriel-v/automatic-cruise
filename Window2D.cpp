@@ -58,6 +58,10 @@ void Window2D::drawVehicle(const Vehicle *v) {
              center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
 }
 
+void Window2D::markVehicle(const Vehicle *v) {
+
+}
+
 void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
     std::pair<double, double> cameraLimits = roadLimits();
     auto it = vs.begin();
@@ -111,6 +115,11 @@ void Window2D::draw(int width, int height) {
         for (uint i = 0; i < highway.lanes.size(); i++) {
             drawVehicles(highway.lanes[i]->vehicles);
         }
+
+        if(highway.selectedVehicle != nullptr) {
+            markVehicle(highway.selectedVehicle);
+        }
+
     }
     glEnd();
 
@@ -138,8 +147,9 @@ Window2D::~Window2D() {
 
 
 Point Window2D::pixelToRoadCoordinates(Point pixelCoords) {
-    throw Error("pixelToRoadCoordinates not implemented");
-    return Point();
+    Point screen(pixelCoords.x / width * 2 - 1, pixelCoords.y / height * 2 - 1);
+    double lane = (highway.lanes.size() - 1.0) / 2 + screen.y / (LANE_WIDTH * ratio);
+    return Point(centerX + screen.x / ratio, std::round(lane));
 }
 
 Point Window2D::roadToScreenCoordinates(Point roadCoords) {

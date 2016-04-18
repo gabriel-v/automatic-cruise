@@ -62,6 +62,9 @@ protected:
     std::chrono::system_clock::time_point startTime;
     static constexpr double LANE_WIDTH = 8.0;
 
+    int width;
+    int height;
+
 private:
 
     double timeElapsed();

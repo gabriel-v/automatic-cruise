@@ -77,6 +77,7 @@ public:
 
     virtual ~Window2D();
 
+    void markVehicle(const Vehicle *v);
 };
 
 

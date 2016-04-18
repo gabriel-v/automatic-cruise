@@ -64,9 +64,9 @@ protected:
     ScreenMapper *screenMapper;
 
     bool showStatsView = true;
+    bool showDemoView = false;
     float accTargetDistance = 50.0f;
     float accTargetSpeed = 110.0f;
-
 
     std::string status;
 
