@@ -36,22 +36,21 @@
 #include "Highway.h"
 #include "RandomVehicle.h"
 #include "ACCVehicle.h"
-#include "Error.h"
 
 const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 55;
 const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
-const double TELEPORT_INTERVAL = 10.0;
+const double TELEPORT_INTERVAL = 7.0;
 
 
 const int STABILISE_STEPS = 1000;
-const double STABILISE_DT = 1.0/60.0;
+const double STABILISE_DT = 1.0 / 60.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
-const Target FAR_IN_FRONT = Target(0, 1e50);
-const Target FAR_IN_BACK = Target(0, -1e50);
+const Target FAR_IN_FRONT = Target(0, 1e5); // 100km, basically infinity
+const Target FAR_IN_BACK = Target(0, -1e5); // 100km, basically infinity
 
 Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
@@ -155,9 +154,10 @@ void Highway::step(double dt) {
     if (lastTeleportTime > TELEPORT_INTERVAL) {
         teleportVehicles();
         lastTeleportTime -= TELEPORT_INTERVAL;
+        shouldSort = true;
     }
 
-    if(shouldSort) {
+    if (shouldSort) {
         shouldSort = false;
         sort();
     }
@@ -195,13 +195,13 @@ void Highway::step(double dt) {
             Target *prev = target(*iters[maxI], *(iters[maxI + 1] - 1));
             Target *next = target(*iters[maxI], *iters[maxI + 1]);
             // we have a lane to the right
-            links[*iters[maxI]]->withRight(next, prev);
+            links[*iters[maxI]]->withLeft(next, prev);
         }
         if (maxI > 0) {
             Target *prev = target(*iters[maxI], *(iters[maxI - 1] - 1));
             Target *next = target(*iters[maxI], *iters[maxI - 1]);
             // we have a lane to the left
-            links[*iters[maxI]]->withLeft(next, prev);
+            links[*iters[maxI]]->withRight(next, prev);
         }
 
         ++iters[maxI];
@@ -236,7 +236,7 @@ void Highway::step(double dt) {
         Vehicle *v = p.first;
         LaneChangeData &data = p.second;
 
-        if(!data.changed) {
+        if (!data.changed) {
             data.changed = true;
             lanes[data.to]->vehicles.push_back(v);
             auto it = lanes[data.from]->vehicles.begin();
@@ -274,7 +274,7 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
 
 
 void Highway::stabilise() {
-    for(int i = 0; i < STABILISE_STEPS; i++){
+    for (int i = 0; i < STABILISE_STEPS; i++) {
         step(STABILISE_DT);
     }
 }
@@ -282,19 +282,20 @@ void Highway::stabilise() {
 
 void Highway::addVehicleAt(double X, double lane) {
     int l = (int) std::round(lane);
-    if(l < 0 || l >= lanes.size());
+    if (l < 0 || l >= (int) lanes.size());
     auto it = lanes[l]->vehicles.begin();
     auto end = lanes[l]->vehicles.end();
-    while(it != end && (*it)->getX() < X) {
+    while (it != end && (*it)->getX() < X) {
         ++it;
     }
-    if(it == end) {
+    if (it == end) {
         X = lanes[l]->vehicles.back()->getX() + deltaX.uniform();
+    } else {
+        X = ((*it)->getX() + (*(it - 1))->getX()) / 2;
     }
 
-    X = ((*it)->getX() + (*(it-1))->getX())/2;
     Vehicle *v = new RandomVehicle(this, X, lane);
-    v->setV(((*it)->getV() + (*(it-1))->getV())/2);
+    v->setV(((*it)->getV() + (*(it - 1))->getV()) / 2);
     lanes[l]->vehicles.insert(it, v);
 
 }
@@ -307,18 +308,18 @@ void Highway::selectVehicleAt(double X, double lane) {
     selectedVehicle = nullptr;
 
     int l = (int) std::round(lane);
-    if(l < 0 || l >= lanes.size()) return;
+    if (l < 0 || l >= (int) lanes.size()) return;
     auto it = lanes[l]->vehicles.begin();
     auto end = lanes[l]->vehicles.end();
-    while(it != end && (*it)->getX() < X) {
+    while (it != end && (*it)->getX() < X - 10) {
         ++it;
     }
-    if(it == end) {
+    if (it == end) {
         return;
     }
     Vehicle *v = *it;
 
-    if(v->getLength() < std::abs(X - v->getX())) return;
+    if (v->getLength() < std::abs(X - v->getX())) return;
     selectedVehicle = v;
 }
 

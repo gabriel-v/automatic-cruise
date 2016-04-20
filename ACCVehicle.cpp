@@ -32,22 +32,20 @@
 #include "ACCVehicle.h"
 
 
-
-ACCVehicle::ACCVehicle(const Vehicle &x): Vehicle(x) {
+ACCVehicle::ACCVehicle(const Vehicle &x) : Vehicle(x) {
     r = 0.1;
     b = 0.1;
     g = 1.0;
-}
 
-void ACCVehicle::decideAction(const Neighbours *n) {
-    //RandomVehicle::decideAction(n);
+    // We're a supercar
+    terminalSpeed = 340 / 3.6;
+    maxAcceleration = 16.0;
 }
-
 
 void ACCVehicle::decideAcceleration(const Neighbours *n) {
     double distCoef;
     if (n->front != nullptr) {
-        distCoef = (double) std::exp(- 3 * (n->front->dist - targetDistance) / targetDistance);
+        distCoef = std::exp(-3 * (n->front->dist - targetDistance) / targetDistance);
         a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
             + 2 * n->front->vRel / reactionTime;
         a += 1 / (distCoef + 1) * (targetSpeed - v) / reactionTime;
@@ -59,14 +57,16 @@ void ACCVehicle::decideAcceleration(const Neighbours *n) {
 }
 
 bool ACCVehicle::canChangeLane(Target *front, Target *back) {
-    return false;
+    if (front == nullptr || back == nullptr)
+        return false;
+
+    return !(std::abs(front->dist) < panicDistance * 3
+             || std::abs(back->dist) < panicDistance * 3);
 }
 
 
 void ACCVehicle::think(const Neighbours *n) {
-    //Vehicle::think(n);
-    decideAcceleration(n);
-
+    Vehicle::think(n);
 }
 
 void ACCVehicle::step(double dt) {

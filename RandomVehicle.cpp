@@ -35,7 +35,7 @@
 
 static Interval intSpeed(26, 48); // m / s
 static Interval intActionPeriod(3.6, 6);
-
+static Interval longActionPeriod(16.0, 24.0);
 
 static Interval intActionDecider(0, 100);
 
@@ -50,7 +50,7 @@ void RandomVehicle::decideAcceleration(const Neighbours *n) {
     double distCoef;
     if (n->front != nullptr) {
 
-        distCoef = (double) std::exp(- 3 * (n->front->dist - targetDistance) / targetDistance);
+        distCoef = std::exp(-3 * (n->front->dist - targetDistance) / targetDistance);
 
         a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
             + 2 * n->front->vRel / reactionTime;
@@ -69,53 +69,28 @@ bool RandomVehicle::canChangeLane(Target *front, Target *back) {
 
     return !(std::abs(front->dist) < panicDistance * 3
              || std::abs(back->dist) < panicDistance * 3);
-
 }
 
-void RandomVehicle::decideAction(const Neighbours *n) {
+void RandomVehicle::decideAction() {
     double decision = intActionDecider.uniform();
 
     if (decision < 25) {
-        // 25 % chance to try and change lane left, then right
-        if (canChangeLane(n->frontLeft, n->backLeft)) {
-            highway->notifyLaneChange(this, -1);
-            return;
-        }
-
-        if (canChangeLane(n->frontRight, n->backRight)) {
-            highway->notifyLaneChange(this, 1);
-        }
-
+        action = Action::change_lane_left;
     } else if (decision < 50) {
-        // 25 % chance to try and change lane right, then left
-
-        if (canChangeLane(n->frontRight, n->backRight)) {
-            highway->notifyLaneChange(this, 1);
-        }
-
-        if (canChangeLane(n->frontLeft, n->backLeft)) {
-            highway->notifyLaneChange(this, -1);
-            return;
-        }
-
+        action = Action::change_lane_right;
     } else if (decision < 80) {
-        // % 30 % chance to change speed
         targetSpeed = intSpeed.uniform();
-    } else {
-        // 10 % chance to do nothing.
+        action = Action::none;
     }
-
 }
 
 void RandomVehicle::think(const Neighbours *n) {
-
-    decideAcceleration(n);
+    Vehicle::think(n);
 
     if (timeUntilNextAction < 0) {
         timeUntilNextAction = intActionPeriod.uniform();
-        decideAction(n);
+        decideAction();
     }
-
 }
 
 RandomVehicle::~RandomVehicle() {
@@ -132,10 +107,19 @@ void RandomVehicle::step(double dt) {
     timeUntilNextAction -= dt;
 }
 
+void RandomVehicle::setTargetSpeed(double targetSpeed) {
+    Vehicle::setTargetSpeed(targetSpeed);
+    timeUntilNextAction = longActionPeriod.normal();
+}
+
+void RandomVehicle::setTargetDistance(double targetDistance) {
+    Vehicle::setTargetDistance(targetDistance);
+    timeUntilNextAction = longActionPeriod.normal();
+}
 
 
-
-
-
-
+void RandomVehicle::setAction(Action action) {
+    Vehicle::setAction(action);
+    timeUntilNextAction = longActionPeriod.normal();
+}
 

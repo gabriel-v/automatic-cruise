@@ -36,6 +36,13 @@
 #include "Interval.h"
 #include "Neighbours.h"
 
+
+enum class Action {
+    none,
+    change_lane_left,
+    change_lane_right
+};
+
 class Vehicle;
 
 class LaneChangeObserver {
@@ -51,7 +58,7 @@ public:
 
     virtual ~Vehicle();
 
-    virtual void think(const Neighbours *n) = 0;
+    virtual void think(const Neighbours *n);
 
     virtual void step(double dt);
 
@@ -69,18 +76,21 @@ protected:
     double panicDistance;
     double reactionTime;
     double terminalSpeed;
-    double maxA;
+    double maxAcceleration;
 
+    Action action;
 
     virtual void decideAcceleration(const Neighbours *n) = 0;
-
-    virtual void decideAction(const Neighbours *n) = 0;
 
     virtual bool canChangeLane(Target *front, Target *back) = 0;
 
 public:
     double getTargetSpeed() const {
         return targetSpeed;
+    }
+
+    double getTargetDistance() const {
+        return targetDistance;
     }
 
     double getWidth() const {
@@ -99,10 +109,6 @@ public:
         return v;
     }
 
-    double getA() const {
-        return a;
-    }
-
     double getR() const {
         return r;
     }
@@ -115,16 +121,15 @@ public:
         return b;
     }
 
-    void setX(double x) {
-        this->x = x;
+    virtual void setAction(Action action) {
+        this->action = action;
     }
-
 
     void setV(double v) {
         this->v = v;
     }
 
-    void setTargetSpeed(double targetSpeed) {
+    virtual void setTargetSpeed(double targetSpeed) {
         this->targetSpeed = targetSpeed;
     }
 
@@ -136,7 +141,7 @@ public:
         return lane;
     }
 
-    void setTargetDistance(double targetDistance) {
+    virtual void setTargetDistance(double targetDistance) {
         this->targetDistance = targetDistance;
     }
 };

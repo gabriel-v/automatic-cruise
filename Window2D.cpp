@@ -35,7 +35,6 @@
 #include <iostream>
 #include "Window.h"
 #include "Window2D.h"
-#include "Error.h"
 
 const int GUIDE_LENGTH = 10;
 
@@ -55,7 +54,7 @@ std::pair<double, double> Window2D::roadLimits() {
 void Window2D::drawVehicle(const Vehicle *v) {
     Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
     glColor3d(v->getR(), v->getG(), v->getB());
-    drawRect(center.x - ratio * v->getLength(), center.x + ratio * v->getLength() / 2,
+    drawRect(center.x - ratio * v->getLength() / 2, center.x + ratio * v->getLength() / 2,
              center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
 }
 
@@ -130,15 +129,16 @@ void Window2D::draw(int width, int height) {
 
         glColor3d(1.0, 0.2, 0.2);
 
+        const float THICKNESS = 4.0f;
+        glLineWidth(THICKNESS);
         glBegin(GL_LINE_LOOP);
         {
             Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
-            glLineWidth(7.0f);
-            drawRect(center.x - ratio * v->getLength(), center.x + ratio * v->getLength() / 2,
-                     center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
-            glLineWidth(1.0f);
+            drawRect(center.x - ratio * v->getLength() / 1.6, center.x + ratio * v->getLength() / 1.6,
+                     center.y - ratio * v->getWidth() / 1.6, center.y + ratio * v->getWidth() / 1.6);
         }
         glEnd();
+        glLineWidth(1.0f);
     }
 
 

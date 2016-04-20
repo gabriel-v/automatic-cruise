@@ -35,8 +35,11 @@
 
 #include "Vehicle.h"
 
+
 class RandomVehicle : public Vehicle {
 public:
+
+    virtual void setAction(Action action) override;
 
     virtual void think(const Neighbours *n) override;
 
@@ -48,13 +51,18 @@ public:
 
     virtual ~RandomVehicle();
 
+    virtual void setTargetSpeed(double targetSpeed);
+
+    virtual void setTargetDistance(double targetDistance);
+
+
 protected:
 
     double timeUntilNextAction;
 
     virtual void decideAcceleration(const Neighbours *n);
 
-    virtual void decideAction(const Neighbours *n);
+    void decideAction();
 
     virtual bool canChangeLane(Target *front, Target *back);
 };
