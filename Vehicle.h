@@ -68,6 +68,8 @@ protected:
     double lane;
     double panicDistance;
     double reactionTime;
+    double terminalSpeed;
+    double maxA;
 
 
     virtual void decideAcceleration(const Neighbours *n) = 0;

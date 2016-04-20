@@ -47,12 +47,11 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="Selecting vehicles works really">
+    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.cpp" afterPath="$PROJECT_DIR$/Highway.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UIPresenter.cpp" afterPath="$PROJECT_DIR$/UIPresenter.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.cpp" afterPath="$PROJECT_DIR$/Vehicle.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vehicle.h" afterPath="$PROJECT_DIR$/Vehicle.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.cpp" afterPath="$PROJECT_DIR$/Window2D.cpp" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,11 +72,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UIPresenter.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UIPresenter.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.77115387">
+              <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
               <folding>
                 <element signature="e#1607#1625#0" expanded="true" />
               </folding>
@@ -145,12 +144,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Highway.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Highway.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8173077">
+            <state vertical-scroll-proportion="0.0">
               <caret line="320" column="21" selection-start-line="320" selection-start-column="21" selection-end-line="320" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vehicle.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Vehicle.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+              <folding>
+                <element signature="e#1645#1666#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vehicle.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+              <folding>
+                <element signature="e#1608#1628#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -201,11 +224,11 @@
         <option value="$PROJECT_DIR$/UIPresenter.h" />
         <option value="$PROJECT_DIR$/Window.h" />
         <option value="$PROJECT_DIR$/Window.cpp" />
-        <option value="$PROJECT_DIR$/UIPresenter.cpp" />
         <option value="$PROJECT_DIR$/Window2D.cpp" />
+        <option value="$PROJECT_DIR$/Highway.cpp" />
         <option value="$PROJECT_DIR$/Vehicle.h" />
         <option value="$PROJECT_DIR$/Vehicle.cpp" />
-        <option value="$PROJECT_DIR$/Highway.cpp" />
+        <option value="$PROJECT_DIR$/UIPresenter.cpp" />
       </list>
     </option>
   </component>
@@ -726,7 +749,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461162428481</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Selection is being highlited properly.">
+      <created>1461167658644</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1461167658644</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -776,7 +805,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="They move!" />
     <MESSAGE value="Fixed the sim. Cars hover through each other." />
     <MESSAGE value="Random coloring for cars" />
     <MESSAGE value="Vehicles now warp arund" />
@@ -801,7 +829,8 @@
     <MESSAGE value="More work on the UI." />
     <MESSAGE value="Vehicle selection" />
     <MESSAGE value="Selection works properly now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Selection works properly now." />
+    <MESSAGE value="Selection is being highlited properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Selection is being highlited properly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1133,16 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
-          <folding>
-            <element signature="e#1607#1625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Window2D.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.575">
@@ -1163,22 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vehicle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08461539">
-          <caret line="121" column="14" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41153845">
-          <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Window.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1191,9 +1194,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Highway.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8173077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="320" column="21" selection-start-line="320" selection-start-column="21" selection-end-line="320" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vehicle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+          <folding>
+            <element signature="e#1645#1666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="26" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+          <folding>
+            <element signature="e#1608#1628#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77115387">
+          <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+          <folding>
+            <element signature="e#1607#1625#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

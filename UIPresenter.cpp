@@ -103,10 +103,8 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
 
     if(highway.selectedVehicle != nullptr)
         setState("Vehicle selected.");
-
-    std::stringstream ss;
-    ss << "lane: " << roadCoords.y << " X: " << roadCoords.x - highway.preferredVehicle->getX();
-    setState(ss.str());
+    else
+        resetState();
 }
 
 void UIPresenter::render() {
