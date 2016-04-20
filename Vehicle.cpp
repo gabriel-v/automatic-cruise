@@ -82,8 +82,8 @@ void Vehicle::step(double dt) {
     if (a < MIN_A) a = MIN_A;
     if (a > MAX_A) a = MAX_A;
     v += dt * a;
-    x += dt * v;
     if (v < 0) v = 0;
+    x += dt * v;
 }
 
 

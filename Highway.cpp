@@ -282,7 +282,7 @@ void Highway::stabilise() {
 
 void Highway::addVehicleAt(double X, double lane) {
     int l = (int) std::round(lane);
-    if(l < 0 || l >= lanes.size()) return;
+    if(l < 0 || l >= lanes.size());
     auto it = lanes[l]->vehicles.begin();
     auto end = lanes[l]->vehicles.end();
     while(it != end && (*it)->getX() < X) {
@@ -293,7 +293,10 @@ void Highway::addVehicleAt(double X, double lane) {
     }
 
     X = ((*it)->getX() + (*(it-1))->getX())/2;
-    lanes[l]->vehicles.insert(it, new RandomVehicle(this, X, lane));
+    Vehicle *v = new RandomVehicle(this, X, lane);
+    v->setV(((*it)->getV() + (*(it-1))->getV())/2);
+    lanes[l]->vehicles.insert(it, v);
+
 }
 
 void Highway::addVehicleInFrontOfPreferred() {
@@ -314,7 +317,8 @@ void Highway::selectVehicleAt(double X, double lane) {
         return;
     }
     Vehicle *v = *it;
-    if(v->getLength() / 2 > std::abs(X - v->getX())) return;
+
+    if(v->getLength() < std::abs(X - v->getX())) return;
     selectedVehicle = v;
 }
 

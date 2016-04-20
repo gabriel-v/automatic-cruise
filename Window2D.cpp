@@ -95,8 +95,8 @@ void Window2D::draw(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 
 
-    double front = maxRight/ratio / 2.5;
-    centerX = (highway.preferredVehicle->getX());// + front ;
+    double front = maxRight / ratio / 2.5;
+    centerX = (highway.preferredVehicle->getX()) + front;
     foliage->draw(centerX);
 
     glBegin(GL_QUADS);
@@ -117,12 +117,30 @@ void Window2D::draw(int width, int height) {
             drawVehicles(highway.lanes[i]->vehicles);
         }
 
-        if(highway.selectedVehicle != nullptr) {
+        if (highway.selectedVehicle != nullptr) {
             markVehicle(highway.selectedVehicle);
         }
 
     }
     glEnd();
+
+
+    const Vehicle *v = highway.selectedVehicle;
+    if (v != nullptr) {
+
+        glColor3d(1.0, 0.2, 0.2);
+
+        glBegin(GL_LINE_LOOP);
+        {
+            Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
+            glLineWidth(7.0f);
+            drawRect(center.x - ratio * v->getLength(), center.x + ratio * v->getLength() / 2,
+                     center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
+            glLineWidth(1.0f);
+        }
+        glEnd();
+    }
+
 
 }
 
@@ -136,7 +154,7 @@ void Window2D::zoomOut() {
     if (zoom > 45) zoom = 45;
 }
 
-Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5)  {
+Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5) {
     ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
     centerX = highway.preferredVehicle->getX();
     foliage = new Foliage2D(ratio, highway.preferredVehicle->getX());
@@ -148,19 +166,17 @@ Window2D::~Window2D() {
 
 
 Point Window2D::pixelToRoadCoordinates(Point pixelCoords) {
-    pixelCoords.x = pixelCoords.x / width * 2 - 1;
+    pixelCoords.x = pixelCoords.x / height * 2 - (double) width / height;
     pixelCoords.y = pixelCoords.y / height * 2 - 1;
     pixelCoords.x *= zoom;
     pixelCoords.y *= zoom;
 
-    std::cout << "x: " << pixelCoords.x << " y: " << pixelCoords.y << std::endl;
-
     Point screen(pixelCoords);
     double lane = (highway.lanes.size() - 1.0) / 2 + screen.y / (LANE_WIDTH * ratio);
-    //double lane = screen.y / ratio;
-    return Point(centerX + screen.x / ratio, std::round(lane));
+    return Point(centerX + screen.x / ratio, highway.lanes.size() - 1 - std::round(lane));
 }
 
 Point Window2D::roadToScreenCoordinates(Point roadCoords) {
-    return Point((roadCoords.x - centerX) * ratio, LANE_WIDTH * ratio * (roadCoords.y - (highway.lanes.size() - 1.0) / 2));
+    return Point((roadCoords.x - centerX) * ratio,
+                 LANE_WIDTH * ratio * (roadCoords.y - (highway.lanes.size() - 1.0) / 2));
 }

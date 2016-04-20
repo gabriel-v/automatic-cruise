@@ -117,6 +117,11 @@ public:
         this->x = x;
     }
 
+
+    void setV(double v) {
+        this->v = v;
+    }
+
     void setTargetSpeed(double targetSpeed) {
         this->targetSpeed = targetSpeed;
     }
