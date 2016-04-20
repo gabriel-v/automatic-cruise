@@ -5,7 +5,7 @@
       <config projectName="lec_acc_cpp" targetName="boing" />
       <config projectName="lec_acc_cpp" targetName="uninstall" />
       <config projectName="lec_acc_cpp" targetName="glfw" />
-      <config projectName="lec_acc_cpp" targetName="CEGUIExpatParser" />
+      <config projectName="lec_acc_cpp" targetName="reopen" />
       <config projectName="lec_acc_cpp" targetName="threads" />
       <config projectName="lec_acc_cpp" targetName="particles" />
       <config projectName="lec_acc_cpp" targetName="windows" />
@@ -15,20 +15,20 @@
       <config projectName="lec_acc_cpp" targetName="tearing" />
       <config projectName="lec_acc_cpp" targetName="CEGUICommonDialogs-9999" />
       <config projectName="lec_acc_cpp" targetName="CEGUILibXMLParser" />
-      <config projectName="lec_acc_cpp" targetName="events" />
+      <config projectName="lec_acc_cpp" targetName="cursor" />
       <config projectName="lec_acc_cpp" targetName="monitors" />
       <config projectName="lec_acc_cpp" targetName="clipboard" />
       <config projectName="lec_acc_cpp" targetName="CEGUIOpenGLRenderer-9999" />
       <config projectName="lec_acc_cpp" targetName="splitview" />
       <config projectName="lec_acc_cpp" targetName="CEGUIBase-9999" />
-      <config projectName="lec_acc_cpp" targetName="cursor" />
       <config projectName="lec_acc_cpp" targetName="CEGUICoreWindowRendererSet" />
+      <config projectName="lec_acc_cpp" targetName="CEGUIExpatParser" />
+      <config projectName="lec_acc_cpp" targetName="events" />
       <config projectName="lec_acc_cpp" targetName="gamma" />
       <config projectName="lec_acc_cpp" targetName="empty" />
       <config projectName="lec_acc_cpp" targetName="title" />
       <config projectName="lec_acc_cpp" targetName="icon" />
       <config projectName="lec_acc_cpp" targetName="timeout" />
-      <config projectName="lec_acc_cpp" targetName="reopen" />
       <config projectName="lec_acc_cpp" targetName="wave" />
       <config projectName="lec_acc_cpp" targetName="msaa" />
       <config projectName="lec_acc_cpp" targetName="heightmap" />
@@ -47,16 +47,10 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/lec-acc-cpp.iml" afterPath="$PROJECT_DIR$/.idea/lec-acc-cpp.iml" />
+    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="Vehicle selection">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Highway.cpp" afterPath="$PROJECT_DIR$/Highway.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UIPresenter.cpp" afterPath="$PROJECT_DIR$/UIPresenter.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UIPresenter.h" afterPath="$PROJECT_DIR$/UIPresenter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window.cpp" afterPath="$PROJECT_DIR$/Window.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window.h" afterPath="$PROJECT_DIR$/Window.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.cpp" afterPath="$PROJECT_DIR$/Window2D.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.h" afterPath="$PROJECT_DIR$/Window2D.h" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+              <caret line="107" column="51" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
               <folding>
                 <element signature="e#1607#1625#0" expanded="true" />
               </folding>
@@ -102,7 +96,7 @@
       <file leaf-file-name="imgui_demo.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imgui/imgui_demo.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.4827585">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1500" column="67" selection-start-line="1500" selection-start-column="50" selection-end-line="1500" selection-end-column="67" />
               <folding />
             </state>
@@ -124,8 +118,8 @@
       <file leaf-file-name="Window2D.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Window2D.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8773006">
-              <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.6175869">
+              <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
               <folding>
                 <element signature="e#1610#1629#0" expanded="true" />
               </folding>
@@ -181,7 +175,7 @@
         <entry file="file://$PROJECT_DIR$/Window2D.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
               <folding>
                 <element signature="e#1671#1690#0" expanded="true" />
               </folding>
@@ -747,7 +741,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460847334078</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Vehicle selection">
+      <created>1460963152411</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1460963152411</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -760,7 +760,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="768" extended-state="0" />
+    <frame x="0" y="0" width="1366" height="768" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24089219" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -797,7 +797,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add licence. Also, compiles now." />
     <MESSAGE value="It draws!!" />
     <MESSAGE value="They move!" />
     <MESSAGE value="Fixed the sim. Cars hover through each other." />
@@ -822,7 +821,8 @@
     <MESSAGE value="Major refactoring, added UI" />
     <MESSAGE value="Refactor Text item to get rid of warning" />
     <MESSAGE value="More work on the UI." />
-    <option name="LAST_COMMIT_MESSAGE" value="More work on the UI." />
+    <MESSAGE value="Vehicle selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vehicle selection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -972,13 +972,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/imgui/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitmodules">
@@ -1149,7 +1149,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imgui/imgui_demo.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.4827585">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1500" column="67" selection-start-line="1500" selection-start-column="50" selection-end-line="1500" selection-end-column="67" />
           <folding />
         </state>
@@ -1161,16 +1161,6 @@
           <caret line="66" column="17" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
           <folding>
             <element signature="e#1679#1702#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Window2D.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#1671#1690#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1195,16 +1185,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
-          <folding>
-            <element signature="e#1607#1625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Highway.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1213,10 +1193,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/UIPresenter.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="51" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
+          <folding>
+            <element signature="e#1607#1625#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Window2D.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding>
+            <element signature="e#1671#1690#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Window2D.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8773006">
-          <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.6175869">
+          <caret line="98" column="51" selection-start-line="98" selection-start-column="51" selection-end-line="98" selection-end-column="51" />
           <folding>
             <element signature="e#1610#1629#0" expanded="true" />
           </folding>

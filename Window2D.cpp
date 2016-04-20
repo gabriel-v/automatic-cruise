@@ -32,6 +32,7 @@
 
 
 
+#include <iostream>
 #include "Window.h"
 #include "Window2D.h"
 #include "Error.h"
@@ -95,7 +96,7 @@ void Window2D::draw(int width, int height) {
 
 
     double front = maxRight/ratio / 2.5;
-    centerX = (highway.preferredVehicle->getX()) + front ;
+    centerX = (highway.preferredVehicle->getX());// + front ;
     foliage->draw(centerX);
 
     glBegin(GL_QUADS);
@@ -147,8 +148,16 @@ Window2D::~Window2D() {
 
 
 Point Window2D::pixelToRoadCoordinates(Point pixelCoords) {
-    Point screen(pixelCoords.x / width * 2 - 1, pixelCoords.y / height * 2 - 1);
+    pixelCoords.x = pixelCoords.x / width * 2 - 1;
+    pixelCoords.y = pixelCoords.y / height * 2 - 1;
+    pixelCoords.x *= zoom;
+    pixelCoords.y *= zoom;
+
+    std::cout << "x: " << pixelCoords.x << " y: " << pixelCoords.y << std::endl;
+
+    Point screen(pixelCoords);
     double lane = (highway.lanes.size() - 1.0) / 2 + screen.y / (LANE_WIDTH * ratio);
+    //double lane = screen.y / ratio;
     return Point(centerX + screen.x / ratio, std::round(lane));
 }
 

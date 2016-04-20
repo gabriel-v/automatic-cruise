@@ -30,6 +30,7 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <imgui.h>
+#include <sstream>
 #include "UIPresenter.h"
 #include "imgui_impl_glfw.h"
 
@@ -88,8 +89,11 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     glfwGetCursorPos(window, &cursorPos.x, &cursorPos.y);
 
     Point roadCoords = screenMapper->pixelToRoadCoordinates(cursorPos);
+
+
     if(waitingForVehiclePlacement) {
         waitingForVehiclePlacement = false;
+        highway.unselectVehicle();
         highway.addVehicleAt(roadCoords.x, roadCoords.y);
         setState("Vehicle added.");
         return;
@@ -99,6 +103,10 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
 
     if(highway.selectedVehicle != nullptr)
         setState("Vehicle selected.");
+
+    std::stringstream ss;
+    ss << "lane: " << roadCoords.y << " X: " << roadCoords.x - highway.preferredVehicle->getX();
+    setState(ss.str());
 }
 
 void UIPresenter::render() {
