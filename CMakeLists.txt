@@ -22,8 +22,14 @@ set(SOURCE_FILES
         Interval.h
         RandomVehicle.cpp
         RandomVehicle.h
-        Foliage2D.cpp Foliage2D.h
-        ACCVehicle.cpp ACCVehicle.h)
+        Foliage2D.cpp
+        Foliage2D.h
+        ACCVehicle.cpp
+        ACCVehicle.h
+        imgui_impl_glfw.cpp
+        imgui_impl_glfw.h
+		UIPresenter.cpp UIPresenter.h)
+
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
 
@@ -32,13 +38,23 @@ find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
 target_link_libraries(lec_acc_cpp ${OPENGL_LIBRARIES})
 
+# Load GLFW3
+IF(APPLE)
+	# For Stefan's $1k toy
+	add_subdirectory(glfw)
+	include_directories(glfw/include)
+	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
+ELSE()
+	# We'll load these with PkgConfig
+	find_package(PkgConfig REQUIRED)
+	pkg_search_module(GLFW REQUIRED glfw3)
+	include_directories(${GLFW_INCLUDE_DIRS})
+	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
+ENDIF()
 
-# We'll load these with PkgConfig
-find_package(PkgConfig REQUIRED)
+add_subdirectory(imgui)
+include_directories(imgui)
+target_link_libraries(lec_acc_cpp imgui)
 
-
-# This is for a window and some key events
-pkg_search_module(GLFW REQUIRED glfw3)
-include_directories(${GLFW_INCLUDE_DIRS})
-target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
-target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})

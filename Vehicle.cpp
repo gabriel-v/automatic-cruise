@@ -31,7 +31,6 @@
  */
 
 #include "Vehicle.h"
-#include "Error.h"
 
 static Interval intSpeed(26, 48); // m / s
 static Interval intWidth(3.3, 3.9);
@@ -39,12 +38,13 @@ static Interval intLength(5.5, 6.6);
 static Interval intTargetDistance(35, 50);
 static Interval intColor(0.0, 0.5);
 static Interval intReactionTime(2.5, 3.6);
+static Interval intTerminalSpeed(180 / 3.6, 350 / 3.6);
+static Interval intMaximumAcceleration(8.0, 16.0);
 
 
 const double PANIC_DISTANCE = 12.0;
 
 const double MIN_A = -19;
-const double MAX_A = 12;
 
 Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
     x = a = v = 0;
@@ -60,6 +60,11 @@ Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), l
     r = intColor.normal() + 0.4;
     g = intColor.normal() + 0.4;
     b = intColor.normal() + 0.3;
+
+    terminalSpeed = intTerminalSpeed.normal();
+    maxAcceleration = intMaximumAcceleration.normal();
+
+    action = Action::none;
 }
 
 
@@ -67,7 +72,7 @@ Vehicle::Vehicle(const Vehicle &orig) :
         x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed), targetDistance(orig.targetDistance),
         width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b),
         highway(orig.highway), lane(orig.lane), panicDistance(orig.panicDistance),
-        reactionTime(orig.reactionTime) {
+        reactionTime(orig.reactionTime), terminalSpeed(orig.terminalSpeed), maxAcceleration(orig.maxAcceleration) {
 }
 
 Vehicle::~Vehicle() {
@@ -79,12 +84,38 @@ bool Vehicle::operator<(const Vehicle &other) {
 }
 
 void Vehicle::step(double dt) {
+    double MAX_A = maxAcceleration * (1.0 - v / terminalSpeed);
     if (a < MIN_A) a = MIN_A;
     if (a > MAX_A) a = MAX_A;
     v += dt * a;
-    x += dt * v;
     if (v < 0) v = 0;
+    x += dt * v;
 }
+
+void Vehicle::think(const Neighbours *n) {
+    this->decideAcceleration(n);
+
+    switch (action) {
+        case Action::change_lane_left:
+            if (this->canChangeLane(n->frontLeft, n->backLeft)) {
+                highway->notifyLaneChange(this, +1);
+                action = Action::none;
+            }
+            break;
+
+        case Action::change_lane_right:
+            if (this->canChangeLane(n->frontRight, n->backRight)) {
+                highway->notifyLaneChange(this, -1);
+                action = Action::none;
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
+
 
 
 

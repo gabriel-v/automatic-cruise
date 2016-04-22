@@ -36,8 +36,8 @@
 #include <complex>
 #include "Error.h"
 #include "Window.h"
-#include "Window2D.h"
 
+static int window_reference_count = 0;
 
 static void global_error_callback(int x, const char *message) {
     std::cerr << "Error " << x << ": " << message << std::endl;
@@ -47,13 +47,13 @@ static std::map<GLFWwindow *, Window *> activeWindows;
 
 static void global_key_callback(GLFWwindow *window, int key, int scancode, int action,
                                 int mods) {
+    activeWindows[window]->presenter->key_callback(key, scancode, action, mods);
     activeWindows[window]->key_callback(key, scancode, action, mods);
 }
 
-static void global_window_size_callback(GLFWwindow *window, int w, int h) {
-    activeWindows[window]->reset(w, h);
+static void global_mouse_button_callback(GLFWwindow *window, int button, int action, int mods) {
+    activeWindows[window]->presenter->mouse_button_callback(button, action, mods);
 }
-
 
 void Window::key_callback(int key, int scancode, int action, int mods) {
     if (action == GLFW_PRESS || action == GLFW_REPEAT) {
@@ -79,91 +79,78 @@ void Window::key_callback(int key, int scancode, int action, int mods) {
 }
 
 
-Window::Window(Highway &high) : highway(high), zoom(4.5) {
-/* Create a windowed mode window and its OpenGL context */
+Window::Window(Highway &high) : highway(high) {
+    if (window_reference_count > 0) {
+        throw Error("Only one Window is permitted!");
+    } else {
+        window_reference_count++;
+    }
+
+    glfwSetErrorCallback(global_error_callback);
+    if (!glfwInit()) {
+        throw Error("Glfw library init failed");
+    }
+
     startTime = std::chrono::high_resolution_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    int width = vidmode->width;
-    int height = vidmode->height;
 
-    window = glfwCreateWindow(width, height, "Automagic Cruise Control - Kernel Panic Blues", glfwGetPrimaryMonitor(),
+    width = vidmode->width;
+    height = vidmode->height;
+
+    window = glfwCreateWindow(width, height,
+                              "Automagic Cruise Control - Kernel Panic Blues",
+                              glfwGetPrimaryMonitor(),
                               NULL);
     if (!window) {
         glfwTerminate();
         throw Error("Glfw window creation failed");
     }
+    glfwMakeContextCurrent(window);
 
-    /* Make the window's context current */
-
-    glfwSetKeyCallback(window, global_key_callback);
-    glfwSetWindowSizeCallback(window, global_window_size_callback);
-    glfwSwapInterval(1);
-
-    glEnable(GL_POLYGON_SMOOTH);
-    glEnable(GL_LINE_SMOOTH);
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-    glFrontFace(GL_CCW);
-    glEnable(GL_BLEND);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_SCISSOR_TEST);
-    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    presenter = new UIPresenter(highway, window, this);
 
     activeWindows[window] = this;
+    glfwSetKeyCallback(window, global_key_callback);
+    glfwSetMouseButtonCallback(window, global_mouse_button_callback);
+    glfwSwapInterval(1);
 }
 
 Window::~Window() {
+    delete presenter;
     glfwDestroyWindow(window);
-}
-
-void Window::init() {
-    glfwSetErrorCallback(global_error_callback);
-    if (!glfwInit()) {
-        throw Error("Glfw initGL failed");
-    }
-}
-
-
-void Window::term() {
     glfwTerminate();
 }
 
 double Window::timeElapsed() {
-    return std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - startTime).count();
+    return std::chrono::duration<double>(
+            std::chrono::high_resolution_clock::now() - startTime
+    ).count();
 }
 
-
 void Window::start() {
-    double accum = 0;
-    int frames = 0;
     double last = timeElapsed() - 1.0 / 60.0;
+
+
     while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
         double now = timeElapsed();
-        frames++;
 
-        int width, height;
-        glfwMakeContextCurrent(window);
+        presenter->present(now - last);
+
         glfwGetFramebufferSize(window, &width, &height);
-
-        reset(width, height);
+        glViewport(0, 0, width, height);
 
         glClearColor(0.0, 0.4, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         highway.step(now - last);
-        draw();
-
-        accum += now - last;
-        if (accum > 1.0) {
-            std::cerr << "\rFPS: " << frames << " \t";
-            accum -= 1.0;
-            frames = 0;
-        }
+        draw(width, height);
 
         last = now;
 
+        presenter->render();
+
         glfwSwapBuffers(window);
-        glfwPollEvents();
     }
 }
 

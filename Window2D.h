@@ -33,13 +33,11 @@
 #ifndef LEC_ACC_CPP_WINDOW2D_H
 #define LEC_ACC_CPP_WINDOW2D_H
 
-
 #include "Window.h"
 #include "Foliage2D.h"
 
 class Window2D : public Window {
-
-    std::pair<double, double> roadToScreen(double x, double lane);
+private:
 
     void drawVehicle(const Vehicle *v);
 
@@ -56,31 +54,30 @@ class Window2D : public Window {
 
     Foliage2D *foliage;
 
-protected:
 
-    virtual void reset(int width, int height);
+
+protected:
 
     virtual void zoomIn();
 
     virtual void zoomOut();
 
+    virtual Point pixelToRoadCoordinates(Point pixelCoords);
+
+    virtual Point roadToScreenCoordinates(Point roadCoords);
+
+
+    double maxLeft, maxRight;
+    double zoom;
+
 public:
-    virtual void draw();
+    virtual void draw(int width, int height);
 
-    Window2D(Highway &highway) : Window(highway) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        centerX = highway.prefferredVehicle->getX();
-        foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
-    }
+    Window2D(Highway &highway);
 
-    Window2D(const Window &other) : Window(other) {
-        ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
-        centerX = highway.prefferredVehicle->getX();
-        foliage = new Foliage2D(ratio, highway.prefferredVehicle->getX());
+    virtual ~Window2D();
 
-    }
-
-
+    void markVehicle(const Vehicle *v);
 };
 
 

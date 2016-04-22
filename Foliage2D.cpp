@@ -54,15 +54,19 @@ FoliageTriangle::FoliageTriangle(double centerX, double ratio) {
         pos[2 * i + 1] = intHeight.uniform();
     }
 
-    dx = centerX  + intPosition.uniform()/ratio;
+    dx = centerX  + intPosition.uniform() * (ratio+1)/ratio;
 }
 
 void Foliage2D::draw(double centerX) {
     glBegin(GL_TRIANGLES);
     for (FoliageTriangle *tr: triangles) {
-        if (tr->dx < centerX +  - POSITION_MAX / ratio) {
-            tr->dx = centerX +  POSITION_MAX / ratio + intPosition.normal();
+        if (tr->dx < centerX +  - POSITION_MAX / ratio - POSITION_MAX) {
+            tr->dx = centerX +  POSITION_MAX / ratio + intPosition.normal() + POSITION_MAX;
         }
+        if(tr->dx > centerX + POSITION_MAX / ratio + POSITION_MAX) {
+            tr->dx = centerX -  POSITION_MAX / ratio + intPosition.normal() - POSITION_MAX;
+        }
+
         glColor3d(tr->r, tr->g, tr->b);
         for (int i = 0; i < 3; i++) {
             glVertex2d((-centerX + tr->pos[2 * i]/ratio +  tr->dx) * ratio, tr->pos[2 * i + 1]);

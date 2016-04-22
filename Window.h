@@ -35,9 +35,11 @@
 
 #include <GLFW/glfw3.h>
 #include "Highway.h"
+#include "UIPresenter.h"
 #include <chrono>
 
-class Window {
+
+class Window: public ScreenMapper {
 public:
 
     Window(Highway &high);
@@ -46,32 +48,22 @@ public:
 
     virtual ~Window();
 
-    static void init();
-
-    static void term();
-
     void start();
 
-    virtual void draw() = 0;
+    virtual void draw(int width, int height) = 0;
 
-    virtual void reset(int width, int height) = 0;
-
-protected:
-
-protected:
-
-
-
-    virtual void zoomIn() = 0;
-
-    virtual void zoomOut() = 0;
-
-    double maxLeft, maxRight;
     Highway &highway;
+
+    UIPresenter *presenter;
+
+protected:
+
     GLFWwindow *window;
-    double zoom;
     std::chrono::system_clock::time_point startTime;
     static constexpr double LANE_WIDTH = 8.0;
+
+    int width;
+    int height;
 
 private:
 

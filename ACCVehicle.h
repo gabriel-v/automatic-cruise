@@ -35,13 +35,12 @@
 
 #include "RandomVehicle.h"
 
-class ACCVehicle: public Vehicle {
+class ACCVehicle : public Vehicle {
 
 public:
     ACCVehicle(const Vehicle &x);
 
 protected:
-    virtual void decideAction(const Neighbours *n) override;
 
     virtual void decideAcceleration(const Neighbours *n);
 
