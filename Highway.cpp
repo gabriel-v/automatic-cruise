@@ -43,14 +43,15 @@ const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 7.0;
 
+const double MAX_VIEW_DISTANCE = 100.0;
 
 const int STABILISE_STEPS = 1000;
 const double STABILISE_DT = 1.0 / 60.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
-const Target FAR_IN_FRONT = Target(0, 1e5); // 100km, basically infinity
-const Target FAR_IN_BACK = Target(0, -1e5); // 100km, basically infinity
+const Target FAR_IN_FRONT = Target(0, 1e6); // 1000km, basically infinity
+const Target FAR_IN_BACK = Target(0, -1e6); // 1000km, basically infinity
 
 Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
@@ -135,6 +136,11 @@ Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
     }
 
     t->vRel = targ->getV() - current->getV();
+
+    if(std::abs(t->dist) > MAX_VIEW_DISTANCE) {
+        t->dist = std::abs(t->dist) / t->dist * 1e6; // 1000km, basically infinity.
+        t->vRel = 0;
+    }
     return t;
 }
 
@@ -217,7 +223,7 @@ void Highway::step(double dt) {
         }
     }
 
-    this->preferedVehicleFrontDistance = links[preferredVehicle]->front->dist;
+    this->preferredVehicleFrontDistance = links[preferredVehicle]->front->dist;
 
     for (auto &p: links) {
         delete p.second;

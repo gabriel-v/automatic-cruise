@@ -56,6 +56,7 @@ Milestone statement:
 Each lane is implemented as a deque of vehicles.
 On each simulation step, each vehicle receives its neighbours from the simulator: distances and relative 
 velocities for the vehicle up front, the one trailing it, and the two closest vehicles on each adjacent lane.
+The vehicles can't see farther than a set distance, so some of the neighbours will be at 'infinite' distance.
 
 The highway has one preferred vehicle, the one with the ACC. The camera will track this vehicle.
 The user can select any vehicle and issue orders to it.

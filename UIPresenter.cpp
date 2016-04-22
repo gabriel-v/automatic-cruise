@@ -133,7 +133,7 @@ void UIPresenter::commandView() {
     ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
     ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 10.0f, 250.0f);
-    ImGui::SliderFloat("ACC target distance", &accTargetDistance, 20.0f, 200.0f);
+    ImGui::SliderFloat("ACC target distance", &accTargetDistance, 20.0f, 150.0f);
 
 
     if (ImGui::Button("Toggle statistics window")) {
@@ -200,7 +200,11 @@ void UIPresenter::statsView() {
 
     ImGui::Text("FPS: %.0f (%.1f ms/frame) ", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
     ImGui::Text("ACC Speed: %.0f km/h", highway.preferredVehicle->getV() * 3.6f);
-    ImGui::Text("ACC Distance to next vehicle: %.0f meters", highway.preferedVehicleFrontDistance);
+    if(std::abs(highway.preferredVehicleFrontDistance) > 1e4) {
+        ImGui::Text("ACC Distance to next vehicle: infinity (unknown)");
+    } else {
+        ImGui::Text("ACC Distance to next vehicle: %.0f meters", highway.preferredVehicleFrontDistance);
+    }
 
     ImGui::End();
 }

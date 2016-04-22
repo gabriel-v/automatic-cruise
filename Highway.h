@@ -75,7 +75,7 @@ public:
 
     Vehicle *selectedVehicle = nullptr;
 
-    double preferedVehicleFrontDistance = 0;
+    double preferredVehicleFrontDistance = 0;
 
 private:
     double lastTeleportTime = 0;
