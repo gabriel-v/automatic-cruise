@@ -70,7 +70,7 @@ Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     delete preferredVehicle;
 
     preferredVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2];
-    selectedVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2 + 1];
+//    selectedVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2 + 1];
 }
 
 Highway::Highway(const Highway &orig) :

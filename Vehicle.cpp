@@ -45,7 +45,6 @@ static Interval intMaximumAcceleration(8.0, 16.0);
 const double PANIC_DISTANCE = 12.0;
 
 const double MIN_A = -19;
-//const double MAX_A = 12;
 
 Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
     x = a = v = 0;

@@ -64,6 +64,11 @@ void UIPresenter::present(double dt) {
         statsView();
     }
 
+    if (highway.selectedVehicle != nullptr && highway.selectedVehicle != highway.preferredVehicle) {
+        showRandomVehicleView();
+    }
+
+
     timeToStateReset -= dt;
     if (timeToStateReset < 0) {
         resetState();
@@ -109,7 +114,11 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     }
 
     if (highway.selectedVehicle != nullptr)
+    {
         setState("Vehicle selected.");
+        randomTargetDistance = (float) highway.selectedVehicle->getTargetDistance();
+        randomTargetSpeed = (float) highway.selectedVehicle->getTargetSpeed() * 3.6f;
+    }
     else
         resetState();
 }
@@ -206,4 +215,44 @@ void UIPresenter::resetState() {
     status = "OK.";
     timeToStateReset = RESET_TIMEOUT;
     waitingForVehiclePlacement = false;
+}
+
+void UIPresenter::showRandomVehicleView() {
+    ImGui::SetNextWindowPos(ImVec2(700, 10), ImGuiSetCond_Once);
+    ImGui::Begin("Selected vehicle", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+
+    ImGui::SliderFloat("Target speed", &randomTargetSpeed, 10.0f, 280.0f);
+    ImGui::SliderFloat("Target distance", &randomTargetDistance, 20.0f, 150.0f);
+
+    if (std::abs(highway.selectedVehicle->getTargetSpeed() - randomTargetSpeed / 3.6) > 0.5) {
+        highway.selectedVehicle->setTargetSpeed(randomTargetSpeed / 3.6);
+    }
+
+    if (std::abs(highway.selectedVehicle->getTargetDistance() - randomTargetDistance) > 0.5) {
+        highway.selectedVehicle->setTargetDistance(randomTargetDistance);
+    }
+
+    ImGui::Text("Change lane ");
+    ImGui::SameLine();
+    if (ImGui::SmallButton("left")) {
+        highway.selectedVehicle->setAction(Action::change_lane_left);
+    }
+    ImGui::SameLine();
+    if (ImGui::SmallButton("right")) {
+        highway.selectedVehicle->setAction(Action::change_lane_right);
+    }
+    ImGui::SameLine();
+    if (ImGui::SmallButton("randomly")) {
+        double t = coin.uniform();
+        if (t < 0.5) {
+            highway.selectedVehicle->setAction(Action::change_lane_right);
+        } else {
+            highway.selectedVehicle->setAction(Action::change_lane_left);
+        }
+    }
+    
+    
+    ImGui::Text("Speed: %.0f", highway.selectedVehicle->getV() * 3.6f);
+
+    ImGui::End();
 }

@@ -68,6 +68,9 @@ protected:
     float accTargetDistance = 40.0f;
     float accTargetSpeed = 120.0f;
 
+    float randomTargetDistance;
+    float randomTargetSpeed;
+
     std::string status;
 
     void statsView();
@@ -97,6 +100,8 @@ public:
     void key_callback(int key, int scancode, int action, int mods);
 
     void mouse_button_callback(int button, int action, int mods);
+
+    void showRandomVehicleView();
 
 };
 
