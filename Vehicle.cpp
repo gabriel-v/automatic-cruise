@@ -33,8 +33,8 @@
 #include "Vehicle.h"
 
 static Interval intSpeed(26, 48); // m / s
-static Interval intWidth(4.0, 4.5);
-static Interval intLength(5.9, 7.7);
+static Interval intWidth(4.0, 4.4);
+static Interval intLength(6.9, 8.7);
 static Interval intTargetDistance(35, 50);
 static Interval intReactionTime(2.5, 3.6);
 static Interval intTerminalSpeed(180 / 3.6, 350 / 3.6);

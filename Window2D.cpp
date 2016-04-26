@@ -37,8 +37,11 @@
 #include <iomanip>
 #include "Window.h"
 #include "Window2D.h"
+#include "Interval.h"
 
 const int GUIDE_LENGTH = 10;
+const int N_TEXTURES = 7;
+static Interval one(0, 1);
 
 void Window2D::drawRect(double left, double right, double bottom, double top) {
 
@@ -53,10 +56,16 @@ std::pair<double, double> Window2D::roadLimits() {
 };
 
 
-void Window2D::drawVehicle(const Vehicle *v) {
+void Window2D::drawVehicle(Vehicle * const v) {
     Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
 //    glColor3d(v->getR(), v->getG(), v->getB());
+    auto find = textureMap.find(v);
+    if(find == textureMap.end()) {
+        textureMap[v] = textures[(int)(one.uniform() * N_TEXTURES)];
+        std::cout << "Adding car" << std::endl;
+    }
 
+    glBindTexture(GL_TEXTURE_2D, textureMap.at(v));
     double left, right, bottom, top;
 
     left = center.x - ratio * v->getLength() / 2;
@@ -64,14 +73,19 @@ void Window2D::drawVehicle(const Vehicle *v) {
     bottom = center.y - ratio * v->getWidth() / 2;
     top = center.y + ratio * v->getWidth() / 2;
 
-    glTexCoord2d(0, 0);
-    glVertex2d(left, top);
-    glTexCoord2d(0, 1);
-    glVertex2d(left, bottom);
-    glTexCoord2d(1, 1);
-    glVertex2d(right, bottom);
-    glTexCoord2d(1, 0);
-    glVertex2d(right, top);
+
+    glBegin(GL_QUADS);
+    {
+        glTexCoord2d(0, 0);
+        glVertex2d(left, top);
+        glTexCoord2d(0, 1);
+        glVertex2d(left, bottom);
+        glTexCoord2d(1, 1);
+        glVertex2d(right, bottom);
+        glTexCoord2d(1, 0);
+        glVertex2d(right, top);
+    }
+    glEnd();
 
 }
 
@@ -148,16 +162,14 @@ void Window2D::draw(int width, int height) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_TEXTURE_2D);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-    glBindTexture(GL_TEXTURE_2D, tex);
-    glBegin(GL_QUADS);
-    {
-        glColor3d(1.0, 1.0, 1.0);
+//    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+//
+
+    glColor3d(1.0, 1.0, 1.0);
+
         for (uint i = 0; i < highway.lanes.size(); i++) {
             drawVehicles(highway.lanes[i]->vehicles);
         }
-    }
-    glEnd();
     glDisable(GL_TEXTURE_2D);
 
 
@@ -182,30 +194,23 @@ Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5) {
     centerX = highway.preferredVehicle->getX();
     foliage = new Foliage2D(ratio, highway.preferredVehicle->getX());
 
-    initTexture();
+    initTextures();
 }
 
-void Window2D::initTexture() {
+void Window2D::initTextures() {
+    const std::string path = "../res/car";
+    const std::string extn = ".png";
+    GLuint tex;
 
-//    glGenTextures(1, &tex);
-
-    tex = SOIL_load_OGL_texture
-            (
-                    "../res/car1.png",
-                    SOIL_LOAD_RGBA,
-                    SOIL_CREATE_NEW_ID,
-                    SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y
-            );
-
-    /*
-
-    tex_bits = SOIL_load_image("../res/car2.png", &tex_width, &tex_height, 0, SOIL_LOAD_RGB);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex_width, tex_height, 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, tex_bits);
-
-
-     */
-
+    for (int i = 1; i <= N_TEXTURES; i++) {
+        tex = SOIL_load_OGL_texture(
+                (path + std::to_string(i) + extn).c_str(),
+                SOIL_LOAD_RGBA,
+                SOIL_CREATE_NEW_ID,
+                SOIL_FLAG_MIPMAPS
+        );
+        textures.push_back(tex);
+    }
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

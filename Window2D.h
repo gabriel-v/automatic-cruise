@@ -33,13 +33,14 @@
 #ifndef LEC_ACC_CPP_WINDOW2D_H
 #define LEC_ACC_CPP_WINDOW2D_H
 
+#include <unordered_map>
 #include "Window.h"
 #include "Foliage2D.h"
 
 class Window2D : public Window {
 private:
 
-    void drawVehicle(const Vehicle *v);
+    void drawVehicle( Vehicle * const v);
 
     void drawDash(double xMeters, double yScreen);
 
@@ -57,8 +58,9 @@ private:
 
     Foliage2D *foliage;
 
-    GLuint tex;
-    void  initTexture();
+    std::unordered_map<Vehicle*, GLuint> textureMap;
+    std::vector<GLuint> textures;
+    void  initTextures();
 
 protected:
 
