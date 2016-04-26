@@ -58,3 +58,7 @@ add_subdirectory(imgui)
 include_directories(imgui)
 target_link_libraries(lec_acc_cpp imgui)
 
+add_subdirectory(SOIL)
+include_directories(SOIL)
+target_link_libraries(lec_acc_cpp SOIL)
+

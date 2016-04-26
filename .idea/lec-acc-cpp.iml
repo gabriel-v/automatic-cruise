@@ -2,43 +2,56 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui_impl_glfw.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Vehicle.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Highway.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Lane.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/ACCVehicle.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UIPresenter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lane.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ACCVehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Neighbours.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Highway.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/imgui_impl_glfw.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Interval.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/stb_image_aug.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/stb_image_aug.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/SOIL.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/stbi_DDS_aug.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/image_DXT.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/SOIL.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/stbi_DDS_aug_c.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/image_DXT.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/image_helper.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/original/stb_image-1.16.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/original/stb_image-1.09.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/SOIL/image_helper.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/imgui_impl_glfw.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/RandomVehicle.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UIPresenter.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Target.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ACCVehicle.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window2D.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/stb_truetype.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/imgui.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/imgui/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_internal.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/stb_rect_pack.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_demo.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/stb_textedit.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/imconfig.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/imgui.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_internal.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/imgui/imgui_draw.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Error.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Foliage2D.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Vehicle.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Lane.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Window.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vehicle.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/imgui_impl_glfw.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lane.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Highway.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

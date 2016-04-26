@@ -33,10 +33,9 @@
 #include "Vehicle.h"
 
 static Interval intSpeed(26, 48); // m / s
-static Interval intWidth(3.3, 3.9);
-static Interval intLength(5.5, 6.6);
+static Interval intWidth(4.0, 4.5);
+static Interval intLength(5.9, 7.7);
 static Interval intTargetDistance(35, 50);
-static Interval intColor(0.0, 0.5);
 static Interval intReactionTime(2.5, 3.6);
 static Interval intTerminalSpeed(180 / 3.6, 350 / 3.6);
 static Interval intMaximumAcceleration(8.0, 16.0);
@@ -57,10 +56,6 @@ Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), l
     reactionTime = intReactionTime.uniform();
     panicDistance = PANIC_DISTANCE;
 
-    r = intColor.normal() + 0.4;
-    g = intColor.normal() + 0.4;
-    b = intColor.normal() + 0.3;
-
     terminalSpeed = intTerminalSpeed.normal();
     maxAcceleration = intMaximumAcceleration.normal();
 
@@ -70,7 +65,7 @@ Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), l
 
 Vehicle::Vehicle(const Vehicle &orig) :
         x(orig.x), v(orig.v), a(orig.a), targetSpeed(orig.targetSpeed), targetDistance(orig.targetDistance),
-        width(orig.width), length(orig.length), r(orig.r), g(orig.g), b(orig.b),
+        width(orig.width), length(orig.length),
         highway(orig.highway), lane(orig.lane), panicDistance(orig.panicDistance),
         reactionTime(orig.reactionTime), terminalSpeed(orig.terminalSpeed), maxAcceleration(orig.maxAcceleration) {
 }

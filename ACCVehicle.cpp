@@ -33,10 +33,6 @@
 
 
 ACCVehicle::ACCVehicle(const Vehicle &x) : Vehicle(x) {
-    r = 0.1;
-    b = 0.1;
-    g = 1.0;
-
     // We're a supercar
     terminalSpeed = 340 / 3.6;
     maxAcceleration = 16.0;

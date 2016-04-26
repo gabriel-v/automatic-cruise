@@ -113,6 +113,10 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
         highway.selectVehicleAt(roadCoords.x, roadCoords.y);
     }
 
+    if(highway.selectedVehicle == highway.preferredVehicle) {
+        highway.unselectVehicle();
+    }
+
     if (highway.selectedVehicle != nullptr)
     {
         setState("Vehicle selected.");
@@ -222,7 +226,7 @@ void UIPresenter::resetState() {
 }
 
 void UIPresenter::showRandomVehicleView() {
-    ImGui::SetNextWindowPos(ImVec2(700, 10), ImGuiSetCond_Once);
+    ImGui::SetNextWindowPos(ImVec2(450, 100), ImGuiSetCond_Once);
     ImGui::Begin("Selected vehicle", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
     ImGui::SliderFloat("Target speed", &randomTargetSpeed, 10.0f, 280.0f);
@@ -256,7 +260,7 @@ void UIPresenter::showRandomVehicleView() {
     }
     
     
-    ImGui::Text("Speed: %.0f", highway.selectedVehicle->getV() * 3.6f);
+    ImGui::Text("Speed: %.0f km/h", highway.selectedVehicle->getV() * 3.6f);
 
     ImGui::End();
 }

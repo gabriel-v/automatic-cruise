@@ -33,6 +33,8 @@
 
 
 #include <iostream>
+#include <SOIL.h>
+#include <iomanip>
 #include "Window.h"
 #include "Window2D.h"
 
@@ -53,19 +55,46 @@ std::pair<double, double> Window2D::roadLimits() {
 
 void Window2D::drawVehicle(const Vehicle *v) {
     Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
-    glColor3d(v->getR(), v->getG(), v->getB());
-    drawRect(center.x - ratio * v->getLength() / 2, center.x + ratio * v->getLength() / 2,
-             center.y - ratio * v->getWidth() / 2, center.y + ratio * v->getWidth() / 2);
+//    glColor3d(v->getR(), v->getG(), v->getB());
+
+    double left, right, bottom, top;
+
+    left = center.x - ratio * v->getLength() / 2;
+    right = center.x + ratio * v->getLength() / 2;
+    bottom = center.y - ratio * v->getWidth() / 2;
+    top = center.y + ratio * v->getWidth() / 2;
+
+    glTexCoord2d(0, 0);
+    glVertex2d(left, top);
+    glTexCoord2d(0, 1);
+    glVertex2d(left, bottom);
+    glTexCoord2d(1, 1);
+    glVertex2d(right, bottom);
+    glTexCoord2d(1, 0);
+    glVertex2d(right, top);
+
 }
 
-void Window2D::markVehicle(const Vehicle *v) {
+void Window2D::markVehicle(const Vehicle *v, float red, float green, float blue) {
+    glColor3f(red, green, blue);
 
+    const float THICKNESS = 15.0f;
+    glLineWidth(THICKNESS / (float) zoom);
+    glBegin(GL_LINE_LOOP);
+    {
+        Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
+        drawRect(center.x - ratio * v->getLength() / 1.6, center.x + ratio * v->getLength() / 1.6,
+                 center.y - ratio * v->getWidth() / 1.6, center.y + ratio * v->getWidth() / 1.6);
+    }
+    glEnd();
+    glLineWidth(1.0f);
 }
 
 void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
     std::pair<double, double> cameraLimits = roadLimits();
     auto it = vs.begin();
     while (it != vs.end() && (*it)->getX() < cameraLimits.first) ++it;
+
     while (it != vs.end() && (*it)->getX() < cameraLimits.second) {
         drawVehicle(*it);
         ++it;
@@ -112,36 +141,30 @@ void Window2D::draw(int width, int height) {
         }
 
         glColor3f(0.7, 0.3, 0.1);
-        for (uint i = 0; i < highway.lanes.size(); i++) {
-            drawVehicles(highway.lanes[i]->vehicles);
-        }
-
-        if (highway.selectedVehicle != nullptr) {
-            markVehicle(highway.selectedVehicle);
-        }
 
     }
     glEnd();
 
-
-    const Vehicle *v = highway.selectedVehicle;
-    if (v != nullptr) {
-
-        glColor3d(1.0, 0.2, 0.2);
-
-        const float THICKNESS = 4.0f;
-        glLineWidth(THICKNESS);
-        glBegin(GL_LINE_LOOP);
-        {
-            Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
-            drawRect(center.x - ratio * v->getLength() / 1.6, center.x + ratio * v->getLength() / 1.6,
-                     center.y - ratio * v->getWidth() / 1.6, center.y + ratio * v->getWidth() / 1.6);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_TEXTURE_2D);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    glBindTexture(GL_TEXTURE_2D, tex);
+    glBegin(GL_QUADS);
+    {
+        glColor3d(1.0, 1.0, 1.0);
+        for (uint i = 0; i < highway.lanes.size(); i++) {
+            drawVehicles(highway.lanes[i]->vehicles);
         }
-        glEnd();
-        glLineWidth(1.0f);
     }
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
 
 
+    if (highway.selectedVehicle != nullptr) {
+        markVehicle(highway.selectedVehicle, 1.0, 0.3, 0.3);
+    }
+    markVehicle(highway.preferredVehicle, 0.3, 1.0, 0.4);
 }
 
 void Window2D::zoomIn() {
@@ -158,10 +181,38 @@ Window2D::Window2D(Highway &highway) : Window(highway), zoom(4.5) {
     ratio = 2 / (highway.lanes.size() * LANE_WIDTH);
     centerX = highway.preferredVehicle->getX();
     foliage = new Foliage2D(ratio, highway.preferredVehicle->getX());
+
+    initTexture();
+}
+
+void Window2D::initTexture() {
+
+//    glGenTextures(1, &tex);
+
+    tex = SOIL_load_OGL_texture
+            (
+                    "../res/car1.png",
+                    SOIL_LOAD_RGBA,
+                    SOIL_CREATE_NEW_ID,
+                    SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y
+            );
+
+    /*
+
+    tex_bits = SOIL_load_image("../res/car2.png", &tex_width, &tex_height, 0, SOIL_LOAD_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex_width, tex_height, 0, GL_RGBA,
+                 GL_UNSIGNED_BYTE, tex_bits);
+
+
+     */
+
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 }
 
 Window2D::~Window2D() {
-
 }
 
 

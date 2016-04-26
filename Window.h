@@ -60,7 +60,7 @@ protected:
 
     GLFWwindow *window;
     std::chrono::system_clock::time_point startTime;
-    static constexpr double LANE_WIDTH = 8.0;
+    static constexpr double LANE_WIDTH = 7.0;
 
     int width;
     int height;

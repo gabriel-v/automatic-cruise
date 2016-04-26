@@ -45,6 +45,9 @@ private:
 
     void drawRect(double left, double right, double bottom, double top);
 
+
+    void markVehicle(const Vehicle *v, float red, float green, float blue);
+
     std::pair<double, double> roadLimits();
 
     void drawVehicles(const std::deque<Vehicle *> vs);
@@ -54,7 +57,8 @@ private:
 
     Foliage2D *foliage;
 
-
+    GLuint tex;
+    void  initTexture();
 
 protected:
 
@@ -77,7 +81,7 @@ public:
 
     virtual ~Window2D();
 
-    void markVehicle(const Vehicle *v);
+
 };
 
 

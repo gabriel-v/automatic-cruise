@@ -70,7 +70,6 @@ protected:
     double targetSpeed;
     double targetDistance;
     double width, length;
-    double r, g, b;
     LaneChangeObserver *highway;
     double lane;
     double panicDistance;
@@ -107,18 +106,6 @@ public:
 
     double getV() const {
         return v;
-    }
-
-    double getR() const {
-        return r;
-    }
-
-    double getG() const {
-        return g;
-    }
-
-    double getB() const {
-        return b;
     }
 
     virtual void setAction(Action action) {
