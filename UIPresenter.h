@@ -71,6 +71,8 @@ protected:
     float randomTargetDistance;
     float randomTargetSpeed;
 
+    float newVehicleSpeed = 120.0f;
+
     std::string status;
 
     void statsView();

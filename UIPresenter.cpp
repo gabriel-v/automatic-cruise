@@ -106,7 +106,7 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     if (waitingForVehiclePlacement) {
         waitingForVehiclePlacement = false;
         highway.unselectVehicle();
-        highway.addVehicleAt(roadCoords.x, roadCoords.y);
+        highway.addVehicleAt(roadCoords.x, roadCoords.y, newVehicleSpeed/3.6);
         setState("Vehicle added.");
         return;
     } else {
@@ -133,11 +133,11 @@ void UIPresenter::render() {
 
 
 void UIPresenter::commandView() {
-    ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_Once);
+    ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-    ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 10.0f, 250.0f);
-    ImGui::SliderFloat("ACC target distance", &accTargetDistance, 20.0f, 150.0f);
+    ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 10.0f, 250.0f, "%.0f");
+    ImGui::SliderFloat("ACC target distance", &accTargetDistance, 20.0f, 150.0f, "%.0f");
 
 
     if (ImGui::Button("Toggle statistics window")) {
@@ -180,10 +180,11 @@ void UIPresenter::commandView() {
         setState("Lane change requested.");
     }
 
+
     ImGui::Text("Sim: Add vehicle ");
     ImGui::SameLine();
     if (ImGui::SmallButton("in front")) {
-        highway.addVehicleInFrontOfPreferred();
+        highway.addVehicleInFrontOfPreferred(newVehicleSpeed/3.6);
         setState("Vehicle added.");
     }
 
@@ -193,13 +194,15 @@ void UIPresenter::commandView() {
         setState("Click on the road!");
     }
 
+    ImGui::SliderFloat("New vehicle speed", &newVehicleSpeed, 30, 250, "%.0f");
+
     ImGui::Text("Status: %s", status.c_str());
 
     ImGui::End();
 }
 
 void UIPresenter::statsView() {
-    ImGui::SetNextWindowPos(ImVec2(450, 10), ImGuiSetCond_Once);
+    ImGui::SetNextWindowPos(ImVec2(450, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Statistics", &showStatsView, ImGuiWindowFlags_AlwaysAutoResize);
 
     ImGui::Text("FPS: %.0f (%.1f ms/frame) ", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
@@ -226,11 +229,11 @@ void UIPresenter::resetState() {
 }
 
 void UIPresenter::showRandomVehicleView() {
-    ImGui::SetNextWindowPos(ImVec2(450, 100), ImGuiSetCond_Once);
+    ImGui::SetNextWindowPos(ImVec2(450, 100), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Selected vehicle", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-    ImGui::SliderFloat("Target speed", &randomTargetSpeed, 10.0f, 280.0f);
-    ImGui::SliderFloat("Target distance", &randomTargetDistance, 20.0f, 150.0f);
+    ImGui::SliderFloat("Target speed", &randomTargetSpeed, 10.0f, 280.0f, "%.0f");
+    ImGui::SliderFloat("Target distance", &randomTargetDistance, 20.0f, 150.0f, "%.0f");
 
     if (std::abs(highway.selectedVehicle->getTargetSpeed() - randomTargetSpeed / 3.6) > 0.5) {
         highway.selectedVehicle->setTargetSpeed(randomTargetSpeed / 3.6);

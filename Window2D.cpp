@@ -143,7 +143,7 @@ void Window2D::draw(int width, int height) {
 
     glBegin(GL_QUADS);
     {
-        glColor3f(0.1, 0.2, 0.3);
+        glColor3ub(78, 76, 71);
         drawRect(maxLeft, maxRight, -1, 1);
 
         glColor3f(0.9, 0.9, 0.9);

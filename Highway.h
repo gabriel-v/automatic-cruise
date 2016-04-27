@@ -61,9 +61,9 @@ public:
 
     void stabilise();
 
-    void addVehicleAt(double X, double lane);
+    void addVehicleAt(double X, double lane, double speed);
 
-    void addVehicleInFrontOfPreferred();
+    void addVehicleInFrontOfPreferred(double speed);
 
     void selectVehicleAt(double X, double lane);
 

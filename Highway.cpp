@@ -38,14 +38,14 @@
 #include "ACCVehicle.h"
 
 const int N_LANES = 3;
-const double MAX_DELTA_X = 165, MIN_DELTA_X = 55;
-const int N_VEHICLES_PER_LANE = 40;
+const double MAX_DELTA_X = 165, MIN_DELTA_X = 65;
+const int N_VEHICLES_PER_LANE = 90;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 7.0;
 
 const double MAX_VIEW_DISTANCE = 100.0;
 
-const int STABILISE_STEPS = 1000;
+const int STABILISE_STEPS = 800;
 const double STABILISE_DT = 1.0 / 60.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
@@ -286,7 +286,7 @@ void Highway::stabilise() {
 }
 
 
-void Highway::addVehicleAt(double X, double lane) {
+void Highway::addVehicleAt(double X, double lane, double speed) {
     int l = (int) std::round(lane);
     if (l < 0 || l >= (int) lanes.size());
     auto it = lanes[l]->vehicles.begin();
@@ -301,13 +301,15 @@ void Highway::addVehicleAt(double X, double lane) {
     }
 
     Vehicle *v = new RandomVehicle(this, X, lane);
-    v->setV(((*it)->getV() + (*(it - 1))->getV()) / 2);
+    //v->setV(((*it)->getV() + (*(it - 1))->getV()) / 2);
+    v->setV(speed);
+    v->setTargetSpeed(speed);
     lanes[l]->vehicles.insert(it, v);
 
 }
 
-void Highway::addVehicleInFrontOfPreferred() {
-    addVehicleAt(preferredVehicle->getX() + 1, preferredVehicle->getLane());
+void Highway::addVehicleInFrontOfPreferred(double speed) {
+    addVehicleAt(preferredVehicle->getX() + 1, preferredVehicle->getLane(), speed);
 }
 
 void Highway::selectVehicleAt(double X, double lane) {

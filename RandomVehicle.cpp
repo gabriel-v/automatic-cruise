@@ -50,7 +50,7 @@ void RandomVehicle::decideAcceleration(const Neighbours *n) {
     double distCoef;
     if (n->front != nullptr) {
 
-        distCoef = std::exp(-3 * (n->front->dist - targetDistance) / targetDistance);
+        distCoef = std::exp(-1.3 * (n->front->dist - targetDistance) / targetDistance);
 
         a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
             + 2 * n->front->vRel / reactionTime;
