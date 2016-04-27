@@ -39,7 +39,7 @@
 
 const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 65;
-const int N_VEHICLES_PER_LANE = 90;
+const int N_VEHICLES_PER_LANE = 50;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 7.0;
 

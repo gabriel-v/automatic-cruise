@@ -33,8 +33,8 @@
 #include <iostream>
 #include "RandomVehicle.h"
 
-static Interval intSpeed(26, 48); // m / s
-static Interval intActionPeriod(3.6, 6);
+static Interval intSpeed(90 / 3.6, 250 / 3.6); // m / s
+static Interval intActionPeriod(2.7, 3.6);
 static Interval longActionPeriod(16.0, 24.0);
 
 static Interval intActionDecider(0, 100);
@@ -50,7 +50,7 @@ void RandomVehicle::decideAcceleration(const Neighbours *n) {
     double distCoef;
     if (n->front != nullptr) {
 
-        distCoef = std::exp(-1.3 * (n->front->dist - targetDistance) / targetDistance);
+        distCoef = std::exp(-3.0 * (n->front->dist - targetDistance) / targetDistance);
 
         a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
             + 2 * n->front->vRel / reactionTime;

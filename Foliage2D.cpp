@@ -37,7 +37,7 @@
 #include <iostream>
 
 static const double POSITION_MAX = 170;
-static const int N_FOLIAGES = 26;
+static const int N_FOLIAGES = 20;
 static Interval intGreen(0.3, 0.5);
 static Interval intRedBlue(0.12, 0.18);
 static Interval intPosition(-POSITION_MAX, POSITION_MAX);
