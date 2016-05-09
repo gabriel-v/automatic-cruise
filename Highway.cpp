@@ -36,6 +36,9 @@
 #include "Highway.h"
 #include "RandomVehicle.h"
 #include "ACCVehicle.h"
+#include "Error.h"
+
+const float MAX_X_COORDINATE = 1e12f;
 
 const int N_LANES = 3;
 const float MAX_DELTA_X = 165, MIN_DELTA_X = 65;
@@ -45,13 +48,19 @@ const float TELEPORT_INTERVAL = 7.0f;
 
 const float MAX_VIEW_DISTANCE = 200.0f;
 
-const int STABILISE_STEPS = 2200;
+const int STABILISE_STEPS = 2000;
 const float STABILISE_DT = 1.0f / 60.0f;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
 const Target FAR_IN_FRONT = Target(0, 1e6f); // 1000km, basically infinity
 const Target FAR_IN_BACK = Target(0, -1e6f); // 1000km, basically infinity
+
+static void check_coordinate(float x) {
+    if(std::isnan(x) || std::abs(x) > MAX_X_COORDINATE) {
+        std::cerr << "The X coordinate of some car is diverging!";
+    }
+}
 
 Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
@@ -191,6 +200,8 @@ void Highway::step(float dt) {
                 maxI = i;
             }
         }
+
+        check_coordinate((*iters[maxI])->getX());
 
         if (maxI < lanes.size() - 1) {
             Target *prev = target(*iters[maxI], *(iters[maxI + 1] - 1));
