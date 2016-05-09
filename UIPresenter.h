@@ -29,31 +29,32 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef LEC_ACC_CPP_UICONTROLLER_H
-#define LEC_ACC_CPP_UICONTROLLER_H
+#ifndef LEC_ACC_CPP_UI_CONTROLLER_H
+#define LEC_ACC_CPP_UI_CONTROLLER_H
 
 
 #include <GLFW/glfw3.h>
 #include <string>
 #include "Highway.h"
 
-
 struct Point {
-    double x;
-    double y;
+    float x;
+    float y;
 
     Point() {
         x = y = 0;
     }
 
-    Point(double x, double y): x(x), y(y){}
+    Point(float x, float y) : x(x), y(y) { }
 };
 
 class ScreenMapper {
 public:
     virtual Point pixelToRoadCoordinates(Point pixelCoords) = 0;
-    virtual Point roadToScreenCoordinates(Point roadCoords) = 0;
+
+//    virtual Point roadToScreenCoordinates(Point roadCoords) = 0;
     virtual void zoomIn() = 0;
+
     virtual void zoomOut() = 0;
 };
 
@@ -81,7 +82,7 @@ protected:
 
     void setState(std::string status);
 
-    double timeToStateReset;
+    float timeToStateReset;
 
     bool waitingForVehiclePlacement = false;
 
@@ -95,7 +96,7 @@ public:
 
     virtual ~UIPresenter();
 
-    void present(double dt);
+    void present(float dt);
 
     void render();
 

@@ -38,26 +38,26 @@
 #include "ACCVehicle.h"
 
 const int N_LANES = 3;
-const double MAX_DELTA_X = 165, MIN_DELTA_X = 65;
+const float MAX_DELTA_X = 165, MIN_DELTA_X = 65;
 const int N_VEHICLES_PER_LANE = 40;
-const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
-const double TELEPORT_INTERVAL = 7.0;
+const float TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5f;
+const float TELEPORT_INTERVAL = 7.0f;
 
-const double MAX_VIEW_DISTANCE = 200.0;
+const float MAX_VIEW_DISTANCE = 200.0f;
 
 const int STABILISE_STEPS = 2200;
-const double STABILISE_DT = 1.0 / 60.0;
+const float STABILISE_DT = 1.0f / 60.0f;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
 
-const Target FAR_IN_FRONT = Target(0, 1e6); // 1000km, basically infinity
-const Target FAR_IN_BACK = Target(0, -1e6); // 1000km, basically infinity
+const Target FAR_IN_FRONT = Target(0, 1e6f); // 1000km, basically infinity
+const Target FAR_IN_BACK = Target(0, -1e6f); // 1000km, basically infinity
 
 Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     for (int i = 0; i < N_LANES; i++) {
         Lane *lane = new Lane;
 
-        double x = deltaX.uniform();
+        float x = deltaX.uniform();
         for (int j = 0; j < N_VEHICLES_PER_LANE; j++) {
             x += deltaX.uniform();
             RandomVehicle *vehicle = new RandomVehicle(this, x, i);
@@ -87,11 +87,11 @@ Highway::~Highway() {
 }
 
 void Highway::teleportVehicles() {
-    double centerX = preferredVehicle->getX();
-    double X;
+    float centerX = preferredVehicle->getX();
+    float X;
 
     Vehicle *v;
-    double lane = 0;
+    float lane = 0;
     for (Lane *l: lanes) {
         int addFront = 0, addBack = 0;
         while (std::abs(l->vehicles.front()->getX() - centerX) > TELEPORT_DISTANCE) {
@@ -137,8 +137,8 @@ Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
 
     t->vRel = targ->getV() - current->getV();
 
-    if(std::abs(t->dist) > MAX_VIEW_DISTANCE) {
-        t->dist = std::abs(t->dist) / t->dist * 1e6; // 1000km, basically infinity.
+    if (std::abs(t->dist) > MAX_VIEW_DISTANCE) {
+        t->dist = std::abs(t->dist) / t->dist * 1e6f; // 1000km, basically infinity.
         t->vRel = 0;
     }
     return t;
@@ -153,7 +153,7 @@ void Highway::sort() {
     }
 }
 
-void Highway::step(double dt) {
+void Highway::step(float dt) {
 
     lastTeleportTime += dt;
     if (lastTeleportTime > TELEPORT_INTERVAL) {
@@ -273,7 +273,7 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
         return;
     }
 
-    if(laneChangers.find(v) != laneChangers.end()) {
+    if (laneChangers.find(v) != laneChangers.end()) {
         return;
     }
 
@@ -283,15 +283,15 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
 
 
 void Highway::stabilise() {
-    preferredVehicle->setTargetSpeed(300 / 3.6);
+    preferredVehicle->setTargetSpeed(300 / 3.6f);
     for (int i = 0; i < STABILISE_STEPS; i++) {
         step(STABILISE_DT);
     }
-    preferredVehicle->setTargetSpeed(130 / 3.6);
+    preferredVehicle->setTargetSpeed(130 / 3.6f);
 }
 
 
-void Highway::addVehicleAt(double X, double lane, double speed) {
+void Highway::addVehicleAt(float X, float lane, float speed) {
     int l = (int) std::round(lane);
     if (l < 0 || l >= (int) lanes.size());
     auto it = lanes[l]->vehicles.begin();
@@ -303,7 +303,7 @@ void Highway::addVehicleAt(double X, double lane, double speed) {
     if (it == end) {
         X = lanes[l]->vehicles.back()->getX() + deltaX.uniform();
     } else {
-        if((*it)->getX() - (*(it - 1))->getX() < MIN_DELTA_X / 3) {
+        if ((*it)->getX() - (*(it - 1))->getX() < MIN_DELTA_X / 3) {
             return;
         }
         X = ((*it)->getX() + (*(it - 1))->getX()) / 2;
@@ -315,11 +315,11 @@ void Highway::addVehicleAt(double X, double lane, double speed) {
     lanes[l]->vehicles.insert(it, v);
 }
 
-void Highway::addVehicleInFrontOfPreferred(double speed) {
+void Highway::addVehicleInFrontOfPreferred(float speed) {
     addVehicleAt(preferredVehicle->getX() + 1, preferredVehicle->getLane(), speed);
 }
 
-void Highway::selectVehicleAt(double X, double lane) {
+void Highway::selectVehicleAt(float X, float lane) {
     selectedVehicle = nullptr;
 
     int l = (int) std::round(lane);

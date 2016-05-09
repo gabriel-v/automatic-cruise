@@ -35,21 +35,24 @@
 #include <vector>
 
 struct FoliageTriangle {
-    double r, g, b;
-    double pos[6];
-    double dx;
+    float r, g, b;
+    float pos[6];
+    float dx;
 
-    FoliageTriangle(double centerX, double ratio);
+    FoliageTriangle(float centerX, float ratio);
 };
 
 class Foliage2D {
 public:
-    void draw(double centerX);
-    Foliage2D(double ratio, double centerX);
+    void draw(float centerX);
+
+    Foliage2D(float ratio, float centerX);
+
     virtual ~Foliage2D();
+
 protected:
     std::vector<FoliageTriangle *> triangles;
-    double ratio;
+    float ratio;
 };
 
 

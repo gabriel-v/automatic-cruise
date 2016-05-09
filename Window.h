@@ -39,7 +39,7 @@
 #include <chrono>
 
 
-class Window: public ScreenMapper {
+class Window : public ScreenMapper {
 public:
 
     Window(Highway &high);
@@ -60,14 +60,14 @@ protected:
 
     GLFWwindow *window;
     std::chrono::system_clock::time_point startTime;
-    static constexpr double LANE_WIDTH = 7.0;
+    static constexpr float LANE_WIDTH = 7.0;
 
     int width;
     int height;
 
 private:
 
-    double timeElapsed();
+    float timeElapsed();
 
 };
 

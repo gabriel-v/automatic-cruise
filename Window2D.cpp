@@ -37,34 +37,33 @@
 #include <iomanip>
 #include "Window.h"
 #include "Window2D.h"
-#include "Interval.h"
 
 const int GUIDE_LENGTH = 8;
 const int N_TEXTURES = 7;
 static Interval one(0, 1);
 
-void Window2D::drawRect(double left, double right, double bottom, double top) {
+void Window2D::drawRect(float left, float right, float bottom, float top) {
 
-    glVertex2d(left, top);
-    glVertex2d(left, bottom);
-    glVertex2d(right, bottom);
-    glVertex2d(right, top);
+    glVertex2f(left, top);
+    glVertex2f(left, bottom);
+    glVertex2f(right, bottom);
+    glVertex2f(right, top);
 };
 
-std::pair<double, double> Window2D::roadLimits() {
+std::pair<float, float> Window2D::roadLimits() {
     return std::make_pair(centerX + maxLeft / ratio - 10, centerX + maxRight / ratio + 10);
 };
 
 
-void Window2D::drawVehicle(Vehicle * const v) {
+void Window2D::drawVehicle(Vehicle *const v) {
     Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
     auto find = textureMap.find(v);
-    if(find == textureMap.end()) {
-        textureMap[v] = textures[(int)(one.uniform() * N_TEXTURES)];
+    if (find == textureMap.end()) {
+        textureMap[v] = textures[(int) (one.uniform() * N_TEXTURES)];
     }
 
     glBindTexture(GL_TEXTURE_2D, textureMap.at(v));
-    double left, right, bottom, top;
+    float left, right, bottom, top;
 
     left = center.x - ratio * v->getLength() / 2;
     right = center.x + ratio * v->getLength() / 2;
@@ -74,14 +73,14 @@ void Window2D::drawVehicle(Vehicle * const v) {
 
     glBegin(GL_QUADS);
     {
-        glTexCoord2d(0, 0);
-        glVertex2d(left, top);
-        glTexCoord2d(0, 1);
-        glVertex2d(left, bottom);
-        glTexCoord2d(1, 1);
-        glVertex2d(right, bottom);
-        glTexCoord2d(1, 0);
-        glVertex2d(right, top);
+        glTexCoord2f(0, 0);
+        glVertex2f(left, top);
+        glTexCoord2f(0, 1);
+        glVertex2f(left, bottom);
+        glTexCoord2f(1, 1);
+        glVertex2f(right, bottom);
+        glTexCoord2f(1, 0);
+        glVertex2f(right, top);
     }
     glEnd();
 
@@ -91,19 +90,21 @@ void Window2D::markVehicle(const Vehicle *v, float red, float green, float blue)
     glColor3f(red, green, blue);
 
     const float THICKNESS = 15.0f;
-    glLineWidth(THICKNESS / (float) zoom);
+    glLineWidth(THICKNESS / zoom);
     glBegin(GL_LINE_LOOP);
     {
         Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
-        drawRect(center.x - ratio * v->getLength() / 1.6, center.x + ratio * v->getLength() / 1.6,
-                 center.y - ratio * v->getWidth() / 1.6, center.y + ratio * v->getWidth() / 1.6);
+        drawRect(center.x - ratio * v->getLength() / 1.6f,
+                 center.x + ratio * v->getLength() / 1.6f,
+                 center.y - ratio * v->getWidth() / 1.6f,
+                 center.y + ratio * v->getWidth() / 1.6f);
     }
     glEnd();
     glLineWidth(1.0f);
 }
 
 void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
-    std::pair<double, double> cameraLimits = roadLimits();
+    std::pair<float, float> cameraLimits = roadLimits();
     auto it = vs.begin();
     while (it != vs.end() && (*it)->getX() < cameraLimits.first) ++it;
 
@@ -113,14 +114,14 @@ void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
     }
 }
 
-void Window2D::drawDash(double xMeters, double lane, double thickness) {
+void Window2D::drawDash(float xMeters, float lane, float thickness) {
     xMeters = int((xMeters) / GUIDE_LENGTH) * GUIDE_LENGTH;
     Point center = roadToScreenCoordinates(Point(xMeters - lane * lane * 3, lane));
 
-    double step = ratio * GUIDE_LENGTH;
+    float step = ratio * GUIDE_LENGTH;
 
-    for (double x = center.x + maxLeft; x < maxRight; x += step) {
-        drawRect(x, x + step / 2, center.y - thickness/2, center.y + thickness/2);
+    for (float x = center.x + maxLeft; x < maxRight; x += step) {
+        drawRect(x, x + step / 2, center.y - thickness / 2, center.y + thickness / 2);
     }
 }
 
@@ -135,7 +136,7 @@ void Window2D::draw(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 
 
-    double front = maxRight / ratio / 2.5;
+    float front = maxRight / ratio / 2.5f;
     centerX = (highway.preferredVehicle->getX()) + front;
     foliage->draw(centerX);
 
@@ -145,12 +146,12 @@ void Window2D::draw(int width, int height) {
         drawRect(maxLeft, maxRight, -1, 1);
 
         glColor3f(0.9, 0.9, 0.9);
-        double thickness = 0.08 / highway.lanes.size();
-        drawRect(maxLeft, maxRight, 0.99 - thickness, 0.99);
-        drawRect(maxLeft, maxRight, -0.99, -0.99 + thickness);
+        float thickness = 0.1f / highway.lanes.size();
+        drawRect(maxLeft, maxRight, 0.99f - thickness, 0.99f);
+        drawRect(maxLeft, maxRight, -0.99f, -0.99f + thickness);
 
         for (uint i = 0; i < highway.lanes.size() - 1; i++) {
-            drawDash(centerX, i + 0.5, thickness);
+            drawDash(centerX, i + 0.5f, thickness);
         }
 
         glColor3f(0.7, 0.3, 0.1);
@@ -162,13 +163,12 @@ void Window2D::draw(int width, int height) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_TEXTURE_2D);
 //    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-//
 
-    glColor3d(1.0, 1.0, 1.0);
+    glColor3f(1.0, 1.0, 1.0);
 
-        for (uint i = 0; i < highway.lanes.size(); i++) {
-            drawVehicles(highway.lanes[i]->vehicles);
-        }
+    for (uint i = 0; i < highway.lanes.size(); i++) {
+        drawVehicles(highway.lanes[i]->vehicles);
+    }
     glDisable(GL_TEXTURE_2D);
 
 
@@ -221,17 +221,17 @@ Window2D::~Window2D() {
 
 
 Point Window2D::pixelToRoadCoordinates(Point pixelCoords) {
-    pixelCoords.x = pixelCoords.x / height * 2 - (double) width / height;
+    pixelCoords.x = pixelCoords.x / height * 2 - (float) width / height;
     pixelCoords.y = pixelCoords.y / height * 2 - 1;
     pixelCoords.x *= zoom;
     pixelCoords.y *= zoom;
 
     Point screen(pixelCoords);
-    double lane = (highway.lanes.size() - 1.0) / 2 + screen.y / (LANE_WIDTH * ratio);
+    float lane = (float) ((highway.lanes.size() - 1.0f) / 2.0f + screen.y / (LANE_WIDTH * ratio));
     return Point(centerX + screen.x / ratio, highway.lanes.size() - 1 - std::round(lane));
 }
 
 Point Window2D::roadToScreenCoordinates(Point roadCoords) {
     return Point((roadCoords.x - centerX) * ratio,
-                 LANE_WIDTH * ratio * (roadCoords.y - (highway.lanes.size() - 1.0) / 2));
+                 LANE_WIDTH * ratio * (roadCoords.y - (highway.lanes.size() - 1.0f) / 2));
 }

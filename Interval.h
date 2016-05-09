@@ -39,9 +39,9 @@ class Interval {
 private:
     std::random_device r;
     std::mt19937 e1;
-    std::uniform_real_distribution<double> uniform_dist;
-    std::normal_distribution<double> normal_dist;
-    double min, max;
+    std::uniform_real_distribution<float> uniform_dist;
+    std::normal_distribution<float> normal_dist;
+    float min, max;
 
     template<typename T>
     T clip(const T &n, const T &lower, const T &upper) {
@@ -49,17 +49,17 @@ private:
     }
 
 public:
-    Interval(double min, double max) : min(min), max(max) {
+    Interval(float min, float max) : min(min), max(max) {
         e1 = std::mt19937(r());
-        uniform_dist = std::uniform_real_distribution<double>(min, max);
-        normal_dist = std::normal_distribution<double>((min + max) / 2, (max - min) / 4);
+        uniform_dist = std::uniform_real_distribution<float>(min, max);
+        normal_dist = std::normal_distribution<float>((min + max) / 2, (max - min) / 4);
     }
 
-    double uniform() {
+    float uniform() {
         return uniform_dist(e1);
     }
 
-    double normal() {
+    float normal() {
         return clip(normal_dist(e1), min, max);
     }
 };

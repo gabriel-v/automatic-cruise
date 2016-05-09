@@ -33,9 +33,8 @@
 #include <sstream>
 #include "UIPresenter.h"
 #include "imgui_impl_glfw.h"
-#include "ACCVehicle.h"
 
-static const double RESET_TIMEOUT = 5.5;
+static const float RESET_TIMEOUT = 5.5;
 static Interval coin(0, 1);
 
 UIPresenter::UIPresenter(Highway &highway, GLFWwindow *window, ScreenMapper *screenMapper) :
@@ -57,7 +56,7 @@ UIPresenter::~UIPresenter() {
     ImGui_ImplGlfw_Shutdown();
 }
 
-void UIPresenter::present(double dt) {
+void UIPresenter::present(float dt) {
     ImGui_ImplGlfw_NewFrame();
 
     commandView();
@@ -75,11 +74,11 @@ void UIPresenter::present(double dt) {
         resetState();
     }
 
-    if (std::abs(highway.preferredVehicle->getTargetSpeed() - accTargetSpeed / 3.6) > 0.5) {
-        highway.preferredVehicle->setTargetSpeed(accTargetSpeed / 3.6);
+    if (std::abs(highway.preferredVehicle->getTargetSpeed() - accTargetSpeed / 3.6f) > 0.5f) {
+        highway.preferredVehicle->setTargetSpeed(accTargetSpeed / 3.6f);
     }
 
-    if (std::abs(highway.preferredVehicle->getTargetDistance() - accTargetDistance) > 0.5) {
+    if (std::abs(highway.preferredVehicle->getTargetDistance() - accTargetDistance) > 0.5f) {
         highway.preferredVehicle->setTargetDistance(accTargetDistance);
     }
 
@@ -99,30 +98,31 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     if (action != GLFW_PRESS) return;
 
     Point cursorPos;
-    glfwGetCursorPos(window, &cursorPos.x, &cursorPos.y);
+    double x, y;
+    glfwGetCursorPos(window, &x, &y);
+    cursorPos.x = (float) x;
+    cursorPos.y = (float) y;
 
     Point roadCoords = screenMapper->pixelToRoadCoordinates(cursorPos);
-
 
     if (waitingForVehiclePlacement) {
         waitingForVehiclePlacement = false;
         highway.unselectVehicle();
-        highway.addVehicleAt(roadCoords.x, roadCoords.y, newVehicleSpeed/3.6);
+        highway.addVehicleAt(roadCoords.x, roadCoords.y, newVehicleSpeed / 3.6f);
         setState("Vehicle added.");
         return;
     } else {
         highway.selectVehicleAt(roadCoords.x, roadCoords.y);
     }
 
-    if(highway.selectedVehicle == highway.preferredVehicle) {
+    if (highway.selectedVehicle == highway.preferredVehicle) {
         highway.unselectVehicle();
     }
 
-    if (highway.selectedVehicle != nullptr)
-    {
+    if (highway.selectedVehicle != nullptr) {
         setState("Vehicle selected.");
-        randomTargetDistance = (float) highway.selectedVehicle->getTargetDistance();
-        randomTargetSpeed = (float) highway.selectedVehicle->getTargetSpeed() * 3.6f;
+        randomTargetDistance = highway.selectedVehicle->getTargetDistance();
+        randomTargetSpeed = highway.selectedVehicle->getTargetSpeed() * 3.6f;
     }
     else
         resetState();
@@ -172,7 +172,7 @@ void UIPresenter::commandView() {
     }
     ImGui::SameLine();
     if (ImGui::SmallButton("randomly")) {
-        double t = coin.uniform();
+        float t = coin.uniform();
         if (t < 0.5) {
             highway.preferredVehicle->setAction(Action::change_lane_right);
         } else {
@@ -185,7 +185,7 @@ void UIPresenter::commandView() {
     ImGui::Text("Sim: Add vehicle ");
     ImGui::SameLine();
     if (ImGui::SmallButton("in front")) {
-        highway.addVehicleInFrontOfPreferred(newVehicleSpeed/3.6);
+        highway.addVehicleInFrontOfPreferred(newVehicleSpeed / 3.6f);
         setState("Vehicle added.");
     }
 
@@ -208,26 +208,11 @@ void UIPresenter::statsView() {
 
     ImGui::Text("FPS: %.0f (%.1f ms/frame) ", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
     ImGui::Text("ACC Speed: %.0f km/h", highway.preferredVehicle->getV() * 3.6f);
-    if(std::abs(highway.preferredVehicleFrontDistance) > 1e4) {
+    if (std::abs(highway.preferredVehicleFrontDistance) > 1e4) {
         ImGui::Text("ACC Distance to next vehicle: infinity (unknown)");
     } else {
         ImGui::Text("ACC Distance to next vehicle: %.0f meters", highway.preferredVehicleFrontDistance);
     }
-
-    std::string action;
-    switch(highway.preferredVehicle->getAction()) {
-        case Action::none:
-            action = "none";
-            break;
-        case Action::change_lane_left:
-            action = "go left";
-            break;
-        case Action::change_lane_right:
-            action = "go right";
-            break;
-    }
-
-    ImGui::Text("Action %s. Unsatistisfied score: %.1f", action.c_str(), ((ACCVehicle*)highway.preferredVehicle)->unsatisfiedTime);
 
     ImGui::End();
 }
@@ -252,7 +237,7 @@ void UIPresenter::showRandomVehicleView() {
     ImGui::SliderFloat("Target distance", &randomTargetDistance, 20.0f, 150.0f, "%.0f");
 
     if (std::abs(highway.selectedVehicle->getTargetSpeed() - randomTargetSpeed / 3.6) > 0.5) {
-        highway.selectedVehicle->setTargetSpeed(randomTargetSpeed / 3.6);
+        highway.selectedVehicle->setTargetSpeed(randomTargetSpeed / 3.6f);
     }
 
     if (std::abs(highway.selectedVehicle->getTargetDistance() - randomTargetDistance) > 0.5) {
@@ -270,15 +255,15 @@ void UIPresenter::showRandomVehicleView() {
     }
     ImGui::SameLine();
     if (ImGui::SmallButton("randomly")) {
-        double t = coin.uniform();
+        float t = coin.uniform();
         if (t < 0.5) {
             highway.selectedVehicle->setAction(Action::change_lane_right);
         } else {
             highway.selectedVehicle->setAction(Action::change_lane_left);
         }
     }
-    
-    
+
+
     ImGui::Text("Speed: %.0f km/h", highway.selectedVehicle->getV() * 3.6f);
 
     ImGui::End();

@@ -28,7 +28,7 @@ set(SOURCE_FILES
         ACCVehicle.h
         imgui_impl_glfw.cpp
         imgui_impl_glfw.h
-		UIPresenter.cpp UIPresenter.h)
+        UIPresenter.cpp UIPresenter.h)
 
 add_executable(lec_acc_cpp ${SOURCE_FILES})
 
@@ -39,20 +39,20 @@ include_directories(${OPENGL_INCLUDE_DIR})
 target_link_libraries(lec_acc_cpp ${OPENGL_LIBRARIES})
 
 # Load GLFW3
-IF(APPLE)
-	# For Stefan's $1k toy
-	add_subdirectory(glfw)
-	include_directories(glfw/include)
-	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
-	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
-ELSE()
-	# We'll load these with PkgConfig
-	find_package(PkgConfig REQUIRED)
-	pkg_search_module(GLFW REQUIRED glfw3)
-	include_directories(${GLFW_INCLUDE_DIRS})
-	target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
-	target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
-ENDIF()
+IF (APPLE)
+    # For Stefan's $1k toy
+    add_subdirectory(glfw)
+    include_directories(glfw/include)
+    target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+    target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
+ELSE ()
+    # We'll load these with PkgConfig
+    find_package(PkgConfig REQUIRED)
+    pkg_search_module(GLFW REQUIRED glfw3)
+    include_directories(${GLFW_INCLUDE_DIRS})
+    target_link_libraries(lec_acc_cpp ${GLFW_LIBRARIES})
+    target_link_libraries(lec_acc_cpp ${GLFW_STATIC_LIBRARIES})
+ENDIF ()
 
 add_subdirectory(imgui)
 include_directories(imgui)

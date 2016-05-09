@@ -35,11 +35,12 @@
 
 
 struct Target {
-    double vRel;
-    double dist;
+    float vRel;
+    float dist;
 
     Target() : vRel(0), dist(0) { }
-    Target(double vRel, double dist): vRel(vRel), dist(dist) {}
+
+    Target(float vRel, float dist) : vRel(vRel), dist(dist) { }
 
     Target(const Target &o) : vRel(o.vRel), dist(o.dist) {
     }

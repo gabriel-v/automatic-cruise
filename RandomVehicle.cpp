@@ -33,103 +33,84 @@
 #include <iostream>
 #include "RandomVehicle.h"
 
-static Interval intSpeed(100 / 3.6, 250 / 3.6);
-static Interval intActionPeriod(5.7, 13.6);
-static Interval longActionPeriod(16.0, 24.0);
+static Interval intSpeed(100 / 3.6f, 250 / 3.6f);
+static Interval intActionPeriod(5.7f, 13.6f);
+static Interval longActionPeriod(16.0f, 24.0f);
 
 static Interval intActionDecider(0, 100);
 
 
-RandomVehicle::RandomVehicle(LaneChangeObserver *highway, double xx, double lane) : Vehicle(highway, lane) {
+RandomVehicle::RandomVehicle(LaneChangeObserver *highway, float xx, float lane) : Vehicle(highway, lane) {
     x = xx;
     timeUntilNextAction = intActionPeriod.uniform();
 }
 
 void RandomVehicle::decideAcceleration(const Neighbours *n) {
     // positive -- we have space; negative -- we're too close
-    double distanceDrift = n->front->dist - targetDistance;
-
+    float distanceDrift = n->front->dist - targetDistance;
     // positive -- we're going too fast; negative -- we're too slow
-    double speedDrift = v - targetSpeed;
+    float speedDrift = v - targetSpeed;
 
-    double inertialAcceleration = 0;
-    double exactAcceleration = 0;
-    const double exactCoef = 1 - 10e-4;
+    float exactAcceleration = 0;
 
-    if(n->front == nullptr){
+    if (n->front == nullptr) {
         // No one in sight -- smoothly coast to target speed
-        a = - speedDrift / reactionTime;
+        a = -speedDrift / reactionTime;
 
     } else {
-
-        // This acceleration calculation gives our random cars
-        // a more varied driving style.
-        double distCoef;
-        distCoef = 1 / (std::exp(- 3.0 * distanceDrift / targetDistance) + 2);
-        inertialAcceleration = 2 * n->front->vRel / reactionTime;
-        inertialAcceleration -= distCoef * distanceDrift / reactionTime / reactionTime;
-        inertialAcceleration -= (1 - distCoef) * speedDrift / reactionTime;
-        inertialAcceleration -= std::exp(1.5 * (panicDistance - n->front->dist));
-
         // We may have a car in front
-        if(distanceDrift > 0) {
+        if (distanceDrift > 0) {
             // Time until we reach the target distance
-            double reachTime = - distanceDrift / n->front->vRel;
-            if(reachTime < 0.0) {
+            float reachTime = -distanceDrift / n->front->vRel;
+            if (reachTime < 0.0) {
                 // We will never reach the car in front
                 reachTime = 1e10;
             }
-            double aCorrectRelativeSpeed = n->front->vRel / reachTime;
+            float aCorrectRelativeSpeed = n->front->vRel / reachTime;
 
             // Acceleration that gets us to the target speed within reactionTime
-            double aCorrectSpeed = - speedDrift / reactionTime;
+            float aCorrectSpeed = -speedDrift / reactionTime;
 
             exactAcceleration = aCorrectSpeed + aCorrectRelativeSpeed;
 
         } else {
             // Apply panic break if needed
-            double aPanicBreak = 0;
-            if(-distanceDrift > panicDistance) {
-                aPanicBreak = - maxAcceleration;
+            float aPanicBreak = 0;
+            if (-distanceDrift > panicDistance) {
+                aPanicBreak = -maxAcceleration;
             }
 
             // Decelerate to target distance. Our speed doesn't matter anymore.
-            double aCorrectDistance = distanceDrift / reactionTime / reactionTime;
-            double aMatchSpeed = 2 * n->front->vRel / reactionTime;
+            float aCorrectDistance = distanceDrift / reactionTime / reactionTime;
+            float aMatchSpeed = 2 * n->front->vRel / reactionTime;
             exactAcceleration = aPanicBreak + aMatchSpeed + aCorrectDistance;
         }
     }
 
-//    a = (1 - exactCoef) * inertialAcceleration + exactCoef * exactAcceleration;
     a = exactAcceleration;
-
-    // Make it a little snappy
-//    if(std::abs(x) > 0.5) {
-//        a += sgn(a) * 1.0;
-//    }
 }
 
 bool RandomVehicle::canChangeLane(Target *front, Target *back) {
     if (front == nullptr || back == nullptr)
         return false;
 
-    double timeToFront = -front->dist / front->vRel;
-    if(timeToFront > 0 && timeToFront < reactionTime / 2) return false;
+    float timeToFront = -front->dist / front->vRel;
+    if (timeToFront > 0 && timeToFront < reactionTime / 2) return false;
 
-    double timeToBack = back->dist / back->vRel;
-    if(timeToBack > 0 && timeToBack < reactionTime / 2) return false;
+    float timeToBack = back->dist / back->vRel;
+    if (timeToBack > 0 && timeToBack < reactionTime / 2) return false;
 
     return !(std::abs(front->dist) < panicDistance * 2
              || std::abs(back->dist) < panicDistance * 2.5);
 }
 
 void RandomVehicle::decideAction() {
-    double decision = intActionDecider.uniform();
+    float decision = intActionDecider.uniform();
 
     if (decision < 25) {
         action = Action::change_lane_right;
     } else if (decision < 50) {
-        if(targetSpeed > 130/3.6) {
+        if (targetSpeed > 130 / 3.6) {
             action = Action::change_lane_left;
         } else {
             action = Action::change_lane_right;
@@ -158,17 +139,17 @@ RandomVehicle::RandomVehicle(const RandomVehicle &other) :
 }
 
 
-void RandomVehicle::step(double dt) {
+void RandomVehicle::step(float dt) {
     Vehicle::step(dt);
     timeUntilNextAction -= dt;
 }
 
-void RandomVehicle::setTargetSpeed(double targetSpeed) {
+void RandomVehicle::setTargetSpeed(float targetSpeed) {
     Vehicle::setTargetSpeed(targetSpeed);
     timeUntilNextAction = longActionPeriod.normal();
 }
 
-void RandomVehicle::setTargetDistance(double targetDistance) {
+void RandomVehicle::setTargetDistance(float targetDistance) {
     Vehicle::setTargetDistance(targetDistance);
     timeUntilNextAction = longActionPeriod.normal();
 }

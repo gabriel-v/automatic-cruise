@@ -52,7 +52,7 @@ public:
 
 class Vehicle {
 public:
-    Vehicle(LaneChangeObserver *highway, double lane);
+    Vehicle(LaneChangeObserver *highway, float lane);
 
     Vehicle(const Vehicle &orig);
 
@@ -60,22 +60,22 @@ public:
 
     virtual void think(const Neighbours *n);
 
-    virtual void step(double dt);
+    virtual void step(float dt);
 
     virtual bool operator<(const Vehicle &other);
 
 protected:
 
-    double x, v, a;
-    double targetSpeed;
-    double targetDistance;
-    double width, length;
+    float x, v, a;
+    float targetSpeed;
+    float targetDistance;
+    float width, length;
     LaneChangeObserver *highway;
-    double lane;
-    double panicDistance;
-    double reactionTime;
-    double terminalSpeed;
-    double maxAcceleration;
+    float lane;
+    float panicDistance;
+    float reactionTime;
+    float terminalSpeed;
+    float maxAcceleration;
 
     Action action;
 
@@ -84,27 +84,27 @@ protected:
     virtual bool canChangeLane(Target *front, Target *back) = 0;
 
 public:
-    double getTargetSpeed() const {
+    float getTargetSpeed() const {
         return targetSpeed;
     }
 
-    double getTargetDistance() const {
+    float getTargetDistance() const {
         return targetDistance;
     }
 
-    double getWidth() const {
+    float getWidth() const {
         return width;
     }
 
-    double getLength() const {
+    float getLength() const {
         return length;
     }
 
-    double getX() const {
+    float getX() const {
         return x;
     }
 
-    double getV() const {
+    float getV() const {
         return v;
     }
 
@@ -112,34 +112,29 @@ public:
         this->action = action;
     }
 
-    void setV(double v) {
+    void setV(float v) {
         this->v = v;
     }
 
-    virtual void setTargetSpeed(double targetSpeed) {
+    virtual void setTargetSpeed(float targetSpeed) {
         this->targetSpeed = targetSpeed;
     }
 
-    void setLane(double lane) {
+    void setLane(float lane) {
         this->lane = lane;
     }
 
-    double getLane() const {
+    float getLane() const {
         return lane;
     }
 
-    virtual void setTargetDistance(double targetDistance) {
+    virtual void setTargetDistance(float targetDistance) {
         this->targetDistance = targetDistance;
-    }
-
-
-    Action getAction() const {
-        return action;
     }
 };
 
 
-template <typename T>
+template<typename T>
 int sgn(T val) {
     return (T(0) < val) - (val < T(0));
 }

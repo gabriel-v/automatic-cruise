@@ -29,22 +29,20 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "Foliage2D.h"
-
-#include "Interval.h"
 
 #include <GLFW/glfw3.h>
-#include <iostream>
+#include "Foliage2D.h"
+#include "Interval.h"
 
-static const double POSITION_MAX = 170;
+static const float POSITION_MAX = 170;
 static const int N_FOLIAGES = 20;
-static Interval intGreen(0.3, 0.5);
-static Interval intRedBlue(0.12, 0.18);
+static Interval intGreen(0.3f, 0.5f);
+static Interval intRedBlue(0.12f, 0.18f);
 static Interval intPosition(-POSITION_MAX, POSITION_MAX);
 static Interval intHeight(-55, 55);
 
 
-FoliageTriangle::FoliageTriangle(double centerX, double ratio) {
+FoliageTriangle::FoliageTriangle(float centerX, float ratio) {
     g = intGreen.uniform();
     r = intRedBlue.uniform();
     b = intRedBlue.uniform();
@@ -54,28 +52,28 @@ FoliageTriangle::FoliageTriangle(double centerX, double ratio) {
         pos[2 * i + 1] = intHeight.uniform();
     }
 
-    dx = centerX  + intPosition.uniform() * (ratio+1)/ratio;
+    dx = centerX + intPosition.uniform() * (ratio + 1) / ratio;
 }
 
-void Foliage2D::draw(double centerX) {
+void Foliage2D::draw(float centerX) {
     glBegin(GL_TRIANGLES);
     for (FoliageTriangle *tr: triangles) {
-        if (tr->dx < centerX +  - POSITION_MAX / ratio - POSITION_MAX) {
-            tr->dx = centerX +  POSITION_MAX / ratio + intPosition.normal() + POSITION_MAX;
+        if (tr->dx < centerX + -POSITION_MAX / ratio - POSITION_MAX) {
+            tr->dx = centerX + POSITION_MAX / ratio + intPosition.normal() + POSITION_MAX;
         }
-        if(tr->dx > centerX + POSITION_MAX / ratio + POSITION_MAX) {
-            tr->dx = centerX -  POSITION_MAX / ratio + intPosition.normal() - POSITION_MAX;
+        if (tr->dx > centerX + POSITION_MAX / ratio + POSITION_MAX) {
+            tr->dx = centerX - POSITION_MAX / ratio + intPosition.normal() - POSITION_MAX;
         }
 
         glColor3d(tr->r, tr->g, tr->b);
         for (int i = 0; i < 3; i++) {
-            glVertex2d((-centerX + tr->pos[2 * i]/ratio +  tr->dx) * ratio, tr->pos[2 * i + 1]);
+            glVertex2d((-centerX + tr->pos[2 * i] / ratio + tr->dx) * ratio, tr->pos[2 * i + 1]);
         }
     }
     glEnd();
 }
 
-Foliage2D::Foliage2D(double ratio, double centerX) : ratio(ratio) {
+Foliage2D::Foliage2D(float ratio, float centerX) : ratio(ratio) {
     for (int i = 0; i < N_FOLIAGES; i++) {
         triangles.push_back(new FoliageTriangle(centerX, ratio));
     }

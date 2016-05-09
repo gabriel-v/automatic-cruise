@@ -40,27 +40,28 @@
 class Window2D : public Window {
 private:
 
-    void drawVehicle( Vehicle * const v);
+    void drawVehicle(Vehicle *const v);
 
-    void drawDash(double xMeters, double yScreen, double thickness);
+    void drawDash(float xMeters, float yScreen, float thickness);
 
-    void drawRect(double left, double right, double bottom, double top);
+    void drawRect(float left, float right, float bottom, float top);
 
 
     void markVehicle(const Vehicle *v, float red, float green, float blue);
 
-    std::pair<double, double> roadLimits();
+    std::pair<float, float> roadLimits();
 
     void drawVehicles(const std::deque<Vehicle *> vs);
 
-    double ratio;
-    double centerX;
+    float ratio;
+    float centerX;
 
     Foliage2D *foliage;
 
-    std::unordered_map<Vehicle*, GLuint> textureMap;
+    std::unordered_map<Vehicle *, GLuint> textureMap;
     std::vector<GLuint> textures;
-    void  initTextures();
+
+    void initTextures();
 
 protected:
 
@@ -73,8 +74,8 @@ protected:
     virtual Point roadToScreenCoordinates(Point roadCoords);
 
 
-    double maxLeft, maxRight;
-    double zoom;
+    float maxLeft, maxRight;
+    float zoom;
 
 public:
     virtual void draw(int width, int height);

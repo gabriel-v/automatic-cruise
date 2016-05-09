@@ -29,8 +29,8 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef LEC_ACC_CPP_ACCVEHICLE_H
-#define LEC_ACC_CPP_ACCVEHICLE_H
+#ifndef LEC_ACC_CPP_ACC_VEHICLE_H
+#define LEC_ACC_CPP_ACC_VEHICLE_H
 
 
 #include "RandomVehicle.h"
@@ -39,6 +39,7 @@ class ACCVehicle : public Vehicle {
 
 private:
     bool unsatisfied;
+
     bool shouldChangeLane(Target *front, Target *back);
 
 protected:
@@ -49,11 +50,11 @@ protected:
 
 public:
 
-    double unsatisfiedTime;
+    float unsatisfiedTime;
 
     virtual void think(const Neighbours *n) override;
 
-    virtual void step(double dt) override;
+    virtual void step(float dt) override;
 
     ACCVehicle(const Vehicle &x);
 };

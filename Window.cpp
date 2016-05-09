@@ -55,7 +55,7 @@ static void global_mouse_button_callback(GLFWwindow *window, int button, int act
     activeWindows[window]->presenter->mouse_button_callback(button, action, mods);
 }
 
-void Window::key_callback(int key, int scancode, int action, int mods) {
+void Window::key_callback(int key, int, int action, int) {
     if (action == GLFW_PRESS || action == GLFW_REPEAT) {
         switch (key) {
             case GLFW_KEY_Q:
@@ -121,19 +121,19 @@ Window::~Window() {
     glfwTerminate();
 }
 
-double Window::timeElapsed() {
-    return std::chrono::duration<double>(
+float Window::timeElapsed() {
+    return std::chrono::duration<float>(
             std::chrono::high_resolution_clock::now() - startTime
     ).count();
 }
 
 void Window::start() {
-    double last = timeElapsed() - 1.0 / 60.0;
+    float last = timeElapsed() - 1.0f / 60.0f;
 
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
-        double now = timeElapsed();
+        float now = timeElapsed();
 
         presenter->present(now - last);
 

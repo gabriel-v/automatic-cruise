@@ -42,7 +42,7 @@
 struct LaneChangeData {
     int from;
     int to;
-    double progress;
+    float progress;
     int direction;
     bool changed;
 };
@@ -55,17 +55,17 @@ public:
 
     virtual ~Highway();
 
-    void step(double dt);
+    void step(float dt);
 
     void notifyLaneChange(Vehicle *v, int direction);
 
     void stabilise();
 
-    void addVehicleAt(double X, double lane, double speed);
+    void addVehicleAt(float X, float lane, float speed);
 
-    void addVehicleInFrontOfPreferred(double speed);
+    void addVehicleInFrontOfPreferred(float speed);
 
-    void selectVehicleAt(double X, double lane);
+    void selectVehicleAt(float X, float lane);
 
     void unselectVehicle();
 
@@ -75,10 +75,10 @@ public:
 
     Vehicle *selectedVehicle = nullptr;
 
-    double preferredVehicleFrontDistance = 0;
+    float preferredVehicleFrontDistance = 0;
 
 private:
-    double lastTeleportTime = 0;
+    float lastTeleportTime = 0;
 
     std::map<Vehicle *, LaneChangeData> laneChangers;
 

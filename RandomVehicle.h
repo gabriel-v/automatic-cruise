@@ -43,22 +43,22 @@ public:
 
     virtual void think(const Neighbours *n) override;
 
-    virtual void step(double dt) override;
+    virtual void step(float dt) override;
 
-    RandomVehicle(LaneChangeObserver *highway, double x, double lane);
+    RandomVehicle(LaneChangeObserver *highway, float x, float lane);
 
     RandomVehicle(const RandomVehicle &orig);
 
     virtual ~RandomVehicle();
 
-    virtual void setTargetSpeed(double targetSpeed);
+    virtual void setTargetSpeed(float targetSpeed);
 
-    virtual void setTargetDistance(double targetDistance);
+    virtual void setTargetDistance(float targetDistance);
 
 
 protected:
 
-    double timeUntilNextAction;
+    float timeUntilNextAction;
 
     virtual void decideAcceleration(const Neighbours *n);
 
