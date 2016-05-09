@@ -31,40 +31,121 @@
  */
 #include "ACCVehicle.h"
 
-
 ACCVehicle::ACCVehicle(const Vehicle &x) : Vehicle(x) {
     // We're a supercar
-    terminalSpeed = 340 / 3.6;
-    maxAcceleration = 16.0;
+//    terminalSpeed = 340 / 3.6;
+//    maxAcceleration = 12.0;
+    unsatisfiedTime = 0.0;
 }
 
 void ACCVehicle::decideAcceleration(const Neighbours *n) {
-    double distCoef;
-    if (n->front != nullptr) {
-        distCoef = std::exp(-3 * (n->front->dist - targetDistance) / targetDistance);
-        a = distCoef / (distCoef + 1) * -2 * targetDistance / reactionTime / reactionTime
-            + 2 * n->front->vRel / reactionTime;
-        a += 1 / (distCoef + 1) * (targetSpeed - v) / reactionTime;
+    // positive -- we have space; negative -- we're too close
+    double distanceDrift = n->front->dist - targetDistance;
 
-        a -= std::exp(7.5 * (panicDistance - n->front->dist));
+    // positive -- we're going too fast; negative -- we're too slow
+    double speedDrift = v - targetSpeed;
+
+    if(n->front == nullptr){
+        // No one in sight -- smoothly coast to target speed
+        a = - speedDrift / reactionTime;
+        unsatisfied = false;
     } else {
-        a = (targetSpeed - v) / reactionTime;
+        // We may have a car in front
+        if(distanceDrift > 0) {
+            // Time until we reach the target distance
+            double reachTime = - distanceDrift / n->front->vRel;
+            if(reachTime <= 0.0) {
+                // We will never reach the car in front
+                reachTime = 1e10;
+            }
+
+            reachTime += 0.02;
+
+            // Match the front car's speed within reachTime
+            double aCorrectRelativeSpeed = n->front->vRel / reachTime;
+
+            // Gets us to the target speed within reactionTime
+            double aCorrectSpeed = - speedDrift / reactionTime;
+
+            a = aCorrectSpeed + aCorrectRelativeSpeed;
+
+            // We think about overtaking if we'll reach target distance within
+            // 2 * reactionTime or if we're right at that distance
+            unsatisfied = reachTime < reactionTime * 2 or std::abs(distanceDrift) < 1.0;
+
+
+        } else {
+            // Apply panic break if needed
+            double aPanicBreak = 0;
+            if(-distanceDrift > panicDistance) {
+                aPanicBreak = - maxAcceleration;
+            }
+
+            // Decelerate to target distance. Our target speed doesn't matter anymore.
+            double aCorrectDistance = distanceDrift / reactionTime / reactionTime;
+            double aMatchSpeed = 2 * n->front->vRel / reactionTime;
+            a = aPanicBreak + aMatchSpeed + aCorrectDistance;
+
+            unsatisfied = true;
+        }
     }
+
+    // Make it a little snappy
+    if(std::abs(x) > 0.5) {
+        a += sgn(a) * 1.0;
+    }
+
+}
+
+bool ACCVehicle::shouldChangeLane(Target *front, Target *back) {
+    if(!canChangeLane(front, back)){
+        return false;
+    }
+
+    // Front vehicle is too close
+    if( front->dist < targetDistance * 0.5 + panicDistance) {
+        return false;
+    }
+
+//    double avgSpeed = (v + targetSpeed) / 2;
+//    double newRelativeSpeed = front->vRel + v - avgSpeed;
+    double reachTime = front->dist / front->vRel;
+
+    if(reachTime < 0.0) reachTime = 1e10;
+
+    return reachTime > reactionTime && front->vRel > -targetSpeed/20;
 }
 
 bool ACCVehicle::canChangeLane(Target *front, Target *back) {
-    if (front == nullptr || back == nullptr)
+    if (front == nullptr || back == nullptr){
         return false;
+    }
 
-    return !(std::abs(front->dist) < panicDistance * 3
-             || std::abs(back->dist) < panicDistance * 3);
+    return !(std::abs(front->dist) < panicDistance * 2
+             || std::abs(back->dist) < panicDistance * 2);
 }
 
 
 void ACCVehicle::think(const Neighbours *n) {
+    if(unsatisfiedTime > reactionTime) {
+        if(shouldChangeLane(n->frontLeft, n->backLeft)) {
+            action = Action::change_lane_left;
+            unsatisfiedTime = 0.0;
+        } else if(shouldChangeLane(n->frontRight, n->backRight)) {
+            action = Action::change_lane_right;
+            unsatisfiedTime = 0.0;
+        }
+    }
+
     Vehicle::think(n);
 }
 
 void ACCVehicle::step(double dt) {
     Vehicle::step(dt);
+
+    if(unsatisfied) {
+        unsatisfiedTime += dt;
+    } else {
+        unsatisfiedTime = std::max(unsatisfiedTime / 2.0, 0.0);
+    }
 }

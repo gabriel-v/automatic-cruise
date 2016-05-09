@@ -37,8 +37,9 @@
 
 class ACCVehicle : public Vehicle {
 
-public:
-    ACCVehicle(const Vehicle &x);
+private:
+    bool unsatisfied;
+    bool shouldChangeLane(Target *front, Target *back);
 
 protected:
 
@@ -47,9 +48,14 @@ protected:
     virtual bool canChangeLane(Target *front, Target *back);
 
 public:
+
+    double unsatisfiedTime;
+
     virtual void think(const Neighbours *n) override;
 
     virtual void step(double dt) override;
+
+    ACCVehicle(const Vehicle &x);
 };
 
 

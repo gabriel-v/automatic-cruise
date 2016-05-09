@@ -42,7 +42,7 @@ private:
 
     void drawVehicle( Vehicle * const v);
 
-    void drawDash(double xMeters, double yScreen);
+    void drawDash(double xMeters, double yScreen, double thickness);
 
     void drawRect(double left, double right, double bottom, double top);
 

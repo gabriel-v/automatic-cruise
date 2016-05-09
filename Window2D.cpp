@@ -39,7 +39,7 @@
 #include "Window2D.h"
 #include "Interval.h"
 
-const int GUIDE_LENGTH = 10;
+const int GUIDE_LENGTH = 8;
 const int N_TEXTURES = 7;
 static Interval one(0, 1);
 
@@ -58,11 +58,9 @@ std::pair<double, double> Window2D::roadLimits() {
 
 void Window2D::drawVehicle(Vehicle * const v) {
     Point center = roadToScreenCoordinates(Point(v->getX(), v->getLane()));
-//    glColor3d(v->getR(), v->getG(), v->getB());
     auto find = textureMap.find(v);
     if(find == textureMap.end()) {
         textureMap[v] = textures[(int)(one.uniform() * N_TEXTURES)];
-        std::cout << "Adding car" << std::endl;
     }
 
     glBindTexture(GL_TEXTURE_2D, textureMap.at(v));
@@ -115,14 +113,14 @@ void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
     }
 }
 
-void Window2D::drawDash(double xMeters, double lane) {
+void Window2D::drawDash(double xMeters, double lane, double thickness) {
     xMeters = int((xMeters) / GUIDE_LENGTH) * GUIDE_LENGTH;
     Point center = roadToScreenCoordinates(Point(xMeters - lane * lane * 3, lane));
 
     double step = ratio * GUIDE_LENGTH;
 
     for (double x = center.x + maxLeft; x < maxRight; x += step) {
-        drawRect(x, x + step / 2, center.y - 0.03, center.y + 0.03);
+        drawRect(x, x + step / 2, center.y - thickness/2, center.y + thickness/2);
     }
 }
 
@@ -147,11 +145,12 @@ void Window2D::draw(int width, int height) {
         drawRect(maxLeft, maxRight, -1, 1);
 
         glColor3f(0.9, 0.9, 0.9);
-        drawRect(maxLeft, maxRight, 0.93, 0.99);
-        drawRect(maxLeft, maxRight, -0.99, -0.93);
+        double thickness = 0.08 / highway.lanes.size();
+        drawRect(maxLeft, maxRight, 0.99 - thickness, 0.99);
+        drawRect(maxLeft, maxRight, -0.99, -0.99 + thickness);
 
         for (uint i = 0; i < highway.lanes.size() - 1; i++) {
-            drawDash(centerX, i + 0.5);
+            drawDash(centerX, i + 0.5, thickness);
         }
 
         glColor3f(0.7, 0.3, 0.1);

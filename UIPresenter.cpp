@@ -33,6 +33,7 @@
 #include <sstream>
 #include "UIPresenter.h"
 #include "imgui_impl_glfw.h"
+#include "ACCVehicle.h"
 
 static const double RESET_TIMEOUT = 5.5;
 static Interval coin(0, 1);
@@ -136,7 +137,7 @@ void UIPresenter::commandView() {
     ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 
-    ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 10.0f, 250.0f, "%.0f");
+    ImGui::SliderFloat("ACC target speed", &accTargetSpeed, 10.0f, 350.0f, "%.0f");
     ImGui::SliderFloat("ACC target distance", &accTargetDistance, 20.0f, 150.0f, "%.0f");
 
 
@@ -212,6 +213,21 @@ void UIPresenter::statsView() {
     } else {
         ImGui::Text("ACC Distance to next vehicle: %.0f meters", highway.preferredVehicleFrontDistance);
     }
+
+    std::string action;
+    switch(highway.preferredVehicle->getAction()) {
+        case Action::none:
+            action = "none";
+            break;
+        case Action::change_lane_left:
+            action = "go left";
+            break;
+        case Action::change_lane_right:
+            action = "go right";
+            break;
+    }
+
+    ImGui::Text("Action %s. Unsatistisfied score: %.1f", action.c_str(), ((ACCVehicle*)highway.preferredVehicle)->unsatisfiedTime);
 
     ImGui::End();
 }

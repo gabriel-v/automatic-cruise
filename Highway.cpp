@@ -39,13 +39,13 @@
 
 const int N_LANES = 3;
 const double MAX_DELTA_X = 165, MIN_DELTA_X = 65;
-const int N_VEHICLES_PER_LANE = 50;
+const int N_VEHICLES_PER_LANE = 40;
 const double TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5;
 const double TELEPORT_INTERVAL = 7.0;
 
-const double MAX_VIEW_DISTANCE = 100.0;
+const double MAX_VIEW_DISTANCE = 200.0;
 
-const int STABILISE_STEPS = 800;
+const int STABILISE_STEPS = 2200;
 const double STABILISE_DT = 1.0 / 60.0;
 
 Interval deltaX(MIN_DELTA_X, MAX_DELTA_X); // m
@@ -71,7 +71,6 @@ Highway::Highway() : preferredVehicle(nullptr), lastTeleportTime(0) {
     delete preferredVehicle;
 
     preferredVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2];
-//    selectedVehicle = lanes[N_LANES / 2]->vehicles[N_VEHICLES_PER_LANE / 2 + 1];
 }
 
 Highway::Highway(const Highway &orig) :
@@ -129,6 +128,7 @@ void Highway::teleportVehicles() {
 
 Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
     Target *t = new Target();
+    // If the target is in front, make the distance positive
     if (targ->getX() > current->getX()) {
         t->dist = (targ->getX() - targ->getLength() / 2) - (current->getX() + current->getLength() / 2);
     } else {
@@ -145,7 +145,6 @@ Target *Highway::target(const Vehicle *current, const Vehicle *targ) {
 }
 
 void Highway::sort() {
-
     for (Lane *l: lanes) {
         std::sort(l->vehicles.begin(), l->vehicles.end(),
                   [](const Vehicle *a, const Vehicle *b) {
@@ -160,13 +159,9 @@ void Highway::step(double dt) {
     if (lastTeleportTime > TELEPORT_INTERVAL) {
         teleportVehicles();
         lastTeleportTime -= TELEPORT_INTERVAL;
-        shouldSort = true;
     }
 
-    if (shouldSort) {
-        shouldSort = false;
-        sort();
-    }
+    sort();
 
     std::map<Vehicle *, Neighbours *> links;
     std::vector<std::deque<Vehicle *>::iterator> iters;
@@ -248,14 +243,13 @@ void Highway::step(double dt) {
             auto it = lanes[data.from]->vehicles.begin();
             while (it != lanes[data.from]->vehicles.end() && *it != v) ++it;
             lanes[data.from]->vehicles.erase(it);
-
-            shouldSort = true;
         }
 
         data.progress += dt;
         v->setLane(data.from + data.progress * data.direction);
 
         if (data.progress >= 1) {
+            v->setLane(std::round(v->getLane()));
             i = laneChangers.erase(i);
         } else {
             ++i;
@@ -271,8 +265,17 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
     data.to = data.from + direction;
     data.changed = false;
 
-    if (data.to < 0) return;
-    if (data.to >= (int) lanes.size()) return;
+    if (data.to < 0) {
+        return;
+    }
+
+    if (data.to >= (int) lanes.size()) {
+        return;
+    }
+
+    if(laneChangers.find(v) != laneChangers.end()) {
+        return;
+    }
 
     data.progress = 0;
     laneChangers[v] = data;
@@ -280,9 +283,11 @@ void Highway::notifyLaneChange(Vehicle *v, int direction) {
 
 
 void Highway::stabilise() {
+    preferredVehicle->setTargetSpeed(300 / 3.6);
     for (int i = 0; i < STABILISE_STEPS; i++) {
         step(STABILISE_DT);
     }
+    preferredVehicle->setTargetSpeed(130 / 3.6);
 }
 
 
@@ -294,18 +299,20 @@ void Highway::addVehicleAt(double X, double lane, double speed) {
     while (it != end && (*it)->getX() < X) {
         ++it;
     }
+
     if (it == end) {
         X = lanes[l]->vehicles.back()->getX() + deltaX.uniform();
     } else {
+        if((*it)->getX() - (*(it - 1))->getX() < MIN_DELTA_X / 3) {
+            return;
+        }
         X = ((*it)->getX() + (*(it - 1))->getX()) / 2;
     }
 
     Vehicle *v = new RandomVehicle(this, X, lane);
-    //v->setV(((*it)->getV() + (*(it - 1))->getV()) / 2);
     v->setV(speed);
     v->setTargetSpeed(speed);
     lanes[l]->vehicles.insert(it, v);
-
 }
 
 void Highway::addVehicleInFrontOfPreferred(double speed) {

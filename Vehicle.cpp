@@ -33,17 +33,17 @@
 #include "Vehicle.h"
 
 static Interval intSpeed(90 / 3.6, 240 / 3.6); // m / s
-static Interval intWidth(4.0, 4.4);
-static Interval intLength(6.9, 8.7);
-static Interval intTargetDistance(35, 70);
+static Interval intWidth(3.0, 3.2);
+static Interval intLength(5.5, 6.9);
+static Interval intTargetDistance(50, 90);
 static Interval intReactionTime(2.6, 4.6);
-static Interval intTerminalSpeed(180 / 3.6, 350 / 3.6);
-static Interval intMaximumAcceleration(8.0, 16.0);
+static Interval intTerminalSpeed(160 / 3.6, 300 / 3.6);
+static Interval intMaximumAcceleration(7.0, 12.0);
 
 
-const double PANIC_DISTANCE = 12.0;
+const double PANIC_DISTANCE = 10.0;
 
-const double MIN_A = -19;
+const double MIN_A = -16;
 
 Vehicle::Vehicle(LaneChangeObserver *highway, double lane) : highway(highway), lane(lane) {
     x = a = v = 0;
@@ -80,8 +80,16 @@ bool Vehicle::operator<(const Vehicle &other) {
 
 void Vehicle::step(double dt) {
     double MAX_A = maxAcceleration * (1.0 - v / terminalSpeed);
+    if(std::abs(lane - std::round(lane)) > 0.02) {
+        // We're during overtaking. We should limit
+        // the acceleration to a moderate value
+        MAX_A /= 6.0;
+    }
+
+    // Clamp desired acceleration to max values
     if (a < MIN_A) a = MIN_A;
     if (a > MAX_A) a = MAX_A;
+
     v += dt * a;
     if (v < 0) v = 0;
     x += dt * v;

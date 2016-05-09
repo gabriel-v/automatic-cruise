@@ -131,7 +131,18 @@ public:
     virtual void setTargetDistance(double targetDistance) {
         this->targetDistance = targetDistance;
     }
+
+
+    Action getAction() const {
+        return action;
+    }
 };
+
+
+template <typename T>
+int sgn(T val) {
+    return (T(0) < val) - (val < T(0));
+}
 
 #endif /* VEHICLE_H */
 

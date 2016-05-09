@@ -80,8 +80,6 @@ public:
 private:
     double lastTeleportTime = 0;
 
-    bool shouldSort = false;
-
     std::map<Vehicle *, LaneChangeData> laneChangers;
 
     void teleportVehicles();
