@@ -37,6 +37,10 @@
 #include <string>
 #include "Highway.h"
 
+/**
+ * 2D point, uses floats.
+ * I got lazy using std::pair<float, float> so I wrote this.
+ */
 struct Point {
     float x;
     float y;
@@ -48,16 +52,24 @@ struct Point {
     Point(float x, float y) : x(x), y(y) { }
 };
 
+/**
+ * Interface for the Window.
+ */
 class ScreenMapper {
 public:
     virtual Point pixelToRoadCoordinates(Point pixelCoords) = 0;
 
-//    virtual Point roadToScreenCoordinates(Point roadCoords) = 0;
+    virtual Point roadToScreenCoordinates(Point roadCoords) = 0;
+
     virtual void zoomIn() = 0;
 
     virtual void zoomOut() = 0;
 };
 
+/**
+ * Handles the User Interface, using ImGui.
+ * This is coupled with GLFW3, because of ImGui_Init.
+ */
 class UIPresenter {
 protected:
     Highway &highway;

@@ -35,10 +35,18 @@
 
 #include "Vehicle.h"
 
-
+/**
+ * Vehicles with random actions.
+ * Will change lane, speed and distance once in a while.
+ * Can be ordered to change lane, speed or distance, and will hold onto those values
+ * for a longer time, so the user can see the effect.
+ */
 class RandomVehicle : public Vehicle {
 public:
 
+    /**
+     * Override that sets a timeout on RandomVehicle::timeUntilNextAction
+     */
     virtual void setAction(Action action) override;
 
     virtual void think(const Neighbours *n) override;
@@ -51,20 +59,31 @@ public:
 
     virtual ~RandomVehicle();
 
-    virtual void setTargetSpeed(float targetSpeed);
-
-    virtual void setTargetDistance(float targetDistance);
+    /**
+     * Override that sets a timeout on RandomVehicle::timeUntilNextAction
+     */
+    virtual void setTargetSpeed(float targetSpeed) override;
+    /**
+     * Override that sets a timeout on RandomVehicle::timeUntilNextAction
+     */
+    virtual void setTargetDistance(float targetDistance) override;
 
 
 protected:
 
+    /**
+     * Time until the vehicle does another random thing.
+     */
     float timeUntilNextAction;
 
-    virtual void decideAcceleration(const Neighbours *n);
+    virtual void decideAcceleration(const Neighbours *n) override;
 
+    /**
+     * Randomly selects an action to perform.
+     */
     void decideAction();
 
-    virtual bool canChangeLane(Target *front, Target *back);
+    virtual bool canChangeLane(Target *front, Target *back) override;
 };
 
 

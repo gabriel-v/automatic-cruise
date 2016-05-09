@@ -45,6 +45,9 @@ enum class Action {
 
 class Vehicle;
 
+/**
+ * Observer callback for the highway.
+ */
 class LaneChangeObserver {
 public:
     virtual void notifyLaneChange(Vehicle *v, int direction) = 0;
@@ -58,29 +61,95 @@ public:
 
     virtual ~Vehicle();
 
+    /**
+     * Decide actions based on the neighbours and on internal state.
+     */
     virtual void think(const Neighbours *n);
 
+    /**
+     * Advance the car's state using euler integration.
+     */
     virtual void step(float dt);
 
+    /**
+     * Compares X coordinates. Used for sorting.
+     */
     virtual bool operator<(const Vehicle &other);
 
 protected:
 
-    float x, v, a;
+    /**
+     * Position on the road.
+     */
+    float x;
+    /**
+     * Speed, in m/s.
+     */
+    float v;
+    /**
+     * Acceleration, in m/s^2.
+     */
+    float a;
+    /**
+     * The speed this car is trying to keep.
+     */
     float targetSpeed;
+    /**
+     * The desired minimum distance to the next vehicle.
+     */
     float targetDistance;
-    float width, length;
+    /**
+     * Vehicle width, in meters.
+     */
+    float width;
+    /**
+     * Vehicle height, in meters.
+     */
+    float length;
+    /**
+     * The object that is notified when the vehicle wants to change lane.
+     */
     LaneChangeObserver *highway;
+    /**
+     * The current lane. Has non-int values when it's currently changing lanes.
+     */
     float lane;
+    /**
+     * Distance to the front when maximum breaking is applied.
+     * lane = 0 is the rightmost position.
+     */
     float panicDistance;
+    /**
+     * A parameter used to estimate time values.
+     */
     float reactionTime;
+    /**
+     * The maximum speed this vehicle can reach.
+     */
     float terminalSpeed;
+    /**
+     * The maximum acceleration this vehicle can reach.
+     * Maximum acceleration decreases linearly with speed.
+     *
+     */
     float maxAcceleration;
 
+    /**
+     * Next desired action.
+     * This field is changed to request a lane change.
+     */
     Action action;
 
+    /**
+     * Decides what acceleration this vehicle will try to apply.
+     */
     virtual void decideAcceleration(const Neighbours *n) = 0;
 
+    /**
+     * Decides if the vehicle can change lane.
+     * @param front The vehicle in front of this one, on the target lane.
+     * @param back The vehicle in the back of this one, on the target lane.
+     */
     virtual bool canChangeLane(Target *front, Target *back) = 0;
 
 public:
@@ -133,7 +202,10 @@ public:
     }
 };
 
-
+/**
+ * Shortcut for some algebra.
+ * Should't really be in this module.
+ */
 template<typename T>
 int sgn(T val) {
     return (T(0) < val) - (val < T(0));

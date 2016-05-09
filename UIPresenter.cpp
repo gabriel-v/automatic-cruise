@@ -30,12 +30,24 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @file UIPresenter.cpp
+ * @brief Coordinates between ImGUI and app logic
+ */
+
 #include <imgui.h>
 #include <sstream>
 #include "UIPresenter.h"
 #include "imgui_impl_glfw.h"
 
+/**
+ * Timeout for status messages, like "click on a vehicle".
+ */
 static const float RESET_TIMEOUT = 5.5;
+
+/**
+ * Selects left or right, for the "random change lane" button.
+ */
 static Interval coin(0, 1);
 
 UIPresenter::UIPresenter(Highway &highway, GLFWwindow *window, ScreenMapper *screenMapper) :
@@ -50,13 +62,17 @@ UIPresenter::UIPresenter(const UIPresenter &orig) :
         highway(orig.highway),
         window(orig.window),
         screenMapper(orig.screenMapper) {
-
 }
 
 UIPresenter::~UIPresenter() {
     ImGui_ImplGlfw_Shutdown();
 }
 
+/**
+ * Builds the ImGui interface.
+ * Should be called as soon as possible into the loop.
+ * @param dt Time elapsed since last calling. Used for state timeout
+ */
 void UIPresenter::present(float dt) {
     ImGui_ImplGlfw_NewFrame();
 
@@ -88,10 +104,18 @@ void UIPresenter::present(float dt) {
         ImGui::ShowTestWindow(&showDemoView);
 }
 
+/**
+ * Redirects key callbacks to ImGui.
+ * Application logic may be implemented here.
+ */
 void UIPresenter::key_callback(int key, int scancode, int action, int mods) {
     ImGui_ImplGlFw_KeyCallback(window, key, scancode, action, mods);
 }
 
+/**
+ * Mouse button logic goes in here.
+ * Controls application logic: vehicle selection, vehicle placement.
+ */
 void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
 
@@ -129,11 +153,17 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
         resetState();
 }
 
+/**
+ * Renders the UI onto the screen.
+ * Calls ImGui::Render()
+ */
 void UIPresenter::render() {
     ImGui::Render();
 }
 
-
+/**
+ * Main command view, controls the ACC and the simulation.
+ */
 void UIPresenter::commandView() {
     ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
@@ -153,10 +183,10 @@ void UIPresenter::commandView() {
     if (ImGui::Button("Zoom Out")) {
         screenMapper->zoomOut();
     }
-    ImGui::SameLine();
+   /* ImGui::SameLine();
     if (ImGui::Button("ImGui Demo")) {
         showDemoView ^= 1;
-    }
+    } */
 
     ImGui::Text("ACC: Change lane ");
     ImGui::SameLine();
@@ -203,6 +233,9 @@ void UIPresenter::commandView() {
     ImGui::End();
 }
 
+/**
+ * Shows stats, like FPS, ACC speed/distance.
+ */
 void UIPresenter::statsView() {
     ImGui::SetNextWindowPos(ImVec2(450, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Statistics", &showStatsView, ImGuiWindowFlags_AlwaysAutoResize);
@@ -218,18 +251,27 @@ void UIPresenter::statsView() {
     ImGui::End();
 }
 
-
+/**
+ * Sets the state string and resets the timeout.
+ */
 void UIPresenter::setState(std::string statusString) {
     status = statusString;
     timeToStateReset = RESET_TIMEOUT;
 }
 
+/**
+ * Resets the timer and the status to 'OK'.
+ * Forgets any past state.
+ */
 void UIPresenter::resetState() {
     status = "OK.";
     timeToStateReset = RESET_TIMEOUT;
     waitingForVehiclePlacement = false;
 }
 
+/**
+ * View with knobs and switches for the random vehicle that the user selects.
+ */
 void UIPresenter::showRandomVehicleView() {
     ImGui::SetNextWindowPos(ImVec2(450, 100), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Selected vehicle", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
@@ -263,9 +305,6 @@ void UIPresenter::showRandomVehicleView() {
             highway.selectedVehicle->setAction(Action::change_lane_left);
         }
     }
-
-
     ImGui::Text("Speed: %.0f km/h", highway.selectedVehicle->getV() * 3.6f);
-
     ImGui::End();
 }

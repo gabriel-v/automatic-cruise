@@ -30,9 +30,14 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @file Vehicle.cpp
+ * Implements this really brittle abstract class.
+ */
+
 #include "Vehicle.h"
 
-static Interval intSpeed(90 / 3.6f, 240 / 3.6f); // m / s
+static Interval intSpeed(90 / 3.6f, 240 / 3.6f);
 static Interval intWidth(3.0, 3.2);
 static Interval intLength(5.5, 6.9);
 static Interval intTargetDistance(50, 90);

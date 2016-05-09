@@ -65,26 +65,25 @@ private:
 
 protected:
 
-    virtual void zoomIn();
+    virtual void zoomIn() override;
 
-    virtual void zoomOut();
+    virtual void zoomOut() override;
 
-    virtual Point pixelToRoadCoordinates(Point pixelCoords);
+    virtual Point pixelToRoadCoordinates(Point pixelCoords) override;
 
-    virtual Point roadToScreenCoordinates(Point roadCoords);
+    virtual Point roadToScreenCoordinates(Point roadCoords) override;
 
 
-    float maxLeft, maxRight;
+    float maxLeft;
+    float maxRight;
     float zoom;
 
 public:
-    virtual void draw(int width, int height);
+    virtual void draw(int width, int height) override;
 
     Window2D(Highway &highway);
 
-    virtual ~Window2D();
-
-
+    virtual ~Window2D() override;
 };
 
 

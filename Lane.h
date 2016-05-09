@@ -36,8 +36,11 @@
 #include <deque>
 #include "Vehicle.h"
 
+/**
+ * Proxy for the deque.
+ * Practically useless.
+ */
 class Lane {
-
 public:
     Lane();
 
@@ -46,7 +49,6 @@ public:
     virtual ~Lane();
 
     std::deque<Vehicle *> vehicles;
-
 };
 
 #endif /* LANE_H */

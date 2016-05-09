@@ -35,6 +35,9 @@
 
 #include "Target.h"
 
+/**
+ * Contains the data for a vehicle's neighbours on the highway.
+ */
 struct Neighbours {
 public:
     Neighbours();

@@ -38,7 +38,9 @@
 #include "Lane.h"
 #include "Vehicle.h"
 
-
+/**
+ * Data kept for each vehicle currently chaing lane.
+ */
 struct LaneChangeData {
     int from;
     int to;
@@ -47,6 +49,10 @@ struct LaneChangeData {
     bool changed;
 };
 
+/**
+ * The one-way highway, with all it's algorithms.
+ * This is basically our simulation driver.
+ */
 class Highway : public LaneChangeObserver {
 public:
     Highway();
@@ -55,39 +61,89 @@ public:
 
     virtual ~Highway();
 
+    /**
+     * Steps all the vehicles and calls Vehicle::think
+     */
     void step(float dt);
 
+    /**
+     * Register the request for a vehicle to change lane.
+     */
     void notifyLaneChange(Vehicle *v, int direction);
 
+    /**
+     * Run a number of steps to stabilise the system.
+     */
     void stabilise();
 
+    /**
+     * Adds random vehicle at that approximate road coordinate.
+     */
     void addVehicleAt(float X, float lane, float speed);
 
+    /**
+     * Adds random vehicle in front of the ACC.
+     */
     void addVehicleInFrontOfPreferred(float speed);
 
+    /**
+     * Tries to select a vehicle at given road coordinate.
+     * If succeeded, will set the Highway::selectedVehicle pointer.
+     */
     void selectVehicleAt(float X, float lane);
 
+    /**
+     * Tries to select a vehicle at given road coordinate.
+     * Unsets the Highway::selectedVehicle pointer.
+     */
     void unselectVehicle();
 
+    /**
+     * The lanes of our highway. All point to the right.
+     */
     std::vector<Lane *> lanes;
 
+    /**
+     * Pointer to the vehicle that will be tracked by the camera, the ACC.
+     */
     Vehicle *preferredVehicle = nullptr;
 
+    /**
+     * The vehicle selected by the user, if any.
+     */
     Vehicle *selectedVehicle = nullptr;
 
+    /**
+     * The distance from the ACC to the next vehicle is stored in this field.
+     */
     float preferredVehicleFrontDistance = 0;
 
 private:
+    /**
+     * Time elapsed since last teleport.
+     */
     float lastTeleportTime = 0;
 
+    /**
+     * Stores the vehicles that are currently chaning lane.
+     */
     std::map<Vehicle *, LaneChangeData> laneChangers;
 
+    /**
+     * Moves the vehicles too far to the back at the front of our column, and the other way around.
+     * This is a trick to reuse resources.
+     */
     void teleportVehicles();
 
+    /**
+     * Helper function, returns a Target object.
+     */
     Target *target(const Vehicle *current, const Vehicle *targ);
 
+    /**
+     * Sorts the vehicles on all the lanes, after their X coordinate.
+     */
     void sort();
-
 };
 
 #endif /* HIGHWAY_H */

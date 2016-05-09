@@ -33,24 +33,38 @@
 #define LEC_ACC_CPP_ACC_VEHICLE_H
 
 
-#include "RandomVehicle.h"
+#include "Vehicle.h"
 
+/**
+ * A vehicle fitted with our adaptive cruise control system.
+ */
 class ACCVehicle : public Vehicle {
 
 private:
+    /**
+     * Marks if the vehicle is currently slowed down by traffic.
+     */
     bool unsatisfied;
 
+    /**
+     * Marks for how long the vehicle has been slowed down by traffic.
+     */
+    float unsatisfiedTime;
+
+    /**
+     * Checks if changing lane is a good tactic.
+     */
     bool shouldChangeLane(Target *front, Target *back);
 
 protected:
+    /**
+     * Implementation of the cruise control algorithm.
+     */
+    virtual void decideAcceleration(const Neighbours *n) override;
 
-    virtual void decideAcceleration(const Neighbours *n);
-
-    virtual bool canChangeLane(Target *front, Target *back);
+    virtual bool canChangeLane(Target *front, Target *back) override;
 
 public:
-
-    float unsatisfiedTime;
 
     virtual void think(const Neighbours *n) override;
 

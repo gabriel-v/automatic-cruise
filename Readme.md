@@ -4,10 +4,11 @@
 
 ## Team: Kernel Panic Blues
 
-- Gabriel Vîjială -- Mainly responsible of the UI and the UDOO's general well-being.
-- Ştefan Teodorescu -- Mainly responsible of the simulation and the code's general well-being.
+- Gabriel Vîjială
+- Ştefan Teodorescu
 
-We're students of the Faculty of Automatic Control and Computers, Politehnica University of Bucharest. 
+We're students of the Faculty of Automatic Control and Computers,
+Politehnica University of Bucharest.
 First year of study.
 
 
@@ -31,16 +32,15 @@ licenced under BSD-3.
 -------------------------------------------------------------------------------------------------------
 ### Milestone 0: The setup
 
-- Downloaded `UDOObuntu 2 RC1 (Ubuntu 14.04)` from [http://www.udoo.org/downloads/](udoo.org/downloads)
-- Wrote it on the SD card using `dd`
-- Connected the touchscreen, modified the boot parameters to display everything on it
-- Ran a number of demos on the UDOO to see what it really supports
-- Settled on C++11, GLFW3 and OpenGL 2
-
+- Downloaded `UDOObuntu 2 RC1 (Ubuntu 14.04)` from [http://www.udoo.org/downloads/](udoo.org/downloads).
+- Wrote it on the SD card using `dd`.
+- Connected the touchscreen, modified the boot parameters to display everything on it.
+- Ran a number of demos on the UDOO to see what it really supports.
+- Settled on C++11, GLFW3 and OpenGL 2.
 
 -------------------------------------------------------------------------------------------------------
 
-### Milestone 1: A graphical simulation of the road and the traffic (April 14th)
+### Milestone 1: A graphical simulation of the road and the traffic
 
 Milestone statement:
 
@@ -127,8 +127,11 @@ Code: the `ACCVehicle` class
 
 ### Milestone 4: Project completion
 
-TODO: automated testing, parameter optimisation
-TODO: documentation
+The documentation is compiled using Doxygen.
+I'll host it (and any videos we may have by then) on one of my sites before the presentation.
+
+TODO: automated testing, parameter optimisation, with genetic algorithm?
+TODO: convert videos to webm
 
 -------------------------------------------------------------------------------------------------------
 

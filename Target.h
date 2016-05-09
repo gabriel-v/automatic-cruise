@@ -33,7 +33,9 @@
 #ifndef LEC_ACC_CPP_TARGET_H
 #define LEC_ACC_CPP_TARGET_H
 
-
+/**
+ * Contains distance and relative speed.
+ */
 struct Target {
     float vRel;
     float dist;

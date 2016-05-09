@@ -34,6 +34,9 @@
 
 #include <vector>
 
+/**
+ * A single triangle in the foliage set.
+ */
 struct FoliageTriangle {
     float r, g, b;
     float pos[6];
@@ -42,6 +45,10 @@ struct FoliageTriangle {
     FoliageTriangle(float centerX, float ratio);
 };
 
+/**
+ * Draws a set of green triangles on the screen.
+ * Aesthetic reasons.
+ */
 class Foliage2D {
 public:
     void draw(float centerX);

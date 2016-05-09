@@ -34,14 +34,17 @@
 #define LEC_ACC_CPP_INTERVAL_H
 
 #include <random>
-
+/**
+ * Float interval that can be sampled.
+ */
 class Interval {
 private:
     std::random_device r;
     std::mt19937 e1;
     std::uniform_real_distribution<float> uniform_dist;
     std::normal_distribution<float> normal_dist;
-    float min, max;
+    float min;
+    float max;
 
     template<typename T>
     T clip(const T &n, const T &lower, const T &upper) {
@@ -52,13 +55,20 @@ public:
     Interval(float min, float max) : min(min), max(max) {
         e1 = std::mt19937(r());
         uniform_dist = std::uniform_real_distribution<float>(min, max);
-        normal_dist = std::normal_distribution<float>((min + max) / 2, (max - min) / 4);
+        normal_dist = std::normal_distribution<float>((min + max) / 2, (max - min) / 6);
     }
 
+    /**
+     * Samples the uniform random distribution.
+     */
     float uniform() {
         return uniform_dist(e1);
     }
 
+    /**
+     * Samples the normal random distribution.
+     * Mean is (min+max)/2, and max-min is 6 sigma.
+     */
     float normal() {
         return clip(normal_dist(e1), min, max);
     }
