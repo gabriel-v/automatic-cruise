@@ -127,7 +127,7 @@ Code: the `ACCVehicle` class
 
 ### Milestone 4: Project completion
 
-The documentation is compiled using Doxygen. It's available on [alt-f4.ro/acc](alt-f4.ro).
+The documentation is compiled using Doxygen. It's available on [acc.alt-f4.ro](acc.alt-f4.ro).
 
 TODO: auto testing
 

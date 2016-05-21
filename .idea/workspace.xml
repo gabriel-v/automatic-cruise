@@ -48,19 +48,10 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="Added docs.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/prooj.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Doxyfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/DoxygenLayout.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/customdoxygen.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/metro/DoxygenLayout.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/doc/metro/customdoxygen.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="29d6dadb-867e-405e-a114-3d58895d0988" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.cpp" afterPath="$PROJECT_DIR$/Main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doxyfile" afterPath="$PROJECT_DIR$/Doxyfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Readme.md" afterPath="$PROJECT_DIR$/Readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UIPresenter.h" afterPath="$PROJECT_DIR$/UIPresenter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Window2D.h" afterPath="$PROJECT_DIR$/Window2D.h" />
     </list>
     <ignored path="lec-acc-cpp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,46 +72,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Window.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Window.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Window2D.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Window2D.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Readme.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Readme.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="287">
-                <caret line="131" column="18" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+              <first_editor relative-caret-position="379">
+                <caret line="129" column="83" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="83" />
                 <folding />
               </first_editor>
               <second_editor />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="doxygen.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/html/doxygen.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="folderclosed.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/html/folderclosed.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="folderopen.png" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doc/html/folderopen.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1067,7 +1049,14 @@
       <option name="project" value="LOCAL" />
       <updated>1463839558488</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Docs, docs, docs&#10;">
+      <created>1463849586499</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1463849586499</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1117,7 +1106,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="The sim now runs a warm-up period before showing the UI." />
     <MESSAGE value="Add foliages" />
     <MESSAGE value="Refactor drawing functions." />
     <MESSAGE value="Segfault from sort? SIR. YES. SIR." />
@@ -1142,7 +1130,8 @@
     <MESSAGE value="Change compiler settings to -O2" />
     <MESSAGE value="document all the classes" />
     <MESSAGE value="sudden modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="sudden modify" />
+    <MESSAGE value="Docs, docs, docs&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docs, docs, docs&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1151,21 +1140,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SOIL/soil.html" />
-    <entry file="file:///usr/include/GL/gl.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="473" column="8" selection-start-line="473" selection-start-column="8" selection-end-line="473" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SOIL/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SOIL/test_SOIL.cpp" />
     <entry file="file://$PROJECT_DIR$/SOIL/image_DXT.c">
       <provider selected="true" editor-type-id="text-editor">
@@ -1519,8 +1493,8 @@
     <entry file="file://$PROJECT_DIR$/Readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="287">
-            <caret line="131" column="18" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+          <first_editor relative-caret-position="379">
+            <caret line="129" column="83" selection-start-line="129" selection-start-column="83" selection-end-line="129" selection-end-column="83" />
             <folding />
           </first_editor>
           <second_editor />
@@ -1530,6 +1504,21 @@
         <state relative-caret-position="0">
           <caret line="58" column="109" selection-start-line="58" selection-start-column="109" selection-end-line="58" selection-end-column="109" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/html/doxygen.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/html/folderclosed.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/html/folderopen.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>
