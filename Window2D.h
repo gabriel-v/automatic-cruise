@@ -49,26 +49,67 @@ class Window2D : public Window {
 private:
 
     void drawVehicle(Vehicle *const v);
-
+    /**
+     * Draws a dash separating two lanes.
+     * @param xMeters the left hand side of the screen
+     * @param yScreen center line
+     * @param thickness In screen coords
+     */
     void drawDash(float xMeters, float yScreen, float thickness);
-
+    /**
+     * Draws an opengl rect (in screen coords) using glVertex2f.
+     */
     void drawRect(float left, float right, float bottom, float top);
 
-
+    /**
+     * Draws a rectangle around the given vehicle
+     * @param v The on-screen vehicle
+     * @param red
+     * @param green
+     * @param blue
+     */
     void markVehicle(const Vehicle *v, float red, float green, float blue);
 
+    /**
+     * Returns left and right margins shown on the screen, in meters (road coords).
+     */
     std::pair<float, float> roadLimits();
 
+    /**
+     * Draws all the vehicles on this given lane
+     * @param vs Sorted vehicle deque. Drawing will be done only for the vehicles on screen.
+     */
     void drawVehicles(const std::deque<Vehicle *> vs);
 
+    /**
+     * Number of meters for a given
+     */
     float ratio;
+
+    /**
+     * Current center of the screen, in meters.
+     */
     float centerX;
 
+    /**
+     * Random triangle generator.
+     */
     Foliage2D *foliage;
 
+    /**
+     * Maps each vehicle to its texture ID.
+     */
     std::unordered_map<Vehicle *, GLuint> textureMap;
+
+    /**
+     * Texture list.
+     */
     std::vector<GLuint> textures;
 
+    /**
+     * Reads the textures and loads them into OpenGL.
+     * @see textures
+     */
     void initTextures();
 
 protected:
@@ -80,7 +121,6 @@ protected:
     virtual Point pixelToRoadCoordinates(Point pixelCoords) override;
 
     virtual Point roadToScreenCoordinates(Point roadCoords) override;
-
 
     float maxLeft;
     float maxRight;

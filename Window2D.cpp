@@ -57,9 +57,7 @@ const int N_TEXTURES = 7;
  */
 static Interval one(0, 1);
 
-/**
- *
- */
+
 void Window2D::drawRect(float left, float right, float bottom, float top) {
 
     glVertex2f(left, top);
@@ -134,6 +132,7 @@ void Window2D::drawVehicles(const std::deque<Vehicle *> vs) {
 }
 
 void Window2D::drawDash(float xMeters, float lane, float thickness) {
+    // round to nearest guide_length
     xMeters = int((xMeters) / GUIDE_LENGTH) * GUIDE_LENGTH;
     Point center = roadToScreenCoordinates(Point(xMeters - lane * lane * 3, lane));
 

@@ -91,32 +91,70 @@ protected:
      */
     ScreenMapper *screenMapper;
 
+    /**
+     * ImGui flag used to toggle the stats window.
+     */
     bool showStatsView = true;
-    bool showDemoView = false;
+//    bool showDemoView = false;
 
     /**
-     * TODO
+     * ACC target distance, in meters, being set from the UI.
      */
     float accTargetDistance = 40.0f;
+
+    /**
+     * ACC target speed, in km/h, being set from the UI.
+     */
     float accTargetSpeed = 120.0f;
 
+    /**
+     * Selected vehicle target distance, in meters, being set from the UI.
+     */
     float randomTargetDistance;
+    /**
+     * Selected vehicle target speed, in km/h, being set from the UI.
+     */
     float randomTargetSpeed;
 
+    /**
+     * The speed in km/h for a new vehicle (that gets spawned when the user clicks 'add vehicle'
+     */
     float newVehicleSpeed = 120.0f;
 
+    /**
+     * UI status message. This should reset once in a while
+     */
     std::string status;
 
+    /**
+     * Displays stats, like ACC speed and distance.
+     */
     void statsView();
 
+    /**
+     * Main command view, controls the ACC and the simulation.
+     */
     void commandView();
 
+    /**
+     * Sets the state string and resets the timeout.
+     */
     void setState(std::string status);
 
+    /**
+     * Time, in seconds, until the status will reset to 'OK'
+     */
     float timeToStateReset;
 
+    /**
+     * True if the user clicked 'place vehicle anywhere' and the UI is waiting for a click on the road.
+     */
     bool waitingForVehiclePlacement = false;
 
+    /**
+     * Resets the timer and the status to 'OK'.
+     * Forgets any past state.
+     */
     void resetState();
 
 
@@ -127,14 +165,34 @@ public:
 
     virtual ~UIPresenter();
 
+    /**
+     * Builds the ImGui interface.
+     * Should be called as soon as possible into the loop.
+     * @param dt Time elapsed since last calling. Used for state timeout
+     */
     void present(float dt);
 
+    /**
+     * Renders the UI onto the screen.
+     * Calls ImGui::Render()
+     */
     void render();
 
+    /**
+     * Redirects key callbacks to ImGui.
+     * Application logic may be implemented here.
+     */
     void key_callback(int key, int scancode, int action, int mods);
 
+    /**
+     * Mouse button logic goes in here.
+     * Controls application logic: vehicle selection, vehicle placement.
+     */
     void mouse_button_callback(int button, int action, int mods);
 
+    /**
+     * View with knobs and switches for the random vehicle that the user selects.
+     */
     void showRandomVehicleView();
 
 };

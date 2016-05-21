@@ -68,11 +68,6 @@ UIPresenter::~UIPresenter() {
     ImGui_ImplGlfw_Shutdown();
 }
 
-/**
- * Builds the ImGui interface.
- * Should be called as soon as possible into the loop.
- * @param dt Time elapsed since last calling. Used for state timeout
- */
 void UIPresenter::present(float dt) {
     ImGui_ImplGlfw_NewFrame();
 
@@ -99,23 +94,14 @@ void UIPresenter::present(float dt) {
         highway.preferredVehicle->setTargetDistance(accTargetDistance);
     }
 
-
-    if (showDemoView)
-        ImGui::ShowTestWindow(&showDemoView);
+//    if (showDemoView)
+//        ImGui::ShowTestWindow(&showDemoView);
 }
 
-/**
- * Redirects key callbacks to ImGui.
- * Application logic may be implemented here.
- */
 void UIPresenter::key_callback(int key, int scancode, int action, int mods) {
     ImGui_ImplGlFw_KeyCallback(window, key, scancode, action, mods);
 }
 
-/**
- * Mouse button logic goes in here.
- * Controls application logic: vehicle selection, vehicle placement.
- */
 void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     ImGui_ImplGlfw_MouseButtonCallback(window, button, action, mods);
 
@@ -153,17 +139,12 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
         resetState();
 }
 
-/**
- * Renders the UI onto the screen.
- * Calls ImGui::Render()
- */
+
 void UIPresenter::render() {
     ImGui::Render();
 }
 
-/**
- * Main command view, controls the ACC and the simulation.
- */
+
 void UIPresenter::commandView() {
     ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Simulation command", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
@@ -251,27 +232,19 @@ void UIPresenter::statsView() {
     ImGui::End();
 }
 
-/**
- * Sets the state string and resets the timeout.
- */
+
 void UIPresenter::setState(std::string statusString) {
     status = statusString;
     timeToStateReset = RESET_TIMEOUT;
 }
 
-/**
- * Resets the timer and the status to 'OK'.
- * Forgets any past state.
- */
+
 void UIPresenter::resetState() {
     status = "OK.";
     timeToStateReset = RESET_TIMEOUT;
     waitingForVehiclePlacement = false;
 }
 
-/**
- * View with knobs and switches for the random vehicle that the user selects.
- */
 void UIPresenter::showRandomVehicleView() {
     ImGui::SetNextWindowPos(ImVec2(450, 100), ImGuiSetCond_FirstUseEver);
     ImGui::Begin("Selected vehicle", nullptr, ImGuiWindowFlags_AlwaysAutoResize);

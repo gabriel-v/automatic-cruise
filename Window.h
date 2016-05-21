@@ -51,10 +51,16 @@ public:
 
     Window(Highway &high);
 
+    /**
+     * Propagates the GLFW3 key callback to the UIPresenter and the app logic
+     */
     void key_callback(int key, int scancode, int action, int mods);
 
     virtual ~Window();
 
+    /**
+     * Start the simulation
+     */
     void start();
 
     virtual void draw(int width, int height) = 0;
@@ -64,12 +70,26 @@ public:
     UIPresenter *presenter;
 
 protected:
-
     GLFWwindow *window;
+
+    /**
+     * Time at which the simulation started
+     */
     std::chrono::system_clock::time_point startTime;
+
+    /**
+     * Lane width in meters
+     */
     static constexpr float LANE_WIDTH = 7.0;
 
+    /**
+     * Screen width in pixels
+     */
     int width;
+
+    /**
+     * Screen height in pixels
+     */
     int height;
 
 private:

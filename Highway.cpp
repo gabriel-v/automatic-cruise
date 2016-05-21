@@ -43,12 +43,20 @@
 #include "ACCVehicle.h"
 #include "Error.h"
 
+/**
+ * Max X coordinate for any vehicle.
+ * If this is exceeded, the system diverges because it's unstable, and we signal this.
+ */
 const float MAX_X_COORDINATE = 1e12f;
 
+/**
+ * Number of lanes on the highway. All lanes go right.
+ */
 const int N_LANES = 3;
-const float MAX_DELTA_X = 165, MIN_DELTA_X = 125;
+const float MAX_DELTA_X = 165;
+const float MIN_DELTA_X = 125;
 const int N_VEHICLES_PER_LANE = 40;
-const float TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X;
+const float TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.6f;
 const float TELEPORT_INTERVAL = 2.0f;
 
 const float MAX_VIEW_DISTANCE = 200.0f;

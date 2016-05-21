@@ -1,3 +1,9 @@
+/**
+ * @file imgui_impl_glfw.h
+ * @brief ImGUI compat with GLFW3. Taken from ImGUI.
+ */
+
+
 // ImGui GLFW binding with OpenGL
 // In this binding, ImTextureID is used to store an OpenGL 'GLuint' texture identifier. Read the FAQ about ImTextureID in imgui.cpp.
 

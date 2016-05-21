@@ -43,6 +43,9 @@
 #include "Error.h"
 #include "Window.h"
 
+/**
+ * Used to ensure we have only one Window running
+ */
 static int window_reference_count = 0;
 
 static void global_error_callback(int x, const char *message) {
@@ -78,7 +81,7 @@ void Window::key_callback(int key, int, int action, int) {
                 zoomIn();
                 break;
             default:
-                std::cerr << "Pressed: " << key << std::endl;
+                break;
         }
 
     }
@@ -135,7 +138,6 @@ float Window::timeElapsed() {
 
 void Window::start() {
     float last = timeElapsed() - 1.0f / 60.0f;
-
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
