@@ -31,6 +31,11 @@
  */
 
 
+/**
+ * @file Main.cpp
+ * @brief Entry point
+ */
+
 #include "Window.h"
 #include "Window2D.h"
 

@@ -1,4 +1,7 @@
 ### CMake template
+doc/html
+doc/latex
+
 CMakeCache.txt
 CMakeFiles
 CMakeScripts

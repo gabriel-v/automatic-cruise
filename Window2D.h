@@ -42,6 +42,9 @@
 #include "Window.h"
 #include "Foliage2D.h"
 
+/**
+ * Implementation for a 2D view of the highway.
+ */
 class Window2D : public Window {
 private:
 

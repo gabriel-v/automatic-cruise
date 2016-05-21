@@ -127,11 +127,9 @@ Code: the `ACCVehicle` class
 
 ### Milestone 4: Project completion
 
-The documentation is compiled using Doxygen.
-I'll host it (and any videos we may have by then) on one of my sites before the presentation.
+The documentation is compiled using Doxygen. It's available on [alt-f4.ro/acc](alt-f4.ro).
 
-TODO: automated testing, parameter optimisation, with genetic algorithm?
-TODO: convert videos to webm
+TODO: auto testing
 
 -------------------------------------------------------------------------------------------------------
 
@@ -145,7 +143,3 @@ towards the right side of the road.
 Code: `ACCVehicle::think`, `ACCVehicle::shouldChangeLane`
 
 -------------------------------------------------------------------------------------------------------
-
-## End Credits
-
-TODO

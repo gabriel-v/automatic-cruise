@@ -76,12 +76,27 @@ public:
  */
 class UIPresenter {
 protected:
+    /**
+     * Ref to the highway
+     */
     Highway &highway;
+
+    /**
+     * The window the UI is rendered to
+     */
     GLFWwindow *window;
+
+    /**
+     * The logical window that maps cars to screen coordinates and pixel values
+     */
     ScreenMapper *screenMapper;
 
     bool showStatsView = true;
     bool showDemoView = false;
+
+    /**
+     * TODO
+     */
     float accTargetDistance = 40.0f;
     float accTargetSpeed = 120.0f;
 
