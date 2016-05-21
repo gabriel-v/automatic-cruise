@@ -41,10 +41,10 @@
 const float MAX_X_COORDINATE = 1e12f;
 
 const int N_LANES = 3;
-const float MAX_DELTA_X = 165, MIN_DELTA_X = 65;
+const float MAX_DELTA_X = 165, MIN_DELTA_X = 125;
 const int N_VEHICLES_PER_LANE = 40;
-const float TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X / 1.5f;
-const float TELEPORT_INTERVAL = 7.0f;
+const float TELEPORT_DISTANCE = N_VEHICLES_PER_LANE * MAX_DELTA_X;
+const float TELEPORT_INTERVAL = 2.0f;
 
 const float MAX_VIEW_DISTANCE = 200.0f;
 

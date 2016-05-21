@@ -33,9 +33,9 @@
 
 ACCVehicle::ACCVehicle(const Vehicle &x) : Vehicle(x) {
     // We're a supercar
-//    terminalSpeed = 340 / 3.6;
-//    maxAcceleration = 12.0;
-    unsatisfiedTime = 0.0;
+    terminalSpeed = 350.0f / 3.6f;
+    maxAcceleration = 12.0f;
+    unsatisfiedTime = 0.0f;
 }
 
 void ACCVehicle::decideAcceleration(const Neighbours *n) {
@@ -91,7 +91,7 @@ void ACCVehicle::decideAcceleration(const Neighbours *n) {
     }
 
     // Make it a little snappy
-    if (std::abs(x) > 0.5) {
+    if (std::abs(a) > 0.5) {
         a += sgn(a) * 1.0;
     }
 
@@ -146,6 +146,6 @@ void ACCVehicle::step(float dt) {
     if (unsatisfied) {
         unsatisfiedTime += dt;
     } else {
-        unsatisfiedTime = std::max(unsatisfiedTime / 2.0f, 0.0f);
+        unsatisfiedTime = std::max(unsatisfiedTime / 1.3f - dt, 0.0f);
     }
 }
