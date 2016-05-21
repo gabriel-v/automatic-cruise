@@ -32,6 +32,10 @@
 #ifndef LEC_ACC_CPP_ACC_VEHICLE_H
 #define LEC_ACC_CPP_ACC_VEHICLE_H
 
+/**
+ * @file ACCVehicle.h
+ * @brief Adaptive cruise control logic
+ */
 
 #include "Vehicle.h"
 

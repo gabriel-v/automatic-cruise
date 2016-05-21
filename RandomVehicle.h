@@ -33,6 +33,11 @@
 #ifndef LEC_ACC_CPP_RANDOMVEHICLE_H
 #define LEC_ACC_CPP_RANDOMVEHICLE_H
 
+/**
+ * @file RandomVehicle.h
+ * @brief Random vehicle logic
+ */
+
 #include "Vehicle.h"
 
 /**

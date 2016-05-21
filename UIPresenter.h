@@ -32,6 +32,10 @@
 #ifndef LEC_ACC_CPP_UI_CONTROLLER_H
 #define LEC_ACC_CPP_UI_CONTROLLER_H
 
+/**
+ * @file UIPresenter.cpp
+ * @brief Coordinates between ImGUI and app logic
+ */
 
 #include <GLFW/glfw3.h>
 #include <string>

@@ -33,6 +33,11 @@
 #ifndef LEC_ACC_CPP_ERROR_H
 #define LEC_ACC_CPP_ERROR_H
 
+/**
+ * @file Error.h
+ * @brief Error class and other utils
+ */
+
 #include <exception>
 #include <string>
 

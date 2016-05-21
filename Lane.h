@@ -33,6 +33,11 @@
 #ifndef LANE_H
 #define LANE_H
 
+/**
+ * @file Lane.h
+ * @brief Car lane
+ */
+
 #include <deque>
 #include "Vehicle.h"
 

@@ -30,7 +30,10 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
+/**
+ * @file Window2D.cpp
+ * @brief Implementation for a 2D view of the highway
+ */
 
 #include <iostream>
 #include <SOIL.h>
@@ -38,10 +41,25 @@
 #include "Window.h"
 #include "Window2D.h"
 
+/**
+ * Length (in m) of the white segments that separate the lanes.
+ */
 const int GUIDE_LENGTH = 8;
+
+/**
+ * Numbers of textures found in res/.
+ * Textures are expected to be in the form of res/carX.png
+ */
 const int N_TEXTURES = 7;
+
+/**
+ * Used to choose the texture for a given car.
+ */
 static Interval one(0, 1);
 
+/**
+ *
+ */
 void Window2D::drawRect(float left, float right, float bottom, float top) {
 
     glVertex2f(left, top);
@@ -49,6 +67,7 @@ void Window2D::drawRect(float left, float right, float bottom, float top) {
     glVertex2f(right, bottom);
     glVertex2f(right, top);
 };
+
 
 std::pair<float, float> Window2D::roadLimits() {
     return std::make_pair(centerX + maxLeft / ratio - 10, centerX + maxRight / ratio + 10);

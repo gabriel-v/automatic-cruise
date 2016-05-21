@@ -33,6 +33,11 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+/**
+ * @file Vehicle.cpp
+ * Implements this really brittle abstract class.
+ */
+
 #include "Interval.h"
 #include "Neighbours.h"
 

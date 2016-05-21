@@ -29,6 +29,12 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+/**
+ * @file Window.cpp
+ * @brief Brittle abstract class that manages a GLFW3 window with a highway simulation on it
+ */
+
 #include <chrono>
 #include <iostream>
 #include <GLFW/glfw3.h>

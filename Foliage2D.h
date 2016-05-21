@@ -32,6 +32,11 @@
 #ifndef LEC_ACC_CPP_FOLIAGE2D_H
 #define LEC_ACC_CPP_FOLIAGE2D_H
 
+/**
+ * @file Foliage2D.h
+ * @brief 2D foliage implementation
+ */
+
 #include <vector>
 
 /**

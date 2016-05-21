@@ -30,6 +30,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @file RandomVehicle.cpp
+ * @brief Random vehicle logic implementation
+ */
+
 #include <iostream>
 #include "RandomVehicle.h"
 

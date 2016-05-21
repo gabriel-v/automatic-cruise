@@ -33,6 +33,11 @@
 #ifndef LEC_ACC_CPP_WINDOW2D_H
 #define LEC_ACC_CPP_WINDOW2D_H
 
+/**
+ * @file Window2D.h
+ * @brief Implementation for a 2D view of the highway
+ */
+
 #include <unordered_map>
 #include "Window.h"
 #include "Foliage2D.h"

@@ -30,6 +30,10 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @file Lane.h
+ * @brief Car lane
+ */
 
 #include "Lane.h"
 

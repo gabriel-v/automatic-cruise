@@ -33,6 +33,10 @@
 #ifndef LEC_ACC_CPP_NEIGHBOURS_H
 #define LEC_ACC_CPP_NEIGHBOURS_H
 
+/**
+ * @file Neighbours.h
+ */
+
 #include "Target.h"
 
 /**

@@ -33,7 +33,14 @@
 #ifndef LEC_ACC_CPP_INTERVAL_H
 #define LEC_ACC_CPP_INTERVAL_H
 
+
+/**
+ * @file Interval.h
+ * @brief Random number intervals
+ */
+
 #include <random>
+
 /**
  * Float interval that can be sampled.
  */

@@ -34,6 +34,11 @@
 #define LEC_ACC_CPP_TARGET_H
 
 /**
+ * @file Target.h
+ * @brief Target data
+ */
+
+/**
  * Contains distance and relative speed.
  */
 struct Target {

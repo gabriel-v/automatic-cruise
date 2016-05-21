@@ -33,6 +33,12 @@
 #ifndef HIGHWAY_H
 #define HIGHWAY_H
 
+/**
+ * @file Highway.h
+ * @brief Highway simulation
+ */
+
+
 #include <map>
 #include <vector>
 #include "Lane.h"

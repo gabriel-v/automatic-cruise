@@ -30,6 +30,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * @file Highway.cpp
+ * @brief Highway simulation
+ */
+
 #include <algorithm>
 #include <iostream>
 #include <map>

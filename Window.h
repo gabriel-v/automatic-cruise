@@ -33,12 +33,19 @@
 #ifndef USERINTERFACE_H
 #define USERINTERFACE_H
 
+/**
+ * @file Window.h
+ * @brief Brittle abstract class that manages a GLFW3 window with a highway simulation on it
+ */
+
 #include <GLFW/glfw3.h>
 #include "Highway.h"
 #include "UIPresenter.h"
 #include <chrono>
 
-
+/**
+ * @brief Brittle abstract class that manages a GLFW3 window with a highway simulation on it.
+ */
 class Window : public ScreenMapper {
 public:
 

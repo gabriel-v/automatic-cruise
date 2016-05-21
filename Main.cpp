@@ -31,10 +31,8 @@
  */
 
 
-#include <iostream>
 #include "Window.h"
 #include "Window2D.h"
-
 
 int main() {
 

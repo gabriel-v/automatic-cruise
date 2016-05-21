@@ -30,6 +30,12 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+/**
+ * @file Foliage2D.cpp
+ * @brief 2D foliage implementation
+ */
+
 #include <GLFW/glfw3.h>
 #include "Foliage2D.h"
 #include "Interval.h"
