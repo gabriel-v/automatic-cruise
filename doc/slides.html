@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Gabriel Vîjială, Ștefan Teodorescu">
+  <title>Automatic Cruise Control - LEC 2016</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Automatic Cruise Control - LEC 2016</h1>
+  <h2 class="author">Gabriel Vîjială, Ștefan Teodorescu</h2>
+  <h3 class="date">May, 2016</h3>
+</section>
+
+<section><section id="team-kernel-panic-blues" class="titleslide slide level1"><h1>Team: Kernel Panic Blues</h1></section><section id="about-us" class="slide level2">
+<h1>About us</h1>
+<p>We’re students of the Faculty of Automatic Control and Computers, Politehnica University of Bucharest. First year of study.</p>
+</section></section>
+<section><section id="project-adaptive-cruise-control-system-for-road-vehicles" class="titleslide slide level1"><h1>Project: Adaptive cruise control system for road vehicles</h1></section><section id="description" class="slide level2">
+<h1>Description</h1>
+<p>tralala</p>
+</section><section id="description-1" class="slide level2">
+<h1>Description</h1>
+<p>tralala</p>
+</section><section id="description-2" class="slide level2">
+<h1>Description</h1>
+<p>tralala</p>
+</section></section>
+<section><section id="milestone-1-the-simulation" class="titleslide slide level1"><h1>Milestone 1: The simulation</h1></section><section id="the-simulation" class="slide level2">
+<h1>The simulation</h1>
+<ul>
+<li>Three lanes going right</li>
+<li>A population of random vehicles</li>
+<li>That undertake random (but safe) actions</li>
+</ul>
+</section><section id="section" class="slide level2">
+<h1></h1>
+<div style="color: pink">
+<p>SCREENSHOT edited with paint</p>
+</div>
+</section><section id="available-information" class="slide level2">
+<h1>Available information</h1>
+<ul>
+<li>Each vehicle receives its immediate neighbours</li>
+<li>Data: distance and relative speed</li>
+</ul>
+</section><section id="section-1" class="slide level2">
+<h1></h1>
+<div style="color: pink">
+<p>SCREENSHOT edited with paint</p>
+</div>
+</section><section id="incomplete-information" class="slide level2">
+<h1>Incomplete information</h1>
+<ul>
+<li>Limited sight in all directions</li>
+<li>Limited to adjacent lanes</li>
+</ul>
+</section><section id="physics" class="slide level2">
+<h1>Physics</h1>
+<ul>
+<li>Acceleration is limited by current speed</li>
+<li>Terminal speed is a random parameter</li>
+<li>Maximum acceleration is a random parameter</li>
+</ul>
+</section><section id="the-graphical-ui" class="slide level2">
+<h1>The graphical UI</h1>
+<ul>
+<li>Implemented in OpenGL</li>
+<li>Green background</li>
+<li>Dark road surface</li>
+</ul>
+</section><section id="the-graphical-ui-1" class="slide level2">
+<h1>The graphical UI</h1>
+<ul>
+<li>White lane markers</li>
+<li>Sprites of cars seen from above</li>
+<li>Random green triangles that serve as foliage</li>
+</ul>
+</section></section>
+<section><section id="the-random-vehicles" class="titleslide slide level1"><h1>The random vehicles</h1></section><section id="random-characteristics" class="slide level2">
+<h1>Random characteristics</h1>
+<ul>
+<li>Max speed</li>
+<li>Max acceleration</li>
+<li>Overtake speed</li>
+<li>Reaction time</li>
+<li>Panic distance</li>
+</ul>
+</section><section id="random-appearance" class="slide level2">
+<h1>Random appearance</h1>
+<ul>
+<li>Random Color</li>
+<li>Random Width</li>
+<li>Random Length</li>
+</ul>
+</section><section id="random-actions" class="slide level2">
+<h1>Random actions</h1>
+<p>Once in a while:</p>
+<ul>
+<li>Randomly change the target speed</li>
+<li>And the target distance</li>
+<li>And the lane</li>
+</ul>
+</section><section id="exception" class="slide level2">
+<h1>Exception</h1>
+<p>If the random vehicle’s speed is lower than a threshold, then it can only change lanes to the right.</p>
+</section><section id="how-its-done" class="slide level2">
+<h1>How it’s done</h1>
+<p>Each vehicle applies an acceleretion that:</p>
+<ul>
+<li>Tries to reach the target distance</li>
+<li>Tries to reach the target speed</li>
+<li>Strong breaking when the car up front is closer than a “panic distance”</li>
+</ul>
+</section></section>
+<section><section id="milestone-2-user-input" class="titleslide slide level1"><h1>Milestone 2: User Input</h1></section><section id="command-the-cruise-control-system" class="slide level2">
+<h1>Command the Cruise Control System</h1>
+<ul>
+<li>Change lanes</li>
+<li>Set target speed</li>
+<li>Set target distance</li>
+</ul>
+</section><section id="command-the-simulation" class="slide level2">
+<h1>Command the simulation</h1>
+<ul>
+<li>Add another vehicle in front</li>
+<li>Or anywhere else on the highway</li>
+</ul>
+</section><section id="command-the-random-vehicles" class="slide level2">
+<h1>Command the random vehicles</h1>
+<ul>
+<li>Set target speed</li>
+<li>Set target distance</li>
+<li>Change lanes</li>
+</ul>
+<p>After a random vehicle receives an order, it will wait longer before changing them randomly.</p>
+</section><section id="stats" class="slide level2">
+<h1>Stats</h1>
+<ul>
+<li>Simulation FPS</li>
+<li>Data about the ACC</li>
+</ul>
+</section></section>
+<section><section id="milestone-3-the-adaptive-cruise-control-system" class="titleslide slide level1"><h1>Milestone 3: The adaptive cruise control system</h1></section><section id="tralalala" class="slide level2">
+<h1>Tralalala</h1>
+<p>tralala</p>
+</section></section>
+<section><section id="milestone-4-project-completion" class="titleslide slide level1"><h1>Milestone 4: Project completion</h1></section><section id="testing" class="slide level2">
+<h1>Testing</h1>
+<p>tralala</p>
+</section><section id="documentation" class="slide level2">
+<h1>Documentation</h1>
+<ul>
+<li>Documentation generated with Doxygen</li>
+<li>Slides – markdown, pandoc, reveal.js</li>
+</ul>
+</section></section>
+<section><section id="tools" class="titleslide slide level1"><h1>Tools</h1></section><section id="tools-1" class="slide level2">
+<h1>Tools</h1>
+<ul>
+<li>C++11 with CMake</li>
+<li>Graphics: OpenGL 2 with GLFW3</li>
+<li>UI: ImGui</li>
+<li>IDE: IntelliJ CLion</li>
+</ul>
+</section></section>
+<section><section id="screenshots" class="titleslide slide level1"><h1>Screenshots</h1></section><section id="section-2" class="slide level2">
+<h1></h1>
+</section><section id="section-3" class="slide level2">
+<h1></h1>
+</section></section>
+<section><section id="more-screenshots" class="titleslide slide level1"><h1>More screenshots</h1></section><section id="section-4" class="slide level2">
+<h1></h1>
+</section><section id="section-5" class="slide level2">
+<h1></h1>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

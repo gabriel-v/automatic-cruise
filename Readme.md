@@ -129,7 +129,7 @@ Code: the `ACCVehicle` class
 
 The documentation is compiled using Doxygen. It's available on [acc.alt-f4.ro](acc.alt-f4.ro).
 
-TODO: auto testing
+The slides are written in Markdown and converted to HTML + reveal.js using pandoc.
 
 -------------------------------------------------------------------------------------------------------
 
