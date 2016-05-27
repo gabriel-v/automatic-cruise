@@ -315,12 +315,12 @@ void Highway::stabilise() {
 }
 
 
-void Highway::addVehicleAt(float X, float lane, float speed) {
+bool Highway::addVehicleAt(float X, float lane, float speed) {
     const float MIN_DISTANCE = 20.0f;
     const float BUFF_DISTANCE = 50.0f;
     int l = (int) std::round(lane);
     if (l < 0 || l >= static_cast<int>(lanes.size())) {
-        return;
+        return false;
     }
     auto begin = lanes[l]->vehicles.begin();
     auto it = begin;
@@ -356,7 +356,7 @@ void Highway::addVehicleAt(float X, float lane, float speed) {
 
             if(std::abs(v1->getX() - v2->getX())  < MIN_DISTANCE + v1->getLength() + v2->getLength()) {
                 // Can't do it
-                return;
+                return false;
             }
 
             X = (v1->getX() + v2->getX()) / 2;
@@ -373,10 +373,11 @@ void Highway::addVehicleAt(float X, float lane, float speed) {
     v->setV(realSpeed);
     v->setTargetSpeed(speed);
     lanes[l]->vehicles.insert(it, v);
+    return true;
 }
 
-void Highway::addVehicleInFrontOfPreferred(float speed) {
-    addVehicleAt(preferredVehicle->getX() + 18.0f, preferredVehicle->getLane(), speed);
+bool Highway::addVehicleInFrontOfPreferred(float speed) {
+    return addVehicleAt(preferredVehicle->getX() + 18.0f, preferredVehicle->getLane(), speed);
 }
 
 void Highway::selectVehicleAt(float X, float lane) {

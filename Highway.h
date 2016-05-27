@@ -85,12 +85,12 @@ public:
     /**
      * Adds random vehicle at that approximate road coordinate.
      */
-    void addVehicleAt(float X, float lane, float speed);
+    bool addVehicleAt(float X, float lane, float speed);
 
     /**
      * Adds random vehicle in front of the ACC.
      */
-    void addVehicleInFrontOfPreferred(float speed);
+    bool addVehicleInFrontOfPreferred(float speed);
 
     /**
      * Tries to select a vehicle at given road coordinate.
