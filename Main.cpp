@@ -36,6 +36,7 @@
  * @brief Entry point
  */
 
+#include <iostream>
 #include "Window.h"
 #include "Window2D.h"
 

@@ -119,8 +119,11 @@ void UIPresenter::mouse_button_callback(int button, int action, int mods) {
     if (waitingForVehiclePlacement) {
         waitingForVehiclePlacement = false;
         highway.unselectVehicle();
-        highway.addVehicleAt(roadCoords.x, roadCoords.y, newVehicleSpeed / 3.6f);
-        setState("Vehicle added.");
+        if (highway.addVehicleAt(roadCoords.x, roadCoords.y, newVehicleSpeed / 3.6f)) {
+            setState("Vehicle added.");
+        } else {
+            setState("Vehicle couldn't be added.");
+        }
         return;
     } else {
         highway.selectVehicleAt(roadCoords.x, roadCoords.y);
@@ -197,8 +200,11 @@ void UIPresenter::commandView() {
     ImGui::Text("Sim: Add vehicle ");
     ImGui::SameLine();
     if (ImGui::SmallButton("in front")) {
-        highway.addVehicleInFrontOfPreferred(newVehicleSpeed / 3.6f);
-        setState("Vehicle added.");
+        if( highway.addVehicleInFrontOfPreferred(newVehicleSpeed / 3.6f)) {
+            setState("Vehicle added.");
+        } else {
+            setState("Vehicle not added.");
+        }
     }
 
     ImGui::SameLine();
