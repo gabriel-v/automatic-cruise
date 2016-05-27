@@ -2,6 +2,7 @@
 doc/html
 doc/latex
 
+.idea/
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
