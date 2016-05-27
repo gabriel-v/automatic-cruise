@@ -15,16 +15,8 @@ First year of study.
 
 ## Description
 
-tralala
-
-## Description
-
-tralala
-
-## Description
-
-tralala
-
+We've designed a cruise control system (with automatic overtaking)
+that controls the vehicle speed by adapting to its environment.
 
 # Milestone 1: The simulation
 
@@ -71,7 +63,6 @@ SCREENSHOT edited with paint
 - White lane markers
 - Sprites of cars seen from above
 - Random green triangles that serve as foliage
-
 
 # The random vehicles
 

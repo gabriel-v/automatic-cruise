@@ -125,6 +125,9 @@ public:
     float preferredVehicleFrontDistance = 0;
 
 private:
+
+    void testForCollision();
+
     /**
      * Time elapsed since last teleport.
      */

@@ -38,6 +38,7 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include "Highway.h"
 #include "RandomVehicle.h"
 #include "ACCVehicle.h"
@@ -71,7 +72,7 @@ const Target FAR_IN_BACK = Target(0, -1e6f); // 1000km, basically infinity
 
 static void check_coordinate(float x) {
     if(std::isnan(x) || std::abs(x) > MAX_X_COORDINATE) {
-        std::cerr << "The X coordinate of some car is diverging!";
+        throw Error("The X coordinate of some car is diverging!");
     }
 }
 
@@ -184,6 +185,8 @@ void Highway::step(float dt) {
     }
 
     sort();
+
+    testForCollision();
 
     std::map<Vehicle *, Neighbours *> links;
     std::vector<std::deque<Vehicle *>::iterator> iters;
@@ -402,3 +405,33 @@ void Highway::selectVehicleAt(float X, float lane) {
 void Highway::unselectVehicle() {
     selectedVehicle = nullptr;
 }
+
+void Highway::testForCollision() {
+
+    for(Lane *l: lanes) {
+        int i = 0;
+        auto it = l->vehicles.begin();
+        auto end = l->vehicles.end() - 1;
+        for(; it != end; it++) {
+            if(it == end) {
+                return;
+            }
+            i++;
+            Vehicle *va = *it;
+            Vehicle *vb = *(it + 1);
+
+            float Xa = va->getX() + va->getLength() / 2;
+            float Xb = vb->getX() - vb->getLength() / 2;
+
+            if(Xb < Xa) {
+                std::stringstream ss;
+                ss << "Collision happened";
+                ss << " at car " << i << " (out of " << N_VEHICLES_PER_LANE << ")" << " of lane " << static_cast<int>(va->getLane());
+
+                throw Error(ss.str());
+            }
+        }
+    }
+}
+
+
