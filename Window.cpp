@@ -100,7 +100,7 @@ Window::Window(Highway &high) : highway(high) {
         throw Error("Glfw library init failed");
     }
 
-    startTime = std::chrono::high_resolution_clock::now();
+    startTime = std::chrono::system_clock::now();
     const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
     width = vidmode->width;
@@ -132,7 +132,7 @@ Window::~Window() {
 
 float Window::timeElapsed() {
     return std::chrono::duration<float>(
-            std::chrono::high_resolution_clock::now() - startTime
+            std::chrono::system_clock::now() - startTime
     ).count();
 }
 

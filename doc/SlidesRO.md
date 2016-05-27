@@ -27,77 +27,76 @@ vecinii sai din trafic.
 
 ## Simularea
 
-- Three lanes going right
--
-- A population of random vehicles
-- That undertake random (but safe) actions
+- Trei benzi cu sensul spre dreapta
+- Vehicule patricipante la trafic
+- Iau decizii aleatoare (dar fara riscuri)
 
 ## 
 <div style="color: pink">
 SCREENSHOT edited with paint
 </div>
 
-## Available information
+## Informatii disponibile
 
-- Each vehicle receives its immediate neighbours
-- Data: distance and relative speed
+- Fiecare vehicul are informatii despre vecinii proximi
+- Distanta si viteza relativa
 
 ## 
 <div style="color: pink">
 SCREENSHOT edited with paint
 </div>
 
-## Incomplete information
+## Informatii incomplete
 
-- Limited sight in all directions
-- Limited to adjacent lanes
+- Camp vizual limitat in toate directiile
+- Limitat la benzile adiacente
 
-## Physics
+## Fizica
 
-- Acceleration is limited by current speed
-- Terminal speed is a random parameter
-- Maximum acceleration is a random parameter
+- Acceleratia este limitata in functie de viteza curenta
+- Viteza terminala este un parametru aleator
+- Acceleratia maxima este un parametru aleator
 
-## The graphical UI
+## Interfata grafica
 
-- Implemented in OpenGL
-- Green background
-- Dark road surface
+- Implementata cu OpenGL
+- Fundal verde
+- Carosabil inchis la culoare
 
-## The graphical UI
+## Interfata grafica
 
-- White lane markers
-- Sprites of cars seen from above
-- Random green triangles that serve as foliage
+- Marcaje rutiere albe
+- Imaginile vehiculelor vazute de deasupra
+- Triunghiuri verzi aleatoare drept peisaj
 
 
-# The random vehicles
+# Participantii la trafic
 
-## Random characteristics
+## Caracteristici aleatoare
 
-- Max speed
-- Max acceleration
-- Overtake speed
-- Reaction time
-- Panic distance
+- Viteza maxima
+- Acceleratia maxima
+- Timp de reactie
+- Distanta de panica
 
-## Random appearance
+## Infatisare aleatoare
 
-- Random Color
-- Random Width
-- Random Length
+- Culoare aleatoare
+- Latime aleatoare
+- Lungime aleatoare
 
-## Random actions
+## Actiuni aleatoare
 
-Once in a while:
+Din cand in cand:
 
-- Randomly change the target speed
-- And the target distance
-- And the lane
+- Schimbarea vitezei terminale
+- A distantei limita
+- Si a benzii
 
-## Exception
+## Exceptie
 
-If the random vehicle's speed is lower than a threshold, then it can only change lanes to the right.
+Daca viteza unui vehicul este mai mica decat o limita,
+acesta poate schimba banda doar la dreapta.
 
 ## How it's done
 
