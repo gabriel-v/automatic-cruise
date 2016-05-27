@@ -3,7 +3,7 @@
 % May, 2016
 
 
-# Team: Kernel Panic Blues
+# Team: Kernel Panic <span style="color: blue">Blues</span>
 
 ## About us
 
