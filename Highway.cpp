@@ -316,31 +316,67 @@ void Highway::stabilise() {
 
 
 void Highway::addVehicleAt(float X, float lane, float speed) {
+    const float MIN_DISTANCE = 20.0f;
+    const float BUFF_DISTANCE = 50.0f;
     int l = (int) std::round(lane);
-    if (l < 0 || l >= (int) lanes.size());
-    auto it = lanes[l]->vehicles.begin();
+    if (l < 0 || l >= static_cast<int>(lanes.size())) {
+        return;
+    }
+    auto begin = lanes[l]->vehicles.begin();
+    auto it = begin;
     auto end = lanes[l]->vehicles.end();
     while (it != end && (*it)->getX() < X) {
         ++it;
     }
 
+    float realSpeed = speed;
+
     if (it == end) {
+        // We're at the end of our list
         X = lanes[l]->vehicles.back()->getX() + deltaX.uniform();
+    } else if(it == begin) {
+        // We're at the start of the list
+        X = lanes[l]->vehicles.front()->getX() - deltaX.uniform();
     } else {
-        if ((*it)->getX() - (*(it - 1))->getX() < MIN_DELTA_X / 3) {
-            return;
+        Vehicle *v2 = *it;
+        Vehicle *v1 = *(it - 1);
+
+        auto mi = [](float a, float b, float x) {
+            return std::min(std::abs(a - x), std::abs(b - x));
+        };
+
+        auto dist = [&mi](const Vehicle *v, float x) {
+            return mi(v->getX() - v->getLength() / 2, v->getX() + v->getLength() / 2, x);
+        };
+
+        realSpeed = (v1->getV() + v2->getV()) / 2;
+
+        if(dist(v1, X) < MIN_DISTANCE || dist(v2, X) < MIN_DISTANCE) {
+            // We're close to either of these
+
+            if(std::abs(v1->getX() - v2->getX())  < MIN_DISTANCE + v1->getLength() + v2->getLength()) {
+                // Can't do it
+                return;
+            }
+
+            X = (v1->getX() + v2->getX()) / 2;
         }
-        X = ((*it)->getX() + (*(it - 1))->getX()) / 2;
+
+        float minDist = std::min(dist(v1, X), dist(v2, X));
+        float coef = std::exp(-minDist / BUFF_DISTANCE);
+        realSpeed = realSpeed * coef + speed * (1 - coef);
+
     }
 
-    Vehicle *v = new RandomVehicle(this, X, lane);
-    v->setV(speed);
+
+    Vehicle *v = new RandomVehicle(this, X, std::round(lane));
+    v->setV(realSpeed);
     v->setTargetSpeed(speed);
     lanes[l]->vehicles.insert(it, v);
 }
 
 void Highway::addVehicleInFrontOfPreferred(float speed) {
-    addVehicleAt(preferredVehicle->getX() + 1, preferredVehicle->getLane(), speed);
+    addVehicleAt(preferredVehicle->getX() + 18.0f, preferredVehicle->getLane(), speed);
 }
 
 void Highway::selectVehicleAt(float X, float lane) {
