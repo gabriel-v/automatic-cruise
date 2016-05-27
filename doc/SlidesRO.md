@@ -3,34 +3,32 @@
 % May, 2016
 
 
-# Team: Kernel Panic <span style="color: blue">Blues</span>
+# Echipa: Kernel Panic <span style="color: blue">Blues</span>
 
-## About us
+## Despre noi
 
-We're students of the Faculty of Automatic Control and Computers,
-Politehnica University of Bucharest.
-First year of study.
+Suntem studenti la Facultatea de Automatica si Calculatoare,
+Universitatea Politehnica Bucuresti.
+Anul I de studiu.
 
-# Project: Adaptive cruise control system for road vehicles
+# Proiect: Sistem de cruise control adaptiv pentru vehicule
 
-## Description
+## Descriere
 
-tralala
+- Simulare de autostrada cu trafic
+- Sistem de cruise control adaptiv
 
-## Description
+## Descriere
 
-tralala
+Controleaza viteza vehiculului in functie de
+vecinii sai din trafic.
 
-## Description
+# Milestone 1: Simularea
 
-tralala
-
-
-# Milestone 1: The simulation
-
-## The simulation
+## Simularea
 
 - Three lanes going right
+-
 - A population of random vehicles
 - That undertake random (but safe) actions
 
