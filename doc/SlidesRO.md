@@ -3,7 +3,7 @@
 % May, 2016
 
 
-# Echipa: Kernel Panic <span style="color: blue">Blues</span>
+# Echipa: Kernel Panic <span style="color: cyan">Blues</span>
 
 ## Despre noi
 
@@ -15,43 +15,38 @@ Anul I de studiu.
 
 ## Descriere
 
-- Simulare de autostrada cu trafic
-- Sistem de cruise control adaptiv
+Am implementat un sistem de cruise control care
+controleaza viteza vehiculului in functie de
+vecinii sai din trafic.
 
 ## Descriere
 
-Controleaza viteza vehiculului in functie de
-vecinii sai din trafic.
+Am implementat:
 
-# Milestone 1: Simularea
+- O simulare a traficului pe o autostrada
+- Comportamentul haotic al participantilor la trafic
+- Un sistem stabil de cruise control adaptiv
+
+# Simularea
 
 ## Simularea
 
 - Trei benzi cu sensul spre dreapta
 - Vehicule patricipante la trafic
-- Iau decizii aleatoare (dar fara riscuri)
-
-## 
-<div style="color: pink">
-SCREENSHOT edited with paint
-</div>
+- Vehiculele decizii aleatoare (dar fara riscuri)
 
 ## Informatii disponibile
 
 - Fiecare vehicul are informatii despre vecinii proximi
 - Distanta si viteza relativa
 
-## 
-<div style="color: pink">
-SCREENSHOT edited with paint
-</div>
 
-## Informatii incomplete
+## Informatiile sunt incomplete
 
 - Camp vizual limitat in toate directiile
 - Limitat la benzile adiacente
 
-## Fizica
+## Modelul fizic
 
 - Acceleratia este limitata in functie de viteza curenta
 - Viteza terminala este un parametru aleator
@@ -60,13 +55,13 @@ SCREENSHOT edited with paint
 ## Interfata grafica
 
 - Implementata cu OpenGL
-- Fundal verde
+- Fundal verde, elemente vizuale verzi
 - Carosabil inchis la culoare
 
 ## Interfata grafica
 
 - Marcaje rutiere albe
-- Imaginile vehiculelor vazute de deasupra
+- Imagini cu vehicule vazute de deasupra
 - Triunghiuri verzi aleatoare drept peisaj
 
 
@@ -85,93 +80,81 @@ SCREENSHOT edited with paint
 - Latime aleatoare
 - Lungime aleatoare
 
-## Actiuni aleatoare
+## Comportament aleator
 
-Din cand in cand:
+Din cand in cand, participantii la trafic vor face urmatoarele:
 
-- Schimbarea vitezei terminale
-- A distantei limita
-- Si a benzii
+- Vor schimba viteza tinta
+- Si distanta minima
+- Si vor incerca sa schimbe banda
 
 ## Exceptie
 
 Daca viteza unui vehicul este mai mica decat o limita,
 acesta poate schimba banda doar la dreapta.
 
-## How it's done
+# Interfata de control
 
-Each vehicle applies an acceleretion that:
+## Controlul participantilor la trafic
 
-- Tries to reach the target distance
-- Tries to reach the target speed
-- Strong breaking when the car up front is closer than a "panic distance"
+Utilizatorul poate sa comande sistemului ACC sa:
 
+- Schimbe banda
+- Schimbe viteza tinta
+- Schimbe distanta minima
 
-# Milestone 2: User Input
+## Controlul simularii
 
-## Command the Cruise Control System
+Utilizatorul poate sa:
 
-- Change lanes
-- Set target speed
-- Set target distance
+- Adauge un vehicul in fata masinii echipate cu ACC
+- Sau oriunde altundeva pe autostrada
 
-## Command the simulation
+## Controlul participantilor la trafic
 
-- Add another vehicle in front
-- Or anywhere else on the highway
+Comenzile posibile sunt similare cu cele ale
+sistemului ACC.
 
-## Command the random vehicles
+## Statistici
 
-- Set target speed
-- Set target distance
-- Change lanes
+- FPS
+- Date despre sistemul ACC
 
-After a random vehicle receives an order, it will wait longer before changing them randomly.
+# Sistemul de Cruise Control Adaptiv
 
-## Stats
+## Controlul vitezei
 
-- Simulation FPS
-- Data about the ACC
+Sistemul ACC isi controleaza acceleratia astfel incat:
 
-# Milestone 3: The adaptive cruise control system
+- Sa atinga viteza tinta
+- Sa mentina distanta minima
+- Sa franeze puternic in cazul unui pericol
 
-## Tralalala
+## Strategia de depasire
 
-tralala
+- Se contorizeaza timpul de cand vehiculul nu conduce
+cu viteza dorita
+- Daca a trecut destul timp, se va incerca o depasire
 
+## Strategia de depasire
 
-# Milestone 4: Project completion
+- Se verifica daca schimbarea benzii ar fi sigura
+- Se alege banda care permite o acceleratie mai buna
 
-## Testing
+# Finalizarea proiectului
 
-tralala
+## Testare automata
 
-## Documentation
+Nu exista coliziuni pe durata simularii.
+Acest fapt este verificat la fiecare pas al simularii.
 
-- Documentation generated with Doxygen
+## Documentatie
+
+- Documentatia a fost generata cu Doxygen
 - Slides -- markdown, pandoc, reveal.js
 
+# Intrebari?
 
-# Tools
-
-## Tools
-
-- C++11 with CMake
-- Graphics: OpenGL 2 with GLFW3
-- UI: ImGui
-- IDE: IntelliJ CLion
-
-# Screenshots
-
-##
-
-##
-
-# More screenshots
-
-##
-
-##
 
 
 

@@ -26,20 +26,10 @@ that controls the vehicle speed by adapting to its environment.
 - A population of random vehicles
 - That undertake random (but safe) actions
 
-## 
-<div style="color: pink">
-SCREENSHOT edited with paint
-</div>
-
 ## Available information
 
 - Each vehicle receives its immediate neighbours
 - Data: distance and relative speed
-
-## 
-<div style="color: pink">
-SCREENSHOT edited with paint
-</div>
 
 ## Incomplete information
 
@@ -127,26 +117,12 @@ After a random vehicle receives an order, it will wait longer before changing th
 - Simulation FPS
 - Data about the ACC
 
-# Milestone 3: The adaptive cruise control system
-
-## Tralalala
-
-tralala
-
-
-# Milestone 4: Project completion
-
-## Testing
-
-tralala
+# Tools
 
 ## Documentation
 
 - Documentation generated with Doxygen
 - Slides -- markdown, pandoc, reveal.js
-
-
-# Tools
 
 ## Tools
 
@@ -155,17 +131,7 @@ tralala
 - UI: ImGui
 - IDE: IntelliJ CLion
 
-# Screenshots
 
-##
-
-##
-
-# More screenshots
-
-##
-
-##
-
+# Questions?
 
 
